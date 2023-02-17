@@ -8,4 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Login.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/TeacherDashboardClassroom.unity
+    guid: 48262aa8361623f46a7d75c488992139
+  - enabled: 1
+    path: Assets/Scenes/TeacherDashboardSubject.unity
+    guid: ae1747fe9d7b0d647bc8c24b0ee5e364
+  - enabled: 1
+    path: Assets/Scenes/StudentDashboardSubject.unity
+    guid: 7d50eae6cccec2d49be21e6d01f07f3a
+  - enabled: 1
+    path: Assets/Scenes/StudentDashboardResults.unity
+    guid: b13868885366f7c4f8f46dbe618c6738
   m_configObjects: {}
