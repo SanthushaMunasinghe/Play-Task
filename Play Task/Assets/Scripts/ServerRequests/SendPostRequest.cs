@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
@@ -7,28 +8,29 @@ using UnityEngine.UIElements;
 public class SendPostRequest : MonoBehaviour
 {
     //Send Post Data
-    public void SendPostData(string url, string method, Dictionary<string, string> headers, string payload, Label errorMsg)
+    public void SendPostData(string url, string method, Dictionary<string, string> headers, string payload, Label label, Action<JObject> callback)
     {
-        headers = new Dictionary<string, string>();
-        headers.Add("Authorization", "Bearer <token>");
-
-        StartCoroutine(PostRequest.SendRequest(url, method, headers, payload, (responseBody) =>
+        StartCoroutine(PostRequest.SendRequest(url, method, headers, payload, (responseBody, error) =>
         {
+            // Handle errors
+            if (error != null)
+            {
+                Debug.LogError($"Error sending {method} request to {url}: {error}");
+                GlobalMethods.DisplayMessage(label, "Something Went Wrong", true);
+                return;
+            }
+
             // Parse the response body as JSON
             JObject responseJson = JObject.Parse(responseBody);
 
             // Check for errors in the response
             if (responseJson["message"] != null)
             {
-                GlobalMethods.DisplayError(errorMsg, responseJson["message"].Value<string>());
+                GlobalMethods.DisplayMessage(label, responseJson["message"].Value<string>(), true);
                 return;
             }
-            else if (responseJson["userid"] != null)
-            {
-                // Access the data in the response
-                string id = responseJson["userid"].Value<string>();
-                Debug.Log($"Get user: {id}");
-            }
+
+            callback(responseJson);
         }));
     }
 }

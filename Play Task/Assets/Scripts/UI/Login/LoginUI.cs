@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,6 +12,8 @@ public class LoginUI : MonoBehaviour
 
     [SerializeField] private List<string> userTypes;
 
+    [SerializeField] private Color errorColor;
+
     private void Awake()
     {
         GlobalData.UserTypes = userTypes;
@@ -21,9 +24,9 @@ public class LoginUI : MonoBehaviour
         var institutionTxt = root.Q<TextField>("institutionTxt");
         var usernameTxt = root.Q<TextField>("usernameTxt");
         var passwordTxt = root.Q<TextField>("passwordTxt");
-        var errorTxt = root.Q<VisualElement>("error-message").Q<Label>();
+        var messagegTxt = root.Q<VisualElement>("status-message").Q<Label>();
 
-        errorTxt.text = "";
+        messagegTxt.text = "";
 
         userTypeSelect.choices = GlobalData.UserTypes;
 
@@ -35,47 +38,62 @@ public class LoginUI : MonoBehaviour
 
             string userType = userTypeSelect.value;
 
-            InputValidation(userType, loginData, errorTxt);
+            InputValidation(userType, loginData, messagegTxt);
         };
 
-        if (errorTxt.text == "")
+        if (messagegTxt.text == "")
         {
-            errorTxt.style.visibility = Visibility.Hidden;
+            messagegTxt.style.visibility = Visibility.Hidden;
         }
     }
 
-    private void GetData (string userType, LoginData inputData, Label errMsg)
+    private void GetData (string userType, LoginData inputData, Label label)
     {
-        // Define URL, method, headers, and payload for the request
-        string url = "http://localhost:3000/api/teacherlogin";
-        string method = "POST";
+        // Define headers, and payload for the request
         Dictionary<string, string> headers = new Dictionary<string, string>();
+        headers.Add("Authorization", "Bearer <token>");
         string payload = $"{{\"institution\":\"{inputData.Institution}\",\"name\":\"{inputData.Username}\",\"password\":\"{inputData.Password}\"}}";
 
         SendPostRequest sendPostRequest = GetComponent<SendPostRequest>();
-        sendPostRequest.SendPostData(url, method, headers, payload, errMsg);
 
-        //if (userType == userTypes[0])
-        //{
-        //    GlobalMethods.AssignUser(loginData.Username, loginData.Institution);
-        //    GlobalMethods.LoadScene("TeacherDashboardClassroom");
-        //}
-        //else if (userType == userTypes[1])
-        //{
-        //    //GlobalMethods.AssignUser(loginDummyDataStudent.Username, loginDummyDataStudent.Institution);
-        //    GlobalMethods.LoadScene("StudentDashboardSubject");
-        //}
+        GlobalMethods.DisplayMessage(label, "Please Wait...");
+
+        if (userType == userTypes[0])
+        {
+            sendPostRequest.SendPostData(GlobalData.url + "/teacherlogin", GlobalData.methodPost, headers, payload, label, (responseJson) => {
+                GlobalMethods.AssignUser(userType,
+                    responseJson["userid"].Value<string>(),
+                    responseJson["name"].Value<string>(),
+                    responseJson["institution"].Value<string>(),
+                    responseJson["dp"].Value<string>());
+
+                JArray subjectArray = (JArray)responseJson["subjects"];
+
+                GlobalMethods.InitializeSubjects(subjectArray);
+
+                JArray classroomArray = (JArray)responseJson["classrooms"];
+
+                GlobalMethods.InitializeClassrooms(classroomArray);
+
+                GlobalMethods.LoadScene("TeacherDashboardClassroom");
+            });
+        }
+        else if (userType == userTypes[1])
+        {
+            //GlobalMethods.AssignUser(loginDummyDataStudent.Username, loginDummyDataStudent.Institution);
+            //GlobalMethods.LoadScene("StudentDashboardSubject");
+        }
     }
 
-    private void InputValidation(string userType, LoginData inputData, Label errMsg)
+    private void InputValidation(string userType, LoginData inputData, Label label)
     {
         if (userType == null || inputData.Institution == "" || inputData.Username == "" || inputData.Password == "")
         {
-            GlobalMethods.DisplayError(errMsg, "Fill All Fields");
+            GlobalMethods.DisplayMessage(label, "Fill All Fields", true);
         }
         else
         {
-            GetData(userType, inputData, errMsg);
+            GetData(userType, inputData, label);
         }
     }
 }

@@ -15,7 +15,7 @@
             <ui:VisualElement name="password" class="form-fields" style="flex-grow: 1;">
                 <ui:TextField picking-mode="Ignore" label="Password" password="true" name="passwordTxt" style="height: 50%;" />
             </ui:VisualElement>
-            <ui:VisualElement name="error-message" class="form-fields" style="flex-grow: 1;">
+            <ui:VisualElement name="status-message" class="form-fields" style="flex-grow: 1;">
                 <ui:Label display-tooltip-when-elided="true" style="color: rgb(255, 255, 255); font-size: 20px; -unity-font-style: normal; background-color: rgb(255, 77, 77); display: flex; visibility: hidden;" />
             </ui:VisualElement>
             <ui:VisualElement name="submit" class="form-fields" style="flex-grow: 1; align-items: center;">

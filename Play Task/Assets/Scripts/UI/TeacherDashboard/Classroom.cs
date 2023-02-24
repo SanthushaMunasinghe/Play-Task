@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 public class Classroom : TeacherDashboardClassroom
 {
     public List<string> classNames = new List<string>();
+    public List<string> studentIDs = new List<string>();
 
     private int classCount = 0;
 
@@ -25,12 +26,12 @@ public class Classroom : TeacherDashboardClassroom
 
         nextBtn.clicked += () =>
         {
-            NextBackBtn(true, classroomLabel);
+            GlobalMethods.NextBackBtn(true, classroomLabel, ref classCount, classNames, "Classroom ");
         };
 
         backBtn.clicked += () =>
         {
-            NextBackBtn(false, classroomLabel);
+            GlobalMethods.NextBackBtn(false, classroomLabel, ref classCount, classNames, "Classroom ");
         };
 
         for (int i = 0; i < DummyStudentData.Count; i++)
@@ -39,19 +40,9 @@ public class Classroom : TeacherDashboardClassroom
         }
     }
 
-    private void NextBackBtn(bool isNext, Label label)
+    private void GetClassData()
     {
-        if (isNext && classCount < classNames.Count - 1)
-        {
-            classCount++;
-        }
 
-        if (!isNext && classCount > 0)
-        {
-            classCount--;
-        }
-
-        label.text = "Classroom " + classNames[classCount];
     }
 
     private void DisplayStudentList(ScrollView list, StudentData studentData, int number)
