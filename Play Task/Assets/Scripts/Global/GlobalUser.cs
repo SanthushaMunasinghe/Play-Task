@@ -5,6 +5,16 @@ using UnityEngine;
 public static class GlobalUser
 {
     public static UserData userData = new UserData();
+
+    //Assign Data
+    public static void AssignUser(string type, string id, string name, string institution, string dp)
+    {
+        userData.UserType = type;
+        userData.UserID = id;
+        userData.Username = name;
+        userData.Institution = institution;
+        userData.dp = dp;
+    }
 }
 
 //User Data

@@ -7,17 +7,6 @@ using UnityEngine.SceneManagement;
 
 public static class GlobalMethods
 {
-    //Assign Data
-    public static void AssignUser(string type, string id, string name, string institution, string dp)
-    {
-        GlobalUser.userData.UserType = type;
-        GlobalUser.userData.UserID = id;
-        GlobalUser.userData.Username = name;
-        GlobalUser.userData.Institution = institution;
-        GlobalUser.userData.dp = dp;
-        Debug.Log(GlobalUser.userData.UserID);
-    }
-
     //Assign Subjects
     public static void InitializeSubjects(JArray inputSubjects)
     {
@@ -25,8 +14,6 @@ public static class GlobalMethods
         {
             GlobalData.subjects.Add(subject);
         }
-
-        Debug.Log(GlobalData.subjects.Count);
     }
     
     //Assign Classrooms
@@ -36,8 +23,6 @@ public static class GlobalMethods
         {
             GlobalData.classrooms.Add(classroom);
         }
-
-        Debug.Log(GlobalData.classrooms.Count);
     }
 
     //Display
@@ -65,7 +50,7 @@ public static class GlobalMethods
 
     //Click
     //Next Back
-    public static void NextBackBtn(bool isNext, Label label, ref int count, List<string> list, string labelTxt = "")
+    public static void NextBackBtn(bool isNext, ref int count, List<Dictionary<string, string>> list)
     {
         if (isNext && count < list.Count - 1)
         {
@@ -76,8 +61,6 @@ public static class GlobalMethods
         {
             count--;
         }
-
-        label.text = labelTxt + list[count];
     }
 
     //Scene

@@ -7,14 +7,22 @@ public class TeacherDashboardClassroom : MonoBehaviour
 {
     private UIDocument tdcDoc;
 
-    protected List<StudentData> DummyStudentData = new List<StudentData>();
-
+    //UI Elements
     protected VisualElement classroomBox;
     protected VisualElement studentBox;
+
+    //Lists
+    protected List<Dictionary<string, string>> classroomList = new List<Dictionary<string, string>>();
+    protected List<StudentData> studentDataList = new List<StudentData>();
+
+    //Methods
+    protected SendRequests sendRequests;
 
     private void Awake()
     {
         tdcDoc = GameObject.Find("UIDocument").GetComponent<UIDocument>();
+
+        sendRequests = gameObject.GetComponent<SendRequests>();
 
         var root = tdcDoc.rootVisualElement;
 
@@ -39,38 +47,25 @@ public class TeacherDashboardClassroom : MonoBehaviour
             GlobalMethods.LoadScene("TeacherDashboardSubject");
         };
     }
-
-    public void InitializeStudentData()
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            StudentData newData = new StudentData();
-            newData.Username = "Student" + (i + 1);
-            newData.UserID = "123456789" + (i + 1);
-            newData.Phone = "0123456789" + (i + 1);
-            newData.Email = "student@gmail.com";
-            newData.Home = (i + 1) + "student home";
-
-            DummyStudentData.Add(newData);
-        }
-    }
 }
  
 
 public interface IStudentContainer
 {
-    string Username { get; set; }
-    string UserID { get; set; }
+    string Stdname { get; set; }
+    string StdID { get; set; }
     string Phone { get; set; }
     string Email { get; set; }
     string Home { get; set; }
+    string Classroom { get; set; }
 }
 
 public class StudentData : IStudentContainer
 {
-    public string Username { get; set; }
-    public string UserID { get; set; }
+    public string Stdname { get; set; }
+    public string StdID { get; set; }
     public string Phone { get; set; }
     public string Email { get; set; }
     public string Home { get; set; }
+    public string Classroom { get; set; }
 }

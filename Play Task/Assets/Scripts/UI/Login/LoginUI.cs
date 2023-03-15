@@ -54,14 +54,14 @@ public class LoginUI : MonoBehaviour
         headers.Add("Authorization", "Bearer <token>");
         string payload = $"{{\"institution\":\"{inputData.Institution}\",\"name\":\"{inputData.Username}\",\"password\":\"{inputData.Password}\"}}";
 
-        SendPostRequest sendPostRequest = GetComponent<SendPostRequest>();
+        SendRequests sendPostRequest = GetComponent<SendRequests>();
 
         GlobalMethods.DisplayMessage(label, "Please Wait...");
 
         if (userType == userTypes[0])
         {
-            sendPostRequest.SendPostData(GlobalData.url + "/teacherlogin", GlobalData.methodPost, headers, payload, label, (responseJson) => {
-                GlobalMethods.AssignUser(userType,
+            sendPostRequest.SendPostRequest(GlobalData.url + "/teacherlogin", GlobalData.methodPost, headers, payload, label, (responseJson) => {
+                GlobalUser.AssignUser(userType,
                     responseJson["userid"].Value<string>(),
                     responseJson["name"].Value<string>(),
                     responseJson["institution"].Value<string>(),
