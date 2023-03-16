@@ -7,8 +7,12 @@ public class TeacherDashboardClassroom : MonoBehaviour
 {
     private UIDocument tdcDoc;
 
-    //UI Elements
+    //Protected Variables
+
+    //UI Elements Classroom
     protected VisualElement classroomBox;
+
+    //UI Elements Student
     protected VisualElement studentBox;
 
     //Lists
@@ -48,7 +52,6 @@ public class TeacherDashboardClassroom : MonoBehaviour
         };
     }
 }
- 
 
 public interface IStudentContainer
 {
@@ -58,6 +61,7 @@ public interface IStudentContainer
     string Email { get; set; }
     string Home { get; set; }
     string Classroom { get; set; }
+    string[] Subjects { get; set; }
 }
 
 public class StudentData : IStudentContainer
@@ -68,4 +72,5 @@ public class StudentData : IStudentContainer
     public string Email { get; set; }
     public string Home { get; set; }
     public string Classroom { get; set; }
+    public string[] Subjects { get; set; }
 }

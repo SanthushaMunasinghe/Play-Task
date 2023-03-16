@@ -50,16 +50,16 @@ public static class GlobalMethods
 
     //Click
     //Next Back
-    public static void NextBackBtn(bool isNext, ref int count, List<Dictionary<string, string>> list)
+    public static void NextBackBtn(bool isNext, ref int index, int max)
     {
-        if (isNext && count < list.Count - 1)
+        if (isNext && index < max - 1)
         {
-            count++;
+            index++;
         }
 
-        if (!isNext && count > 0)
+        if (!isNext && index > 0)
         {
-            count--;
+            index--;
         }
     }
 

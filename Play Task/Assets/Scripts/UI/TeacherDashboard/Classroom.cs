@@ -6,8 +6,6 @@ using UnityEngine.UIElements;
 
 public class Classroom : TeacherDashboardClassroom
 {
-    public List<string> studentIds = new List<string>();
-
     private int classIndex = 0;
 
     [SerializeField] private Color highlightColor;
@@ -15,11 +13,11 @@ public class Classroom : TeacherDashboardClassroom
     //UI Elements
     private Label classroomLabel;
     private ScrollView studentList;
+    private List<VisualElement> studentItems = new List<VisualElement>();
 
     void Start()
     {
         classroomLabel = classroomBox.Q<VisualElement>("classroom-label").Q<Label>();
-        classroomLabel.text = "Classroom ";
 
         var nextBtn = classroomBox.Q<Button>("classroom-next-btn");
         var backBtn = classroomBox.Q<Button>("classroom-back-btn");
@@ -33,14 +31,14 @@ public class Classroom : TeacherDashboardClassroom
 
         nextBtn.clicked += () =>
         {
-            GlobalMethods.NextBackBtn(true, ref classIndex, classroomList);
-            SelectStudents();
+            GlobalMethods.NextBackBtn(true, ref classIndex, classroomList.Count);
+            SelectClassroomStudents();
         };
 
         backBtn.clicked += () =>
         {
-            GlobalMethods.NextBackBtn(false, ref classIndex, classroomList);
-            SelectStudents();
+            GlobalMethods.NextBackBtn(false, ref classIndex, classroomList.Count);
+            SelectClassroomStudents();
         };
     }
 
@@ -53,7 +51,7 @@ public class Classroom : TeacherDashboardClassroom
         }
     }
 
-    private void SelectStudents()
+    private void SelectClassroomStudents()
     {
         studentList.Clear();
 
@@ -86,11 +84,6 @@ public class Classroom : TeacherDashboardClassroom
             //Get Classroom Name
             idResponse = responseJson["_id"].Value<string>();
             nameResponse = responseJson["name"].Value<string>();
-            
-
-            // Define headers for the grade request
-            Dictionary<string, string> headers = new Dictionary<string, string>();
-            headers.Add("Authorization", "Bearer <token>");
 
             sendRequests.SendGetRequest(GlobalData.url + "/getgradebyid/" + responseJson["grade"], headers, classroomLabel, (responseJson) => {
                 gradeResponse = responseJson["number"].Value<string>();
@@ -101,7 +94,6 @@ public class Classroom : TeacherDashboardClassroom
                 currentClassroom.Add("Grade", gradeResponse);
                 classroomList.Add(currentClassroom);
 
-
                 if (classroomList.Count != 0)
                 {
                     Dictionary<string, string> currentClasssroom = classroomList[0];
@@ -109,7 +101,7 @@ public class Classroom : TeacherDashboardClassroom
                 }
                 else
                 {
-                    classroomLabel.text = "Error";
+                    classroomLabel.text = "No Classes";
                 }
 
                 GetStudents(id);
@@ -124,7 +116,9 @@ public class Classroom : TeacherDashboardClassroom
         Dictionary<string, string> headers = new Dictionary<string, string>();
         headers.Add("Authorization", "Bearer <token>");
 
-        sendRequests.GetArray(GlobalData.url + "/getsclassroomtudents/" + classroomId, headers, classroomLabel, (responseArray) => {
+        Label label = new Label();
+
+        sendRequests.GetArray(GlobalData.url + "/getsclassroomtudents/" + classroomId, headers, label, (responseArray) => {
 
             if (responseArray.Count != 0)
             {
@@ -138,10 +132,11 @@ public class Classroom : TeacherDashboardClassroom
                     student.Email = studentObject["email"].Value<string>();
                     student.Home = studentObject["home"].Value<string>();
                     student.Classroom = studentObject["classroom"].Value<string>();
+                    student.Subjects = studentObject["subjects"].ToObject<string[]>();
                     studentDataList.Add(student);
                 }
 
-                SelectStudents();
+                SelectClassroomStudents();
             }
         });
     }
@@ -149,6 +144,7 @@ public class Classroom : TeacherDashboardClassroom
     private void DisplayStudentList(ScrollView list, StudentData studentData, int number)
     {
         VisualElement newItem = new VisualElement();
+
         newItem.AddToClassList("list-primary-item");
 
         Label studentNo = new Label();
@@ -160,6 +156,8 @@ public class Classroom : TeacherDashboardClassroom
         studentName.AddToClassList("list-primary-item-text");
         studentEmail.AddToClassList("list-primary-item-text");
 
+        studentName.name = "studentName";
+
         studentNo.text = number.ToString() + ".";
         studentName.text = studentData.Stdname;
         studentEmail.text = studentData.Email;
@@ -169,5 +167,22 @@ public class Classroom : TeacherDashboardClassroom
         newItem.Add(studentEmail);
 
         list.Add(newItem);
+
+        newItem.RegisterCallback<MouseUpEvent>(evt => {
+            foreach (StudentData std in studentDataList)
+            {
+                if (std.Stdname == newItem.Q<Label>("studentName").text)
+                {
+                    GetComponent<Student>().selectedStudent = std;
+
+                    foreach (string stddata in std.Subjects)
+                    {
+                        Debug.Log(stddata);
+                    }
+
+                    //GetComponent<Student>().GetStudentSubjects(std.StdID);
+                }
+            }
+        });
     }
 }
