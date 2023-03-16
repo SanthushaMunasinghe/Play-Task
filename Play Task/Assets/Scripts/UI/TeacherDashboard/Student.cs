@@ -119,7 +119,7 @@ public class Student : TeacherDashboardClassroom
             nameResponse = responseJson["name"].Value<string>();
 
             sendRequests.SendGetRequest(GlobalData.url + "/getgradebyid/" + responseJson["grade"], headers, label, (responseJson) => {
-                gradeResponse = responseJson["grade"].Value<string>();
+                gradeResponse = responseJson["number"].Value<string>();
 
                 Dictionary<string, string> currentSubject = new Dictionary<string, string>();
                 currentSubject.Add("Id", idResponse);

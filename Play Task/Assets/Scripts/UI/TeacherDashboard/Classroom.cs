@@ -175,12 +175,10 @@ public class Classroom : TeacherDashboardClassroom
                 {
                     GetComponent<Student>().selectedStudent = std;
 
-                    foreach (string stddata in std.Subjects)
+                    foreach (string subject in std.Subjects)
                     {
-                        Debug.Log(stddata);
+                        GetComponent<Student>().GetStudentSubjects(subject);
                     }
-
-                    //GetComponent<Student>().GetStudentSubjects(std.StdID);
                 }
             }
         });
