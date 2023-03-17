@@ -8,12 +8,9 @@ public class Classroom : TeacherDashboardClassroom
 {
     private int classIndex = 0;
 
-    [SerializeField] private Color highlightColor;
-
     //UI Elements
     private Label classroomLabel;
     private ScrollView studentList;
-    private List<VisualElement> studentItems = new List<VisualElement>();
 
     void Start()
     {
