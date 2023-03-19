@@ -18,8 +18,6 @@ public class TeacherDashboardSubjects : MonoBehaviour
     //Lists
     protected List<Dictionary<string, string>> subjectList = new List<Dictionary<string, string>>();
     protected List<Dictionary<string, string>> topicList = new List<Dictionary<string, string>>();
-    protected List<Dictionary<string, string>> subtopicList = new List<Dictionary<string, string>>();
-
     //Methods
     protected SendRequests sendRequests;
 
@@ -52,4 +50,20 @@ public class TeacherDashboardSubjects : MonoBehaviour
             GlobalMethods.LoadScene("TeacherDashboardSubject");
         };
     }
+}
+
+public interface ISubtopicContainer
+{
+    string SbtID { get; set; }
+    string Title { get; set; }
+    string Description { get; set; }
+    string[] Instructions { get; set; }
+}
+
+public class SubtopicData : ISubtopicContainer
+{
+    public string SbtID { get; set; }
+    public string Title { get; set; }
+    public string Description { get; set; }
+    public string[] Instructions { get; set; }
 }

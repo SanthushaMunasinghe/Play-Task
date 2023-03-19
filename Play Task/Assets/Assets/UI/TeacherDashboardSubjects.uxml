@@ -43,14 +43,37 @@
                 <ui:VisualElement name="subtopics-label" class="box-primary-label" />
                 <ui:VisualElement name="subtopics-body" class="box-primary-body">
                     <ui:VisualElement name="details-label" class="box-label-primary">
-                        <ui:Label text="Subtopic 01" display-tooltip-when-elided="true" />
+                        <ui:Label display-tooltip-when-elided="true" text="Topic01 -&gt; Subtopic01" />
                         <ui:VisualElement name="next-back-buttons" style="flex-direction: row; justify-content: space-between; align-items: center;">
-                            <ui:Button text="Back" display-tooltip-when-elided="true" name="student-back-btn" style="background-color: rgb(255, 82, 82);" />
-                            <ui:Button text="Next" display-tooltip-when-elided="true" name="student-next-btn" style="background-color: rgb(255, 82, 82);" />
+                            <ui:Button text="Back" display-tooltip-when-elided="true" name="subtopic-back-btn" style="background-color: rgb(255, 82, 82);" />
+                            <ui:Button text="Next" display-tooltip-when-elided="true" name="subtopic-next-btn" style="background-color: rgb(255, 82, 82);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="subtopics-details-box" class="box-secondary" style="display: flex;">
-                        <ui:ScrollView name="subtopics-list" class="scroll-list-primary" style="flex-grow: 1;" />
+                        <ui:ScrollView name="subtopic-details-list" class="scroll-list-primary" style="flex-grow: 1;">
+                            <ui:VisualElement name="subtopic-detail-title" class="list-primary-item" style="justify-content: flex-start;">
+                                <ui:VisualElement name="detail-label" class="list-primary-item-text">
+                                    <ui:Label text="Title:" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement name="subtopic-description" class="list-primary-item" style="justify-content: flex-start; height: 400px; align-items: flex-start;">
+                                <ui:VisualElement name="detail-label" class="list-primary-item-text">
+                                    <ui:Label text="Description: " display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255); white-space: normal;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:ScrollView>
+                        <ui:ScrollView name="subtopic-instructions-list" class="scroll-list-primary" style="flex-grow: 1;">
+                            <ui:VisualElement name="subtopic-Instructions-label" class="list-primary-item" style="justify-content: flex-start;">
+                                <ui:VisualElement name="detail-label" class="list-primary-item-text">
+                                    <ui:Label text="Instructions:" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="subtopics-buttons" class="box-secondary" style="display: flex; height: 7%; justify-content: flex-end; align-items: stretch; flex-direction: row; margin-bottom: 10px; margin-top: 10px;">
+                        <ui:Button text="Delete" display-tooltip-when-elided="true" name="delete-btn" style="background-color: rgb(255, 82, 82); height: 100%; font-size: 30px; -unity-font-style: bold; width: 150px; color: rgba(255, 255, 255, 255);" />
+                        <ui:Button text="Edit" display-tooltip-when-elided="true" name="edit-btn" style="background-color: rgb(255, 82, 82); height: 100%; font-size: 30px; -unity-font-style: bold; width: 150px; color: rgba(255, 255, 255, 255);" />
+                        <ui:Button text="Submit" display-tooltip-when-elided="true" name="submit-btn" style="background-color: rgb(255, 82, 82); height: 100%; font-size: 30px; -unity-font-style: bold; width: 150px; color: rgba(255, 255, 255, 255);" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>

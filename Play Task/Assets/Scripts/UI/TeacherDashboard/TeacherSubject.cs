@@ -29,13 +29,13 @@ public class TeacherSubject : TeacherDashboardSubjects
         nextBtn.clicked += () =>
         {
             GlobalMethods.NextBackBtn(true, ref subjectIndex, subjectList.Count);
-            SelectClassroomStudents();
+            SelectSubjectTopics();
         };
 
         backBtn.clicked += () =>
         {
             GlobalMethods.NextBackBtn(false, ref subjectIndex, subjectList.Count);
-            SelectClassroomStudents();
+            SelectSubjectTopics();
         };
     }
 
@@ -48,7 +48,7 @@ public class TeacherSubject : TeacherDashboardSubjects
         }
     }
 
-    private void SelectClassroomStudents()
+    private void SelectSubjectTopics()
     {
         subtopicView.Clear();
 
@@ -130,10 +130,10 @@ public class TeacherSubject : TeacherDashboardSubjects
                         currentTopic.Add("Term", responseJson["number"].Value<string>());
 
                         topicList.Add(currentTopic);
+
+                        SelectSubjectTopics();
                     });
                 }
-
-                SelectClassroomStudents();
             }
         });
     }
@@ -173,10 +173,7 @@ public class TeacherSubject : TeacherDashboardSubjects
                     GetComponent<TeacherSubtopic>().selectedTopicId = topic["Id"];
                     GetComponent<TeacherSubtopic>().selectedTopicTitle = topic["Title"];
 
-                    //foreach (string subject in topic.Subjects)
-                    //{
-                    //    GetComponent<Student>().GetStudentSubjects(subject);
-                    //}
+                    GetComponent<TeacherSubtopic>().GetSubtopics(topic["Id"]);
                 }
             }
         });
