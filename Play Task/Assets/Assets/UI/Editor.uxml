@@ -447,7 +447,7 @@
                     <ui:VisualElement name="tab-body" class="box-primary-body">
                         <ui:ScrollView name="asset-list" class="scroll-list-primary" style="display: flex;">
                             <ui:VisualElement name="list" class="asset-list">
-                                <ui:VisualElement name="asset-item" class="asset-item" />
+                                <ui:VisualElement name="asset-item" class="asset-item" style="background-image: none; display: none;" />
                             </ui:VisualElement>
                         </ui:ScrollView>
                     </ui:VisualElement>

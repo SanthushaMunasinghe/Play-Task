@@ -384,7 +384,7 @@
 .value-dropdown {
     height: 100%;
     width: 65%;
-    background-color: rgba(91, 91, 91, 255);
+    background-color: rgb(91, 91, 91);
 }
 
 .value-dropdown > .unity-label {
@@ -392,11 +392,11 @@
 }
 
 .value-dropdown > .unity-base-field__input {
-    background-color: rgba(91, 91, 91, 255);
-    border-left-color: rgba(91, 91, 91, 255);
-    border-right-color: rgba(91, 91, 91, 255);
-    border-top-color: rgba(91, 91, 91, 255);
-    border-bottom-color: rgba(91, 91, 91, 255);
+    background-color: rgb(91, 91, 91);
+    border-left-color: rgb(91, 91, 91);
+    border-right-color: rgb(91, 91, 91);
+    border-top-color: rgb(91, 91, 91);
+    border-bottom-color: rgb(91, 91, 91);
 }
 
 .asset-list {
@@ -414,7 +414,7 @@
 }
 
 .asset-item {
-    background-color: rgb(91, 91, 91);
+    background-color: rgba(91, 91, 91, 0);
     width: 100px;
     height: 100px;
     padding-right: 0;
@@ -423,4 +423,12 @@
     padding-top: 0;
     margin-right: 10px;
     margin-bottom: 10px;
+    border-left-color: rgba(91, 91, 91, 255);
+    border-right-color: rgba(91, 91, 91, 255);
+    border-top-color: rgba(91, 91, 91, 255);
+    border-bottom-color: rgba(91, 91, 91, 255);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
 }
