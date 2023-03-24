@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class TeacherDashboardSubjects : MonoBehaviour
 {
-    private UIDocument tdcDoc;
+    private UIDocument tdsDoc;
 
     //Protected Variables
 
@@ -23,11 +23,11 @@ public class TeacherDashboardSubjects : MonoBehaviour
 
     void Awake()
     {
-        tdcDoc = GameObject.Find("UIDocument").GetComponent<UIDocument>();
+        tdsDoc = GameObject.Find("UIDocument").GetComponent<UIDocument>();
 
         sendRequests = gameObject.GetComponent<SendRequests>();
 
-        var root = tdcDoc.rootVisualElement;
+        var root = tdsDoc.rootVisualElement;
 
         var toolBar = root.Q<VisualElement>("toolbar");
         var classroomBtn = toolBar.Q<Button>("classroom-btn");
@@ -36,7 +36,7 @@ public class TeacherDashboardSubjects : MonoBehaviour
         subjectBox = root.Q<VisualElement>("subject-list-box");
         subtopicBox = root.Q<VisualElement>("subtopics-box");
 
-        GlobalMethods.DisplayUser(tdcDoc);
+        GlobalMethods.DisplayUser(tdsDoc);
 
         Dictionary<string, string>[] toolBarBtns = new Dictionary<string, string>[2];
 

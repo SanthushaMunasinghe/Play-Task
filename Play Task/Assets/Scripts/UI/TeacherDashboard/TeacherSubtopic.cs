@@ -91,11 +91,14 @@ public class TeacherSubtopic : TeacherDashboardSubjects
     {
         instructionList.Clear();
 
-        if (currentSubtopicList[subtopicIndex].Instructions.Length != 0)
+        if (currentSubtopicList.Count != 0)
         {
-            for (int i = 0; i < currentSubtopicList[subtopicIndex].Instructions.Length; i++)
+            if (currentSubtopicList[subtopicIndex].Instructions.Length != 0)
             {
-                DisplayInstructionsList(instructionList, currentSubtopicList[subtopicIndex].Instructions[i], i + 1);
+                for (int i = 0; i < currentSubtopicList[subtopicIndex].Instructions.Length; i++)
+                {
+                    DisplayInstructionsList(instructionList, currentSubtopicList[subtopicIndex].Instructions[i], i + 1);
+                }
             }
         }
     }

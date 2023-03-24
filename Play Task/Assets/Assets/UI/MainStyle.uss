@@ -173,11 +173,11 @@
 }
 
 .list-primary-item:hover {
-    background-color: rgba(44, 44, 44, 255);
+    background-color: rgb(44, 44, 44);
 }
 
 .list-primary-item-selected {
-    background-color: rgba(255, 82, 82, 255);
+    background-color: rgb(255, 82, 82);
 }
 
 .list-primary-item-text {
@@ -188,6 +188,7 @@
 
 .student-item-label {
     font-size: 25px;
+    color: rgb(255, 255, 255);
 }
 
 .student-item-label {
@@ -232,4 +233,194 @@
     border-top-color: rgb(255, 255, 255);
     border-bottom-color: rgb(255, 255, 255);
     border-bottom-width: 2px;
+}
+
+.editor-label-white {
+    height: 75px;
+    width: 98%;
+    background-color: rgb(255, 255, 255);
+    margin-top: 7px;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.editor-label-text {
+    color: rgb(0, 0, 0);
+    -unity-text-align: middle-left;
+    font-size: 20px;
+    -unity-font-style: normal;
+}
+
+.editor-list-item {
+    width: 100%;
+    height: 40px;
+    background-color: rgb(91, 91, 91);
+    padding-left: 20px;
+    padding-right: 20px;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.editor-list-text {
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    -unity-font-style: normal;
+    -unity-text-align: middle-left;
+}
+
+.component {
+    width: 98%;
+    margin-bottom: 10px;
+}
+
+.component-label {
+    height: 30px;
+    background-color: rgb(255, 255, 255);
+    padding-left: 20px;
+    padding-right: 20px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.component-body {
+    height: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.xy-value-item {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 35px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.value-item-label {
+    height: 100%;
+    width: 30%;
+    background-color: rgb(91, 91, 91);
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.xy-value-holder {
+    background-color: rgb(91, 91, 91);
+    width: 30%;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.x-value-input {
+    flex-grow: 1;
+    margin-left: 5px;
+    background-color: rgb(91, 91, 91);
+    height: 100%;
+    width: 90%;
+}
+
+.x-value-input > #unity-text-input {
+    background-color: rgb(91, 91, 91);
+    border-left-color: rgb(91, 91, 91);
+    border-right-color: rgb(91, 91, 91);
+    border-top-color: rgb(91, 91, 91);
+    border-bottom-color: rgb(91, 91, 91);
+    height: 100%;
+    width: 100%;
+    color: rgb(255, 255, 255);
+}
+
+.single-value-item {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    height: 35px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.single-value-holder {
+    background-color: rgb(91, 91, 91);
+    width: 30%;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    margin-left: 22px;
+}
+
+.value-holder {
+    background-color: rgb(91, 91, 91);
+    width: 65%;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    margin-left: 22px;
+}
+
+.value-dropdown {
+    height: 100%;
+    width: 65%;
+    background-color: rgba(91, 91, 91, 255);
+}
+
+.value-dropdown > .unity-label {
+    display: none;
+}
+
+.value-dropdown > .unity-base-field__input {
+    background-color: rgba(91, 91, 91, 255);
+    border-left-color: rgba(91, 91, 91, 255);
+    border-right-color: rgba(91, 91, 91, 255);
+    border-top-color: rgba(91, 91, 91, 255);
+    border-bottom-color: rgba(91, 91, 91, 255);
+}
+
+.asset-list {
+    width: 100%;
+    flex-basis: auto;
+    flex-shrink: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.asset-item {
+    background-color: rgb(91, 91, 91);
+    width: 100px;
+    height: 100px;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-top: 0;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }

@@ -1,0 +1,482 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Assets/UI/MainStyle.uss?fileID=7433441132597879392&amp;guid=155e478c7780fb244b18666d43652007&amp;type=3#MainStyle" />
+    <ui:VisualElement name="root" style="width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0); justify-content: flex-start;">
+        <ui:VisualElement name="topbar" style="background-color: rgb(44, 44, 44); width: 100%; height: 5%; align-items: center; justify-content: space-between; flex-direction: row; padding-bottom: 0;">
+            <ui:VisualElement name="new-toolbar" style="width: auto; height: 80%; margin-left: 20px; justify-content: space-between; align-items: flex-end; flex-direction: row; margin-right: 20px;">
+                <ui:Button text="New Project" display-tooltip-when-elided="true" name="new-project-btn" class="toolbar-btn" />
+                <ui:Button text="New Object" display-tooltip-when-elided="true" name="new-object-btn" class="toolbar-btn" />
+                <ui:Button text="New Level" display-tooltip-when-elided="true" name="new-level-btn" class="toolbar-btn" />
+            </ui:VisualElement>
+            <ui:VisualElement name="project-toolbar" style="width: auto; height: 80%; margin-left: 20px; justify-content: space-between; align-items: flex-end; flex-direction: row; margin-right: 20px;">
+                <ui:Button text="Save" display-tooltip-when-elided="true" name="save-btn" class="toolbar-btn" />
+                <ui:Button text="Submit" display-tooltip-when-elided="true" name="submit-btn" class="toolbar-btn" />
+                <ui:Button text="Exit" display-tooltip-when-elided="true" name="exit-btn" class="toolbar-btn" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="body" style="height: 100%; flex-direction: row; flex-wrap: wrap; flex-grow: 1; align-items: stretch; justify-content: flex-start;">
+            <ui:VisualElement name="upper-body" style="height: 60%; width: 100%; flex-direction: row;">
+                <ui:VisualElement name="hierarchy-tab" class="box-primary" style="height: 100%; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; width: 25%;">
+                    <ui:VisualElement name="tab-label" class="box-primary-label" style="height: 5%; justify-content: flex-end;">
+                        <ui:Label text="Hierarchy" display-tooltip-when-elided="true" style="font-size: 20px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="tab-body" class="box-primary-body">
+                        <ui:VisualElement name="template-label" class="editor-label-white">
+                            <ui:Label text="Template" display-tooltip-when-elided="true" class="editor-label-text" />
+                        </ui:VisualElement>
+                        <ui:ScrollView name="template-object-list" class="scroll-list-primary">
+                            <ui:VisualElement name="list-Item" class="editor-list-item">
+                                <ui:Label text="Object 01" display-tooltip-when-elided="true" class="editor-list-text" />
+                            </ui:VisualElement>
+                        </ui:ScrollView>
+                        <ui:VisualElement name="objects-label" class="editor-label-white">
+                            <ui:Label text="Objects" display-tooltip-when-elided="true" class="editor-label-text" />
+                        </ui:VisualElement>
+                        <ui:ScrollView name="object-list" class="scroll-list-primary">
+                            <ui:VisualElement name="student-item" class="list-primary-item" style="display: none;">
+                                <ui:VisualElement name="student-number" class="list-primary-item-text" style="background-color: rgb(135, 135, 135);">
+                                    <ui:Label text="1" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="student-name" class="list-primary-item-text">
+                                    <ui:Label text="M.A.Santhusha Hasanjith Munasinghe" display-tooltip-when-elided="true" name="student-name-label" class="student-item-label" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="student-id" class="list-primary-item-text">
+                                    <ui:Label text="123456789" display-tooltip-when-elided="true" name="student-id-label" class="student-item-label" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="scene-tab" class="box-primary" style="height: 100%; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; width: 50%;">
+                    <ui:VisualElement name="tab-label" class="box-primary-label" style="justify-content: flex-end;">
+                        <ui:Label text="Scene" display-tooltip-when-elided="true" style="font-size: 20px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="tab-body" class="box-primary-body" style="background-color: rgb(255, 255, 255);">
+                        <ui:VisualElement name="scene-view" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/Assets/New%20Render%20Texture.renderTexture?fileID=8400000&amp;guid=51592a4ec3f6c7d48ae2800267e8d035&amp;type=2#New Render Texture&apos;); -unity-background-scale-mode: scale-and-crop;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="inspector-tab" class="box-primary" style="height: 100%; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; width: 25%;">
+                    <ui:VisualElement name="tab-label" class="box-primary-label" style="justify-content: flex-end;">
+                        <ui:Label text="Inspector" display-tooltip-when-elided="true" style="font-size: 20px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="tab-body" class="box-primary-body">
+                        <ui:ScrollView name="object-components" class="scroll-list-primary" style="display: flex;">
+                            <ui:VisualElement name="transform-component" class="component">
+                                <ui:VisualElement name="component-label" class="component-label">
+                                    <ui:Label text="Transform" display-tooltip-when-elided="true" class="editor-label-text" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="component-body" class="component-body">
+                                    <ui:VisualElement name="position" class="xy-value-item">
+                                        <ui:VisualElement name="position-label" class="value-item-label">
+                                            <ui:Label text="Position" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="xy-value-holder">
+                                            <ui:Label text="X: " display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="y-value" class="xy-value-holder">
+                                            <ui:Label text="Y: " display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="scale" class="xy-value-item">
+                                        <ui:VisualElement name="scale-label" class="value-item-label">
+                                            <ui:Label text="Scale" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="xy-value-holder">
+                                            <ui:Label text="X: " display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="y-value" class="xy-value-holder">
+                                            <ui:Label text="Y: " display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="rotation" class="single-value-item">
+                                        <ui:VisualElement name="rotation-label" class="value-item-label">
+                                            <ui:Label text="Rotation" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="single-value-holder">
+                                            <ui:Label text="X: " display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement name="image-component" class="component">
+                                <ui:VisualElement name="component-label" class="component-label">
+                                    <ui:Label text="Image" display-tooltip-when-elided="true" class="editor-label-text" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="component-body" class="component-body">
+                                    <ui:VisualElement name="image" class="xy-value-item">
+                                        <ui:VisualElement name="image-label" class="value-item-label">
+                                            <ui:Label text="Image" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="value-holder">
+                                            <ui:Label text="Default.jpg" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="color" class="single-value-item">
+                                        <ui:VisualElement name="color-label" class="value-item-label">
+                                            <ui:Label text="Color" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="single-value-holder">
+                                            <ui:Label text="#" display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="opacity" class="single-value-item">
+                                        <ui:VisualElement name="opacity-label" class="value-item-label">
+                                            <ui:Label text="Opacity" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="single-value-holder" style="justify-content: flex-end;">
+                                            <ui:TextField name="x-text-field" class="x-value-input" style="-unity-text-align: upper-right;" />
+                                            <ui:Label text="%" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement name="physics-component" class="component">
+                                <ui:VisualElement name="component-label" class="component-label">
+                                    <ui:Label text="Physics" display-tooltip-when-elided="true" class="editor-label-text" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="component-body" class="component-body">
+                                    <ui:VisualElement name="enable-axis" class="xy-value-item">
+                                        <ui:VisualElement name="enable-axis-label" class="value-item-label">
+                                            <ui:Label text="Enable Axis" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="xy-value-holder">
+                                            <ui:Label text="X: On" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="y-value" class="xy-value-holder">
+                                            <ui:Label text="Y: Off" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="rotation" class="single-value-item">
+                                        <ui:VisualElement name="rotation-label" class="value-item-label">
+                                            <ui:Label text="Rotation" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="single-value-holder">
+                                            <ui:Label text="X: " display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="collision" class="single-value-item">
+                                        <ui:VisualElement name="collision-label" class="value-item-label">
+                                            <ui:Label text="Collision" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="single-value-holder">
+                                            <ui:Label text="On" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="gravity" class="xy-value-item">
+                                        <ui:VisualElement name="gravity-label" class="value-item-label">
+                                            <ui:Label text="Gravity" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="xy-value-holder">
+                                            <ui:Label text="X: " display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="y-value" class="xy-value-holder">
+                                            <ui:Label text="Y: " display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement name="animation-component" class="component">
+                                <ui:VisualElement name="component-label" class="component-label">
+                                    <ui:Label text="Animation" display-tooltip-when-elided="true" class="editor-label-text" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="component-body" class="component-body">
+                                    <ui:VisualElement name="type" class="xy-value-item">
+                                        <ui:VisualElement name="type-label" class="value-item-label">
+                                            <ui:Label text="Type" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="select-type" class="value-dropdown" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="duration" class="single-value-item">
+                                        <ui:VisualElement name="duration-label" class="value-item-label">
+                                            <ui:Label text="Duration" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="single-value-holder" style="justify-content: flex-end;">
+                                            <ui:TextField name="x-text-field" class="x-value-input" style="-unity-text-align: upper-right;" />
+                                            <ui:Label text=".s" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="start" class="xy-value-item">
+                                        <ui:VisualElement name="start-label" class="value-item-label">
+                                            <ui:Label text="Start" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="xy-value-holder">
+                                            <ui:Label text="X: " display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="y-value" class="xy-value-holder">
+                                            <ui:Label text="Y: " display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="end" class="xy-value-item">
+                                        <ui:VisualElement name="end-label" class="value-item-label">
+                                            <ui:Label text="End" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="xy-value-holder">
+                                            <ui:Label text="X: " display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="y-value" class="xy-value-holder">
+                                            <ui:Label text="Y: " display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:ScrollView>
+                        <ui:ScrollView name="template-settings" class="scroll-list-primary" style="display: none;">
+                            <ui:VisualElement name="template-settings" class="component">
+                                <ui:VisualElement name="component-label" class="component-label">
+                                    <ui:Label text="Template - Level 1" display-tooltip-when-elided="true" class="editor-label-text" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="component-body" class="component-body">
+                                    <ui:VisualElement name="type" class="xy-value-item">
+                                        <ui:VisualElement name="type-label" class="value-item-label">
+                                            <ui:Label text="Type" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="select-type" class="value-dropdown" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="type-type" class="xy-value-item">
+                                        <ui:VisualElement name="type-type-label" class="value-item-label">
+                                            <ui:Label text="Quiz Type" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="select-type" class="value-dropdown" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="question" class="single-value-item">
+                                        <ui:VisualElement name="question-label" class="value-item-label">
+                                            <ui:Label text="Question" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="value-holder">
+                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:GroupBox name="quiz" style="display: none;">
+                                        <ui:VisualElement name="answer-count" class="xy-value-item">
+                                            <ui:VisualElement name="answer-count-label" class="value-item-label">
+                                                <ui:Label text="Answer Count" display-tooltip-when-elided="true" class="editor-list-text" />
+                                            </ui:VisualElement>
+                                            <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="select-type" class="value-dropdown" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="logic-type" class="xy-value-item">
+                                            <ui:VisualElement name="logic-type-label" class="value-item-label">
+                                                <ui:Label text="Logic" display-tooltip-when-elided="true" class="editor-list-text" />
+                                            </ui:VisualElement>
+                                            <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="select-type" class="value-dropdown" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="answers" class="xy-value-item">
+                                            <ui:VisualElement name="answers-label" class="value-item-label">
+                                                <ui:Label text="Answers" display-tooltip-when-elided="true" class="editor-list-text" />
+                                            </ui:VisualElement>
+                                            <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="answer" class="value-dropdown" style="width: 30%;" />
+                                            <ui:VisualElement name="answer-value" class="xy-value-holder">
+                                                <ui:TextField name="x-text-field" class="x-value-input" />
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="answers-type" class="xy-value-item">
+                                            <ui:VisualElement name="answers-type-label" class="value-item-label">
+                                                <ui:Label text="Answers" display-tooltip-when-elided="true" class="editor-list-text" />
+                                            </ui:VisualElement>
+                                            <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="answer" class="value-dropdown" style="width: 30%;" />
+                                            <ui:VisualElement name="answer-value" class="xy-value-holder">
+                                                <ui:TextField name="x-text-field" class="x-value-input" />
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                    </ui:GroupBox>
+                                    <ui:GroupBox name="drag-puzzle" style="display: none;">
+                                        <ui:VisualElement name="slots-count" class="xy-value-item">
+                                            <ui:VisualElement name="slots-count-label" class="value-item-label">
+                                                <ui:Label text="Slots" display-tooltip-when-elided="true" class="editor-list-text" />
+                                            </ui:VisualElement>
+                                            <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="select-type" class="value-dropdown" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="match-count" class="xy-value-item">
+                                            <ui:VisualElement name="match-count-label" class="value-item-label">
+                                                <ui:Label text="Matches" display-tooltip-when-elided="true" class="editor-list-text" />
+                                            </ui:VisualElement>
+                                            <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="select-type" class="value-dropdown" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="match-text" class="xy-value-item">
+                                            <ui:VisualElement name="match-text-label" class="value-item-label">
+                                                <ui:Label text="Match Text" display-tooltip-when-elided="true" class="editor-list-text" />
+                                            </ui:VisualElement>
+                                            <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="match" class="value-dropdown" style="width: 30%;" />
+                                            <ui:VisualElement name="text" class="xy-value-holder">
+                                                <ui:TextField name="x-text-field" class="x-value-input" />
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="slot-matches" class="xy-value-item">
+                                            <ui:VisualElement name="slot-matches-label" class="value-item-label">
+                                                <ui:Label text="Slot Matches" display-tooltip-when-elided="true" class="editor-list-text" />
+                                            </ui:VisualElement>
+                                            <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="slot" class="value-dropdown" style="width: 30%;" />
+                                            <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="match" class="value-dropdown" style="width: 30%;" />
+                                        </ui:VisualElement>
+                                    </ui:GroupBox>
+                                    <ui:GroupBox name="select-puzzle" style="display: none;">
+                                        <ui:VisualElement name="match-count" class="xy-value-item">
+                                            <ui:VisualElement name="match-count-label" class="value-item-label">
+                                                <ui:Label text="Matches" display-tooltip-when-elided="true" class="editor-list-text" />
+                                            </ui:VisualElement>
+                                            <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="select-type" class="value-dropdown" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="match-text" class="xy-value-item">
+                                            <ui:VisualElement name="match-text-label" class="value-item-label">
+                                                <ui:Label text="Match Text" display-tooltip-when-elided="true" class="editor-list-text" />
+                                            </ui:VisualElement>
+                                            <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="match" class="value-dropdown" style="width: 30%;" />
+                                            <ui:VisualElement name="text" class="xy-value-holder">
+                                                <ui:TextField name="x-text-field" class="x-value-input" />
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="match-value" class="xy-value-item">
+                                            <ui:VisualElement name="match-value-label" class="value-item-label">
+                                                <ui:Label text="Value" display-tooltip-when-elided="true" class="editor-list-text" />
+                                            </ui:VisualElement>
+                                            <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="slot" class="value-dropdown" style="width: 30%;" />
+                                            <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="match" class="value-dropdown" style="width: 30%;" />
+                                        </ui:VisualElement>
+                                    </ui:GroupBox>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:ScrollView>
+                        <ui:ScrollView name="animation-trigger" class="scroll-list-primary" style="display: none;">
+                            <ui:VisualElement name="trigger-component" class="component">
+                                <ui:VisualElement name="component-label" class="component-label">
+                                    <ui:Label text="Animation Trigger" display-tooltip-when-elided="true" class="editor-label-text" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="component-body" class="component-body">
+                                    <ui:VisualElement name="animation" class="single-value-item">
+                                        <ui:VisualElement name="animation-label" class="value-item-label">
+                                            <ui:Label text="Animation" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="single-value-holder">
+                                            <ui:Label text="Drop Animation" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="play" class="single-value-item">
+                                        <ui:VisualElement name="play-label" class="value-item-label">
+                                            <ui:Label text="Play" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="single-value-holder">
+                                            <ui:Label text="On" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="loop" class="single-value-item">
+                                        <ui:VisualElement name="loop-label" class="value-item-label">
+                                            <ui:Label text="Loop" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="single-value-holder">
+                                            <ui:Label text="On" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:ScrollView>
+                        <ui:ScrollView name="physics-trigger" class="scroll-list-primary" style="display: none;">
+                            <ui:VisualElement name="physics-component" class="component">
+                                <ui:VisualElement name="component-label" class="component-label">
+                                    <ui:Label text="Physics" display-tooltip-when-elided="true" class="editor-label-text" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="component-body" class="component-body">
+                                    <ui:VisualElement name="object" class="single-value-item">
+                                        <ui:VisualElement name="object-label" class="value-item-label">
+                                            <ui:Label text="Object" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="single-value-holder">
+                                            <ui:Label text="Drop Object" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="enable-axis" class="xy-value-item">
+                                        <ui:VisualElement name="enable-axis-label" class="value-item-label">
+                                            <ui:Label text="Enable Axis" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="xy-value-holder">
+                                            <ui:Label text="X: On" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="y-value" class="xy-value-holder">
+                                            <ui:Label text="Y: Off" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="physics-type" class="xy-value-item">
+                                        <ui:VisualElement name="physics-type-label" class="value-item-label">
+                                            <ui:Label text="Physics Type" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="select-type" class="value-dropdown" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="duration" class="single-value-item">
+                                        <ui:VisualElement name="duration-label" class="value-item-label">
+                                            <ui:Label text="Duration" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="single-value-holder" style="justify-content: flex-end;">
+                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                            <ui:Label text="s" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="force" class="xy-value-item">
+                                        <ui:VisualElement name="force-label" class="value-item-label">
+                                            <ui:Label text="Add Force" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="xy-value-holder">
+                                            <ui:Label text="X: " display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="y-value" class="xy-value-holder">
+                                            <ui:Label text="Y: " display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="lower-body" style="height: 40%; width: 100%; flex-direction: row;">
+                <ui:VisualElement name="assets-tab" class="box-primary" style="height: 100%; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; width: 25%;">
+                    <ui:VisualElement name="tab-label" class="box-primary-label" style="justify-content: flex-end;">
+                        <ui:Label text="Assets" display-tooltip-when-elided="true" style="font-size: 20px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="tab-body" class="box-primary-body">
+                        <ui:ScrollView name="asset-list" class="scroll-list-primary" style="display: flex;">
+                            <ui:VisualElement name="list" class="asset-list">
+                                <ui:VisualElement name="asset-item" class="asset-item" />
+                            </ui:VisualElement>
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="levels-tab" class="box-primary" style="height: 100%; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; width: 75%;">
+                    <ui:VisualElement name="tab-label" class="box-primary-label" style="justify-content: flex-end;">
+                        <ui:Label text="Levels" display-tooltip-when-elided="true" style="font-size: 20px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="tab-body" class="box-primary-body">
+                        <ui:ScrollView name="level-list" class="scroll-list-primary" style="flex-direction: row;">
+                            <ui:VisualElement name="level-box" style="height: auto; width: 500px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px; background-color: rgb(44, 44, 44);">
+                                <ui:VisualElement name="level-label" style="width: 100%; height: 35px; background-color: rgb(255, 255, 255); flex-direction: row; align-items: center; padding-left: 20px; padding-right: 20px; justify-content: center;">
+                                    <ui:Label text="Level" display-tooltip-when-elided="true" style="font-size: 20px; -unity-text-align: middle-left; color: rgb(0, 0, 0); -unity-font-style: bold;" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="level-action-list" style="width: 100%; min-height: 325px;">
+                                    <ui:VisualElement name="level-action" style="width: 100%; margin-left: 0; margin-right: 0; padding-left: 10px; padding-right: 10px;">
+                                        <ui:VisualElement name="condition" style="margin-top: 10px; margin-bottom: 10px;">
+                                            <ui:VisualElement name="condition-label" class="value-item-label">
+                                                <ui:Label text="Enable Axis" display-tooltip-when-elided="true" class="editor-list-text" />
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="bottombar" style="background-color: rgb(255, 82, 82); width: 100%; height: 1%; align-items: center; justify-content: space-between; flex-direction: row; padding-bottom: 0; -unity-background-scale-mode: scale-and-crop;" />
+    </ui:VisualElement>
+</ui:UXML>
