@@ -13,6 +13,9 @@ public class EditorWindow : MonoBehaviour
     //UI Elements Assets
     protected VisualElement assetsTab;
 
+    //UI Elements Inspector
+    protected VisualElement inspectorTab;
+
     void Awake()
     {
         ewDoc = GameObject.Find("UIDocument").GetComponent<UIDocument>();
@@ -21,10 +24,6 @@ public class EditorWindow : MonoBehaviour
 
         sceneView = root.Q<VisualElement>("scene-view");
         assetsTab = root.Q<VisualElement>("assets-tab").Q<VisualElement>("tab-body");
-    }
-
-    void Update()
-    {
-        
+        inspectorTab = root.Q<VisualElement>("inspector-tab").Q<VisualElement>("tab-body");
     }
 }

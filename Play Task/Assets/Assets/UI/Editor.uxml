@@ -71,11 +71,11 @@
                                         </ui:VisualElement>
                                         <ui:VisualElement name="x-value" class="xy-value-holder">
                                             <ui:Label text="X: " display-tooltip-when-elided="true" class="editor-list-text" />
-                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                            <ui:TextField name="text-field" class="x-value-input" />
                                         </ui:VisualElement>
                                         <ui:VisualElement name="y-value" class="xy-value-holder">
                                             <ui:Label text="Y: " display-tooltip-when-elided="true" class="editor-list-text" />
-                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                            <ui:TextField name="text-field" class="x-value-input" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
                                     <ui:VisualElement name="scale" class="xy-value-item">

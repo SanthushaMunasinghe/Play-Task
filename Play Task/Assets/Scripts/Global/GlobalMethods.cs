@@ -1,3 +1,5 @@
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
@@ -68,4 +70,5 @@ public static class GlobalMethods
     {
         SceneManager.LoadScene(sceneName);
     }
+
 }
