@@ -19,10 +19,19 @@ public class LevelObject : MonoBehaviour
     //Collider
     private PolygonCollider2D polygonCollider2D;
 
+    //Rigidbody
+    private Rigidbody2D rb;
+    private bool freezPositionX = true;
+    private bool freezPositionY = true;
+    private bool freezRotation = true;
+    private float gravityX;
+    private float gravityY;
+
     void Awake()
     {
         InitialTransform();
         InitialSpriteRenderer();
+        InitialPhysics();
     }
 
     //Initial Values
@@ -70,7 +79,7 @@ public class LevelObject : MonoBehaviour
     protected void SetSprite(Sprite spr)
     {
         objectSprite.sprite = spr;
-        Destroy(polygonCollider2D);
+        DestroyImmediate(polygonCollider2D);
         polygonCollider2D = gameObject.AddComponent<PolygonCollider2D>();
     }
     
@@ -85,5 +94,65 @@ public class LevelObject : MonoBehaviour
         clr.a = alpha;
 
         objectSprite.color = clr;
+    }
+
+    //Set Rigidbody
+    private void InitialPhysics()
+    {
+        rb = gameObject.GetComponent<Rigidbody2D>();
+
+        freezPositionX = true;
+        freezPositionY = true;
+        freezRotation = true;
+        gravityX = 0;
+        gravityY = 9.8f;
+
+        SetPositionX(freezPositionX);
+        SetPositionY(freezPositionY);
+        SetRotation(freezRotation);
+    }
+
+    private void SetPositionX(bool isTrue)
+    {
+        if (isTrue)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+        }
+        else
+        {
+            rb.constraints = ~RigidbodyConstraints2D.FreezePositionX;
+        }
+    }
+    
+    private void SetPositionY(bool isTrue)
+    {
+        if (isTrue)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        }
+        else
+        {
+            rb.constraints = ~RigidbodyConstraints2D.FreezePositionY;
+        }
+    }
+
+    private void SetRotation(bool isTrue)
+    {
+        if (isTrue)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+        else
+        {
+            rb.constraints = ~RigidbodyConstraints2D.FreezeRotation;
+        }
+    }
+
+    private void SetGravity(float forceValue)
+    {
+        if (forceValue > 0)
+        {
+
+        }
     }
 }

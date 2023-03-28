@@ -155,7 +155,7 @@
                                             <ui:Label text="Rotation" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
                                         <ui:VisualElement name="x-value" class="single-value-holder">
-                                            <ui:Label text="X: " display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:Label text="On" display-tooltip-when-elided="true" class="editor-list-text" />
                                             <ui:TextField name="x-text-field" class="x-value-input" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
