@@ -14,7 +14,10 @@ public class LevelObject : MonoBehaviour
     private SpriteRenderer objectSprite;
     protected Sprite sprite;
     protected Color color;
-    protected float opcity;
+    protected float opacity;
+
+    //Collider
+    private PolygonCollider2D polygonCollider2D;
 
     void Awake()
     {
@@ -36,14 +39,6 @@ public class LevelObject : MonoBehaviour
         SetRotation(rotation);
     }
 
-    private void InitialSpriteRenderer()
-    {
-        objectSprite = gameObject.GetComponent<SpriteRenderer>();
-        sprite = objectSprite.sprite;
-        color = objectSprite.color;
-        opcity = 1;
-    }
-
     //Set Transform
     protected void SetPosition(Vector2 pos)
     {
@@ -61,9 +56,22 @@ public class LevelObject : MonoBehaviour
     }
 
     //Set SpriteRenderer
+    private void InitialSpriteRenderer()
+    {
+        objectSprite = gameObject.GetComponent<SpriteRenderer>();
+        sprite = objectSprite.sprite;
+        color = objectSprite.color;
+        opacity = 1;
+
+        SetColor(color);
+        SetOpcaity(opacity);
+    }
+
     protected void SetSprite(Sprite spr)
     {
         objectSprite.sprite = spr;
+        Destroy(polygonCollider2D);
+        polygonCollider2D = gameObject.AddComponent<PolygonCollider2D>();
     }
     
     protected void SetColor(Color clr)

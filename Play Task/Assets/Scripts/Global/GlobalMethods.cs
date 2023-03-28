@@ -71,4 +71,16 @@ public static class GlobalMethods
         SceneManager.LoadScene(sceneName);
     }
 
+    //Input Float Validation
+    public static bool ValidateTransformInput(string input)
+    {
+        if (float.TryParse(input, out float floatValue))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

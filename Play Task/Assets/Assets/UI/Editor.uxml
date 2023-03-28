@@ -111,24 +111,23 @@
                                         <ui:VisualElement name="image-label" class="value-item-label">
                                             <ui:Label text="Image" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
-                                        <ui:VisualElement name="x-value" class="value-holder">
+                                        <ui:VisualElement name="image-value" class="value-holder">
                                             <ui:Label text="Default.jpg" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
-                                    <ui:VisualElement name="color" class="single-value-item">
-                                        <ui:VisualElement name="color-label" class="value-item-label">
+                                    <ui:VisualElement name="color" class="single-value-item" style="align-items: flex-start; height: 100px;">
+                                        <ui:VisualElement name="color-label" class="value-item-label" style="height: 30px;">
                                             <ui:Label text="Color" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
-                                        <ui:VisualElement name="x-value" class="single-value-holder">
-                                            <ui:Label text="#" display-tooltip-when-elided="true" class="editor-list-text" />
-                                            <ui:TextField name="x-text-field" class="x-value-input" />
-                                        </ui:VisualElement>
+                                        <ui:ScrollView name="color-list-view" class="color-list-view">
+                                            <ui:VisualElement name="color-value" class="color-view" />
+                                        </ui:ScrollView>
                                     </ui:VisualElement>
                                     <ui:VisualElement name="opacity" class="single-value-item">
                                         <ui:VisualElement name="opacity-label" class="value-item-label">
                                             <ui:Label text="Opacity" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
-                                        <ui:VisualElement name="x-value" class="single-value-holder" style="justify-content: flex-end;">
+                                        <ui:VisualElement name="opacity-value" class="single-value-holder" style="justify-content: flex-end;">
                                             <ui:TextField name="x-text-field" class="x-value-input" style="-unity-text-align: upper-right;" />
                                             <ui:Label text="%" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
@@ -447,7 +446,10 @@
                     <ui:VisualElement name="tab-body" class="box-primary-body">
                         <ui:ScrollView name="asset-list" class="scroll-list-primary" style="display: flex;">
                             <ui:VisualElement name="list" class="asset-list">
-                                <ui:VisualElement name="asset-item" class="asset-item" style="background-image: none; display: none;" />
+                                <ui:VisualElement name="asset-item" class="asset-item" style="display: none;">
+                                    <ui:VisualElement name="asset-image" class="asset-image" style="background-image: none; display: flex;" />
+                                    <ui:Label text="Label" display-tooltip-when-elided="true" class="asset-label" />
+                                </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:ScrollView>
                     </ui:VisualElement>

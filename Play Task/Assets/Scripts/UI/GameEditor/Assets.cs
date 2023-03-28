@@ -5,6 +5,8 @@ using UnityEngine.UIElements;
 
 public class Assets : EditorWindow
 {
+    [SerializeField] private ImageComponent imageComponent;
+
     public List<Sprite> assetSpritesList = new List<Sprite>();
 
     private VisualElement assetListUI;
@@ -17,20 +19,32 @@ public class Assets : EditorWindow
         {
             foreach (Sprite assetSprite in assetSpritesList)
             {
-                CreateList(assetSprite);
+                CreateList(assetSprite, assetSprite.name);
             }
         }
     }
 
-    private void CreateList(Sprite sprite)
+    private void CreateList(Sprite sprite, string spriteName)
     {
         VisualElement newItem = new VisualElement();
+        VisualElement newImage = new VisualElement();
+        Label newLabel = new Label();
+
         newItem.AddToClassList("asset-item");
+        newImage.AddToClassList("asset-image");
+        newLabel.AddToClassList("asset-label");
 
-        // Set the background image of the new item to the provided sprite
-        newItem.style.backgroundImage = new StyleBackground(sprite.texture);
+        newImage.style.backgroundImage = new StyleBackground(sprite.texture);
 
-        // Add the new item to the asset list UI
+        newLabel.text = spriteName;
+
+        newItem.Add(newImage);
+        newItem.Add(newLabel);
+
+        newItem.RegisterCallback<MouseUpEvent>(evt => {
+            imageComponent.SelectSprite(sprite);
+        });
+
         assetListUI.Add(newItem);
     }
 }

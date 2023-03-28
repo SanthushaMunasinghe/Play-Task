@@ -6,22 +6,25 @@ using UnityEngine.UIElements;
 public class ObjectSettings : MonoBehaviour
 {
     [SerializeField] private TransformComponent transformComponent;
+    [SerializeField] private ImageComponent imageComponent;
 
     public VisualElement componentList;
 
     //Refer Object
     public GameObject selectedObject;
     public ObjectTransform objectTransform;
+    public ObjectSprite objectSprite;
 
     //Components UI
     public VisualElement transformComponentElement;
-    public VisualElement imageComponent;
+    public VisualElement imageComponentElement;
     public VisualElement physicsComponent;
     public VisualElement animationComponent;
 
     public void AssignObjectComponents()
     {
         objectTransform = selectedObject.GetComponent<ObjectTransform>();
+        objectSprite = selectedObject.GetComponent<ObjectSprite>();
     }
 
     public void GetElements()
@@ -29,17 +32,17 @@ public class ObjectSettings : MonoBehaviour
         AssignObjectComponents();
 
         transformComponentElement = componentList.Q<VisualElement>("transform-component");
-        imageComponent = componentList.Q<VisualElement>("image-component");
+        imageComponentElement = componentList.Q<VisualElement>("image-component");
         physicsComponent = componentList.Q<VisualElement>("physics-component");
         animationComponent = componentList.Q<VisualElement>("animation-component");
 
-        //Get Transform Text Fields
+        //Get Input Elements
         GetTransformElements();
+        GetImageElements();
     }
 
     private void GetTransformElements ()
     {
-        //Get Fields
         transformComponent.positionXField = transformComponentElement.Q<VisualElement>("position").Q<VisualElement>("x-value").Q<TextField>();
         transformComponent.positionYField = transformComponentElement.Q<VisualElement>("position").Q<VisualElement>("y-value").Q<TextField>();
 
@@ -49,5 +52,15 @@ public class ObjectSettings : MonoBehaviour
         transformComponent.rotationField = transformComponentElement.Q<VisualElement>("rotation").Q<VisualElement>("x-value").Q<TextField>();
 
         transformComponent.Setup();
+    }
+
+    private void GetImageElements()
+    {
+        imageComponent.imageField = imageComponentElement.Q<VisualElement>("image");
+        imageComponent.imageLabel = imageComponent.imageField.Q<VisualElement>("image-value").Q<Label>();
+        imageComponent.colorField = imageComponentElement.Q<VisualElement>("color-value");
+        imageComponent.opacityField = imageComponentElement.Q<VisualElement>("opacity-value").Q<TextField>();
+
+        imageComponent.Setup();
     }
 }

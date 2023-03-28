@@ -23,12 +23,14 @@ public class TransformComponent : MonoBehaviour
 
     public void Setup()
     {
+        // Set Initial Values
         positionValueX = objectSettings.objectTransform.GetPosition().x.ToString();
         positionValueY = objectSettings.objectTransform.GetPosition().y.ToString();
         scaleValueX = objectSettings.objectTransform.GetScale().x.ToString();
         scaleValueY = objectSettings.objectTransform.GetScale().y.ToString();
         rotationValue = objectSettings.objectTransform.GetRotation().ToString();
 
+        // Input Fields
         positionXField.value = positionValueX;
         positionYField.value = positionValueY;
         scaleXField.value = scaleValueX;
@@ -73,7 +75,7 @@ public class TransformComponent : MonoBehaviour
     {
         string value = textField.value;
 
-        bool isValid = ValidateTransformInput(value);
+        bool isValid = GlobalMethods.ValidateTransformInput(value);
 
         if (isValid)
         {
@@ -90,7 +92,7 @@ public class TransformComponent : MonoBehaviour
     {
         string value = textField.value;
 
-        bool isValid = ValidateTransformInput(value);
+        bool isValid = GlobalMethods.ValidateTransformInput(value);
 
         if (isValid)
         {
@@ -107,7 +109,7 @@ public class TransformComponent : MonoBehaviour
     {
         string value = textField.value;
 
-        bool isValid = ValidateTransformInput(value);
+        bool isValid = GlobalMethods.ValidateTransformInput(value);
 
         if (isValid)
         {
@@ -117,18 +119,6 @@ public class TransformComponent : MonoBehaviour
         else
         {
             textField.value = rotValue;
-        }
-    }
-
-    public bool ValidateTransformInput(string input)
-    {
-        if (float.TryParse(input, out float floatValue))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
 }
