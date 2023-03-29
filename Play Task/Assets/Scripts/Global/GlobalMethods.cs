@@ -83,4 +83,34 @@ public static class GlobalMethods
             return false;
         }
     }
+
+    public static bool ValidateMinMax(float min, float max, float value)
+    {
+        if (value >= min && value <= max)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    //Switch Bool
+    public static bool SwitchBool(bool isTrue)
+    {
+        return !isTrue;
+    }
+
+    public static string SetValue(bool isTrue)
+    {
+        if (isTrue)
+        {
+            return "On";
+        }
+        else
+        {
+            return "Off";
+        }
+    }
 }

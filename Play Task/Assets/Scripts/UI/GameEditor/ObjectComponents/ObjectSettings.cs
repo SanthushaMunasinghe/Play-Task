@@ -42,6 +42,7 @@ public class ObjectSettings : MonoBehaviour
         //Get Input Elements
         GetTransformElements();
         GetImageElements();
+        GetPhysicsElements();
     }
 
     private void GetTransformElements ()
@@ -65,5 +66,22 @@ public class ObjectSettings : MonoBehaviour
         imageComponent.opacityField = imageComponentElement.Q<VisualElement>("opacity-value").Q<TextField>();
 
         imageComponent.Setup();
+    }
+
+    private void GetPhysicsElements()
+    {
+        physicsComponent.axisElementX = physicsComponentElement.Q<VisualElement>("enable-axis").Q<VisualElement>("x-value");
+        physicsComponent.axisElementY = physicsComponentElement.Q<VisualElement>("enable-axis").Q<VisualElement>("y-value");
+        physicsComponent.rotationElement = physicsComponentElement.Q<VisualElement>("rotation").Q<VisualElement>("value");
+        physicsComponent.collisionElement = physicsComponentElement.Q<VisualElement>("collision").Q<VisualElement>("value");
+        physicsComponent.gravityElement = physicsComponentElement.Q<VisualElement>("gravity").Q<VisualElement>("value");
+
+        physicsComponent.axisLabelX = physicsComponent.axisElementX.Q<Label>();
+        physicsComponent.axisLabelY = physicsComponent.axisElementY.Q<Label>();
+        physicsComponent.rotationLabel = physicsComponent.rotationElement.Q<Label>();
+        physicsComponent.collisionLabel = physicsComponent.collisionElement.Q<Label>();
+        physicsComponent.gravityLabel = physicsComponent.gravityElement.Q<Label>();
+
+        physicsComponent.Setup();
     }
 }

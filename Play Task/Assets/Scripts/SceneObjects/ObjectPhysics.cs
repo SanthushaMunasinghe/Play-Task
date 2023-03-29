@@ -7,36 +7,48 @@ public class ObjectPhysics : LevelObject
     // Update
     public void UpdatePhysicsPositionX(bool isTrue)
     {
-        freezPositionX = isTrue;
-        PhysicsPositionX(freezPositionX);
+        freezPosX = isTrue;
     }
 
     public void UpdatePhysicsPositionY(bool isTrue)
     {
-        freezPositionY = isTrue;
-        PhysicsPositionY(freezPositionY);
+        freezPosY = isTrue;
     }
 
     public void UpdatePhysicsRotation(bool isTrue)
     {
-        freezRotation = isTrue;
-        PhysicsRotation(freezRotation);
+        freezRot = isTrue;
+    }
+    
+    public void UpdateCollision(bool isTrue)
+    {
+        collision = isTrue;
+    }
+    
+    public void UpdatePhysicsGravity(bool isTrue)
+    {
+        gravity = isTrue;
     }
 
     //Get
     public bool GetPhysicsPositionX()
     {
-        return freezPositionX;
+        return freezPosX;
     }
     
     public bool GetPhysicsPositionY()
     {
-        return freezPositionY;
+        return freezPosY;
     }
 
     public bool GetPhysicsRotation()
     {
-        return freezRotation;
+        return freezRot;
+    }
+    
+    public bool GetCollision()
+    {
+        return collision;
     }
 
     public bool GetPhysicsGravity()

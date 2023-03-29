@@ -141,7 +141,7 @@
                                 <ui:VisualElement name="component-body" class="component-body">
                                     <ui:VisualElement name="enable-axis" class="xy-value-item">
                                         <ui:VisualElement name="enable-axis-label" class="value-item-label">
-                                            <ui:Label text="Enable Axis" display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:Label text="Axis" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
                                         <ui:VisualElement name="x-value" class="xy-value-holder">
                                             <ui:Label text="X: On" display-tooltip-when-elided="true" class="editor-list-text" />
@@ -154,7 +154,7 @@
                                         <ui:VisualElement name="rotation-label" class="value-item-label">
                                             <ui:Label text="Rotation" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
-                                        <ui:VisualElement name="x-value" class="single-value-holder">
+                                        <ui:VisualElement name="value" class="single-value-holder">
                                             <ui:Label text="On" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
@@ -162,19 +162,16 @@
                                         <ui:VisualElement name="collision-label" class="value-item-label">
                                             <ui:Label text="Collision" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
-                                        <ui:VisualElement name="x-value" class="single-value-holder">
+                                        <ui:VisualElement name="value" class="single-value-holder">
                                             <ui:Label text="On" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
-                                    <ui:VisualElement name="gravity" class="xy-value-item">
+                                    <ui:VisualElement name="gravity" class="single-value-item">
                                         <ui:VisualElement name="gravity-label" class="value-item-label">
                                             <ui:Label text="Gravity" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
-                                        <ui:VisualElement name="x-value" class="xy-value-holder">
+                                        <ui:VisualElement name="value" class="single-value-holder">
                                             <ui:Label text="X: On" display-tooltip-when-elided="true" class="editor-list-text" />
-                                        </ui:VisualElement>
-                                        <ui:VisualElement name="y-value" class="xy-value-holder">
-                                            <ui:Label text="Y: Off" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
                                 </ui:VisualElement>

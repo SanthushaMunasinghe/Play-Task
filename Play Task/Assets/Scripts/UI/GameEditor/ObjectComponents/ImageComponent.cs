@@ -97,8 +97,15 @@ public class ImageComponent : MonoBehaviour
 
         if (isValid)
         {
-            opaValue = float.Parse(value);
-            objectSettings.objectSprite.UpdateOpacity(currentOpacity);
+            if (GlobalMethods.ValidateMinMax(0, 100, float.Parse(value)))
+            {
+                opaValue = float.Parse(value);
+                objectSettings.objectSprite.UpdateOpacity(currentOpacity);
+            }
+            else
+            {
+                textField.value = opaValue.ToString();
+            }
         }
         else
         {

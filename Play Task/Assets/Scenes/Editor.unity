@@ -174,6 +174,7 @@ MonoBehaviour:
   selectedObject: {fileID: 251779675}
   objectTransform: {fileID: 0}
   objectSprite: {fileID: 0}
+  objectPhysics: {fileID: 0}
 --- !u!4 &18974073
 Transform:
   m_ObjectHideFlags: 0
@@ -351,6 +352,7 @@ GameObject:
   - component: {fileID: 251779680}
   - component: {fileID: 251779679}
   - component: {fileID: 251779678}
+  - component: {fileID: 251779682}
   - component: {fileID: 251779681}
   m_Layer: 0
   m_Name: Square
@@ -483,6 +485,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &251779682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251779675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6396b8189e6a53448b80e83a452c5ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &837657248
 GameObject:
   m_ObjectHideFlags: 0

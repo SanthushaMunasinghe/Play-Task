@@ -86,7 +86,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -224,8 +224,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: c65f0000
-      m_LastClickedID: 24518
+      m_SelectedIDs: 18250000
+      m_LastClickedID: 0
       m_ExpandedIDs: 26fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -701,22 +701,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/UI/GameEditor/ObjectComponents
+    - Assets/Scripts/Global
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/UI/GameEditor/ObjectComponents
+  - Assets/Scripts/Global
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\santh\Documents\GitHub\Play-Task\Play Task
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 43}
-    m_SelectedIDs: ac700000
-    m_LastClickedID: 28844
-    m_ExpandedIDs: 000000001a6100001c6100001e610000406a00009a73000000ca9a3b
+    m_SelectedIDs: f6660000
+    m_LastClickedID: 26358
+    m_ExpandedIDs: 000000001a6100001c6100001e61000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -744,7 +744,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000001a6100001c6100001e610000
+    m_ExpandedIDs: 000000001a6100001c6100001e61000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -769,9 +769,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: c65f0000
-    m_LastClickedInstanceID: 24518
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 18250000
+    m_LastClickedInstanceID: 9496
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0

@@ -21,16 +21,26 @@ public class LevelObject : MonoBehaviour
 
     //Rigidbody
     private Rigidbody2D rb;
-    protected bool freezPositionX = true;
-    protected bool freezPositionY = true;
-    protected bool freezRotation = true;
-    protected bool gravity;
+    protected bool freezPosX = true;
+    protected bool freezPosY = true;
+    protected bool freezRot = true;
+    protected bool collision = true;
+    protected bool gravity = false;
+
+    //Animation
+    protected string animationType;
+    protected float duration;
+    protected Vector2 startVec;
+    protected Vector2 endVec;
+    protected bool isPlay;
+    protected bool isLoop;
 
     void Awake()
     {
         InitialTransform();
         InitialSpriteRenderer();
         InitialPhysics();
+        InitialAnimation();
     }
 
     //Initial Values
@@ -100,26 +110,22 @@ public class LevelObject : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
 
-        freezPositionX = true;
-        freezPositionY = true;
-        freezRotation = true;
+        freezPosX = true;
+        freezPosY = true;
+        freezRot = true;
+        collision = true;
         gravity = false;
-
-        PhysicsPositionX(freezPositionX);
-        PhysicsPositionY(freezPositionY);
-        PhysicsRotation(freezRotation);
-        PhysicsGravity(gravity);
     }
 
     protected void PhysicsPositionX(bool isTrue)
     {
         if (isTrue)
         {
-            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+            rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
         }
         else
         {
-            rb.constraints = ~RigidbodyConstraints2D.FreezePositionX;
+            rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
         }
     }
     
@@ -127,11 +133,11 @@ public class LevelObject : MonoBehaviour
     {
         if (isTrue)
         {
-            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+            rb.constraints |= RigidbodyConstraints2D.FreezePositionY;
         }
         else
         {
-            rb.constraints = ~RigidbodyConstraints2D.FreezePositionY;
+            rb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
         }
     }
 
@@ -139,11 +145,23 @@ public class LevelObject : MonoBehaviour
     {
         if (isTrue)
         {
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            rb.constraints |= RigidbodyConstraints2D.FreezeRotation;
         }
         else
         {
-            rb.constraints = ~RigidbodyConstraints2D.FreezeRotation;
+            rb.constraints &= ~RigidbodyConstraints2D.FreezeRotation;
+        }
+    }
+
+    protected void SetCollision(bool isTrue)
+    {
+        if (isTrue)
+        {
+            polygonCollider2D.isTrigger = false;
+        }
+        else
+        {
+            polygonCollider2D.isTrigger = true;
         }
     }
 
@@ -157,5 +175,46 @@ public class LevelObject : MonoBehaviour
         {
             rb.gravityScale = 0;
         }
+    }
+
+    //Set Animation
+    private void InitialAnimation()
+    {
+        animationType = "Off";
+        duration = 0;
+        startVec = objectTF.position;
+        endVec = objectTF.position;
+        isPlay = false;
+        isLoop = false;
+    }
+
+    protected void SetType(string type)
+    {
+        Debug.Log(type);
+    }
+    
+    protected void SetDuration(float dura)
+    {
+        Debug.Log(dura);
+    }
+    
+    protected void SetStartVector(Vector2 startV)
+    {
+        Debug.Log(startV);
+    }
+    
+    protected void SetEndVector(Vector2 endV)
+    {
+        Debug.Log(endV);
+    }
+    
+    protected void SetPlay(bool isTrue)
+    {
+        Debug.Log(isTrue);
+    }
+    
+    protected void SetLoop(bool isTrue)
+    {
+        Debug.Log(isTrue);
     }
 }
