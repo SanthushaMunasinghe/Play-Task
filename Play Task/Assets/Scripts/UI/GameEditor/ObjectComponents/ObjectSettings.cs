@@ -7,6 +7,7 @@ public class ObjectSettings : MonoBehaviour
 {
     [SerializeField] private TransformComponent transformComponent;
     [SerializeField] private ImageComponent imageComponent;
+    [SerializeField] private PhysicsComponent physicsComponent;
 
     public VisualElement componentList;
 
@@ -14,17 +15,19 @@ public class ObjectSettings : MonoBehaviour
     public GameObject selectedObject;
     public ObjectTransform objectTransform;
     public ObjectSprite objectSprite;
+    public ObjectPhysics objectPhysics;
 
     //Components UI
     public VisualElement transformComponentElement;
     public VisualElement imageComponentElement;
-    public VisualElement physicsComponent;
-    public VisualElement animationComponent;
+    public VisualElement physicsComponentElement;
+    public VisualElement animationComponentElement;
 
     public void AssignObjectComponents()
     {
         objectTransform = selectedObject.GetComponent<ObjectTransform>();
         objectSprite = selectedObject.GetComponent<ObjectSprite>();
+        objectPhysics = selectedObject.GetComponent<ObjectPhysics>();
     }
 
     public void GetElements()
@@ -33,8 +36,8 @@ public class ObjectSettings : MonoBehaviour
 
         transformComponentElement = componentList.Q<VisualElement>("transform-component");
         imageComponentElement = componentList.Q<VisualElement>("image-component");
-        physicsComponent = componentList.Q<VisualElement>("physics-component");
-        animationComponent = componentList.Q<VisualElement>("animation-component");
+        physicsComponentElement = componentList.Q<VisualElement>("physics-component");
+        animationComponentElement = componentList.Q<VisualElement>("animation-component");
 
         //Get Input Elements
         GetTransformElements();

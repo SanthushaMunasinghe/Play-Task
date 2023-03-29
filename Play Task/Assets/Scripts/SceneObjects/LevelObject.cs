@@ -21,11 +21,10 @@ public class LevelObject : MonoBehaviour
 
     //Rigidbody
     private Rigidbody2D rb;
-    private bool freezPositionX = true;
-    private bool freezPositionY = true;
-    private bool freezRotation = true;
-    private float gravityX;
-    private float gravityY;
+    protected bool freezPositionX = true;
+    protected bool freezPositionY = true;
+    protected bool freezRotation = true;
+    protected bool gravity;
 
     void Awake()
     {
@@ -104,15 +103,15 @@ public class LevelObject : MonoBehaviour
         freezPositionX = true;
         freezPositionY = true;
         freezRotation = true;
-        gravityX = 0;
-        gravityY = 9.8f;
+        gravity = false;
 
-        SetPositionX(freezPositionX);
-        SetPositionY(freezPositionY);
-        SetRotation(freezRotation);
+        PhysicsPositionX(freezPositionX);
+        PhysicsPositionY(freezPositionY);
+        PhysicsRotation(freezRotation);
+        PhysicsGravity(gravity);
     }
 
-    private void SetPositionX(bool isTrue)
+    protected void PhysicsPositionX(bool isTrue)
     {
         if (isTrue)
         {
@@ -124,7 +123,7 @@ public class LevelObject : MonoBehaviour
         }
     }
     
-    private void SetPositionY(bool isTrue)
+    protected void PhysicsPositionY(bool isTrue)
     {
         if (isTrue)
         {
@@ -136,7 +135,7 @@ public class LevelObject : MonoBehaviour
         }
     }
 
-    private void SetRotation(bool isTrue)
+    protected void PhysicsRotation(bool isTrue)
     {
         if (isTrue)
         {
@@ -148,11 +147,15 @@ public class LevelObject : MonoBehaviour
         }
     }
 
-    private void SetGravity(float forceValue)
+    protected void PhysicsGravity(bool isTrue)
     {
-        if (forceValue > 0)
+        if (isTrue)
         {
-
+            rb.gravityScale = 1;
+        }
+        else
+        {
+            rb.gravityScale = 0;
         }
     }
 }

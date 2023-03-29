@@ -156,7 +156,6 @@
                                         </ui:VisualElement>
                                         <ui:VisualElement name="x-value" class="single-value-holder">
                                             <ui:Label text="On" display-tooltip-when-elided="true" class="editor-list-text" />
-                                            <ui:TextField name="x-text-field" class="x-value-input" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
                                     <ui:VisualElement name="collision" class="single-value-item">
@@ -172,12 +171,10 @@
                                             <ui:Label text="Gravity" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
                                         <ui:VisualElement name="x-value" class="xy-value-holder">
-                                            <ui:Label text="X: " display-tooltip-when-elided="true" class="editor-list-text" />
-                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                            <ui:Label text="X: On" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
                                         <ui:VisualElement name="y-value" class="xy-value-holder">
-                                            <ui:Label text="Y: " display-tooltip-when-elided="true" class="editor-list-text" />
-                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                            <ui:Label text="Y: Off" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
                                 </ui:VisualElement>
