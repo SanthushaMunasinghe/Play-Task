@@ -180,7 +180,6 @@ public class LevelObject : MonoBehaviour
     //Set Animation
     private void InitialAnimation()
     {
-        animationType = "Off";
         duration = 0;
         startVec = objectTF.position;
         endVec = objectTF.position;
@@ -188,7 +187,7 @@ public class LevelObject : MonoBehaviour
         isLoop = false;
     }
 
-    protected void SetType(string type)
+    protected void SetAnimationType(string type)
     {
         Debug.Log(type);
     }

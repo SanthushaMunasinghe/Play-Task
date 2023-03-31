@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 18974071}
   - component: {fileID: 18974074}
   - component: {fileID: 18974075}
+  - component: {fileID: 18974076}
   m_Layer: 0
   m_Name: ObjectSettingsUI
   m_TagString: Untagged
@@ -171,10 +172,12 @@ MonoBehaviour:
   transformComponent: {fileID: 18974071}
   imageComponent: {fileID: 18974074}
   physicsComponent: {fileID: 18974075}
+  animationComponent: {fileID: 18974076}
   selectedObject: {fileID: 251779675}
   objectTransform: {fileID: 0}
   objectSprite: {fileID: 0}
   objectPhysics: {fileID: 0}
+  objectAnimation: {fileID: 0}
 --- !u!4 &18974073
 Transform:
   m_ObjectHideFlags: 0
@@ -255,6 +258,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectSettings: {fileID: 18974072}
+--- !u!114 &18974076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18974070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eac86d36a97694488fa141ab8ecf268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectSettings: {fileID: 18974072}
+  animationTypes:
+  - Off
+  - Position
+  - Scale
 --- !u!1 &223799848
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,6 +373,7 @@ GameObject:
   - component: {fileID: 251779679}
   - component: {fileID: 251779678}
   - component: {fileID: 251779682}
+  - component: {fileID: 251779683}
   - component: {fileID: 251779681}
   m_Layer: 0
   m_Name: Square
@@ -495,6 +516,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6396b8189e6a53448b80e83a452c5ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &251779683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251779675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae3b722c5a67537449d7935c0be5d327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &837657248

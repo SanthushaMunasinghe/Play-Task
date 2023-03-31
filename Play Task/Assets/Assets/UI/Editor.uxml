@@ -191,7 +191,7 @@
                                         <ui:VisualElement name="duration-label" class="value-item-label">
                                             <ui:Label text="Duration" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
-                                        <ui:VisualElement name="x-value" class="single-value-holder" style="justify-content: flex-end;">
+                                        <ui:VisualElement name="value" class="single-value-holder" style="justify-content: flex-end;">
                                             <ui:TextField name="x-text-field" class="x-value-input" style="-unity-text-align: upper-right;" />
                                             <ui:Label text=".s" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
@@ -220,6 +220,22 @@
                                         <ui:VisualElement name="y-value" class="xy-value-holder">
                                             <ui:Label text="Y: " display-tooltip-when-elided="true" class="editor-list-text" />
                                             <ui:TextField name="x-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="isplay" class="single-value-item">
+                                        <ui:VisualElement name="isplay-label" class="value-item-label">
+                                            <ui:Label text="Play" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="value" class="single-value-holder">
+                                            <ui:Label text="On" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="isloop" class="single-value-item">
+                                        <ui:VisualElement name="isloop-label" class="value-item-label">
+                                            <ui:Label text="Loop" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="value" class="single-value-holder">
+                                            <ui:Label text="On" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
                                 </ui:VisualElement>

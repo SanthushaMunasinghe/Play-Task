@@ -8,6 +8,7 @@ public class ObjectSettings : MonoBehaviour
     [SerializeField] private TransformComponent transformComponent;
     [SerializeField] private ImageComponent imageComponent;
     [SerializeField] private PhysicsComponent physicsComponent;
+    [SerializeField] private AnimationComponent animationComponent;
 
     public VisualElement componentList;
 
@@ -16,6 +17,7 @@ public class ObjectSettings : MonoBehaviour
     public ObjectTransform objectTransform;
     public ObjectSprite objectSprite;
     public ObjectPhysics objectPhysics;
+    public ObjectAnimation objectAnimation;
 
     //Components UI
     public VisualElement transformComponentElement;
@@ -28,6 +30,7 @@ public class ObjectSettings : MonoBehaviour
         objectTransform = selectedObject.GetComponent<ObjectTransform>();
         objectSprite = selectedObject.GetComponent<ObjectSprite>();
         objectPhysics = selectedObject.GetComponent<ObjectPhysics>();
+        objectAnimation = selectedObject.GetComponent<ObjectAnimation>();
     }
 
     public void GetElements()
@@ -43,6 +46,7 @@ public class ObjectSettings : MonoBehaviour
         GetTransformElements();
         GetImageElements();
         GetPhysicsElements();
+        GetAnimationElements();
     }
 
     private void GetTransformElements ()
@@ -83,5 +87,21 @@ public class ObjectSettings : MonoBehaviour
         physicsComponent.gravityLabel = physicsComponent.gravityElement.Q<Label>();
 
         physicsComponent.Setup();
+    }
+
+    private void GetAnimationElements()
+    {
+        animationComponent.animationTypesDropdown = animationComponentElement.Q<VisualElement>("type").Q<DropdownField>();
+        animationComponent.durationField = animationComponentElement.Q<VisualElement>("duration").Q<VisualElement>("value").Q<TextField>();
+        animationComponent.startXField = animationComponentElement.Q<VisualElement>("start").Q<VisualElement>("x-value").Q<TextField>();
+        animationComponent.startYField = animationComponentElement.Q<VisualElement>("start").Q<VisualElement>("y-value").Q<TextField>();
+        animationComponent.endXField = animationComponentElement.Q<VisualElement>("end").Q<VisualElement>("x-value").Q<TextField>();
+        animationComponent.endYField = animationComponentElement.Q<VisualElement>("end").Q<VisualElement>("y-value").Q<TextField>();
+        animationComponent.playElement = animationComponentElement.Q<VisualElement>("isplay").Q<VisualElement>("value");
+        animationComponent.loopElement = animationComponentElement.Q<VisualElement>("isloop").Q<VisualElement>("value");
+        animationComponent.playLabel = animationComponent.playElement.Q<Label>();
+        animationComponent.loopLabel = animationComponent.loopElement.Q<Label>();
+
+        animationComponent.Setup();
     }
 }

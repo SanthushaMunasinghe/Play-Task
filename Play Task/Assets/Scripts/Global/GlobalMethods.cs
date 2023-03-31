@@ -102,7 +102,7 @@ public static class GlobalMethods
         return !isTrue;
     }
 
-    public static string SetValue(bool isTrue)
+    public static string SetBoolValue(bool isTrue)
     {
         if (isTrue)
         {

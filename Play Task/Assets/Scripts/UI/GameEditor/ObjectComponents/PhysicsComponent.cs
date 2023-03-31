@@ -38,11 +38,11 @@ public class PhysicsComponent : MonoBehaviour
         grav = objectSettings.objectPhysics.GetPhysicsGravity();
 
         //Display Initial Values
-        axisLabelX.text = "X: " + GlobalMethods.SetValue(!axisX);
-        axisLabelY.text = "Y: " + GlobalMethods.SetValue(!axisY);
-        rotationLabel.text = GlobalMethods.SetValue(rot);
-        collisionLabel.text = GlobalMethods.SetValue(col);
-        gravityLabel.text = GlobalMethods.SetValue(grav);
+        axisLabelX.text = "X: " + GlobalMethods.SetBoolValue(!axisX);
+        axisLabelY.text = "Y: " + GlobalMethods.SetBoolValue(!axisY);
+        rotationLabel.text = GlobalMethods.SetBoolValue(rot);
+        collisionLabel.text = GlobalMethods.SetBoolValue(col);
+        gravityLabel.text = GlobalMethods.SetBoolValue(grav);
 
         RegisterEvents();
     }
@@ -53,35 +53,35 @@ public class PhysicsComponent : MonoBehaviour
         {
             axisX = GlobalMethods.SwitchBool(axisX);
             objectSettings.objectPhysics.UpdatePhysicsPositionX(axisX);
-            axisLabelX.text = GlobalMethods.SetValue(!axisX);
+            axisLabelX.text = GlobalMethods.SetBoolValue(!axisX);
         });
         
         axisElementY.RegisterCallback<MouseUpEvent>(evt =>
         {
             axisY = GlobalMethods.SwitchBool(axisY);
             objectSettings.objectPhysics.UpdatePhysicsPositionY(axisY);
-            axisLabelY.text = GlobalMethods.SetValue(!axisY);
+            axisLabelY.text = GlobalMethods.SetBoolValue(!axisY);
         });
 
         rotationElement.RegisterCallback<MouseUpEvent>(evt =>
         {
             rot = GlobalMethods.SwitchBool(rot);
             objectSettings.objectPhysics.UpdatePhysicsRotation(rot);
-            rotationLabel.text = GlobalMethods.SetValue(rot);
+            rotationLabel.text = GlobalMethods.SetBoolValue(rot);
         });
 
         collisionElement.RegisterCallback<MouseUpEvent>(evt =>
         {
             col = GlobalMethods.SwitchBool(col);
             objectSettings.objectPhysics.UpdateCollision(col);
-            collisionLabel.text = GlobalMethods.SetValue(col);
+            collisionLabel.text = GlobalMethods.SetBoolValue(col);
         });
 
         gravityElement.RegisterCallback<MouseUpEvent>(evt =>
         {
             grav = GlobalMethods.SwitchBool(grav);
             objectSettings.objectPhysics.UpdatePhysicsGravity(grav);
-            gravityLabel.text = GlobalMethods.SetValue(grav);
+            gravityLabel.text = GlobalMethods.SetBoolValue(grav);
         });
     }
 }
