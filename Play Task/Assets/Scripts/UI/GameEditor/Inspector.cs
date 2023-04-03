@@ -11,11 +11,11 @@ public class Inspector : EditorWindow
     void Start()
     {
         objectSettings.componentList = inspectorTab.Q<VisualElement>("object-components");
-        objectSettings.GetElements();
     }
 
-    void Update()
+    public void SelectObject(GameObject obj)
     {
-        
+        objectSettings.selectedObject = obj;
+        objectSettings.GetElements();
     }
 }

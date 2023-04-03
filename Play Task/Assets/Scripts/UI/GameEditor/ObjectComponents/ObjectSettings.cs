@@ -35,18 +35,21 @@ public class ObjectSettings : MonoBehaviour
 
     public void GetElements()
     {
-        AssignObjectComponents();
-
         transformComponentElement = componentList.Q<VisualElement>("transform-component");
         imageComponentElement = componentList.Q<VisualElement>("image-component");
         physicsComponentElement = componentList.Q<VisualElement>("physics-component");
         animationComponentElement = componentList.Q<VisualElement>("animation-component");
 
-        //Get Input Elements
-        GetTransformElements();
-        GetImageElements();
-        GetPhysicsElements();
-        GetAnimationElements();
+        if (selectedObject != null)
+        {
+            AssignObjectComponents();
+
+            //Get Input Elements
+            GetTransformElements();
+            GetImageElements();
+            GetPhysicsElements();
+            GetAnimationElements();
+        }
     }
 
     private void GetTransformElements ()
