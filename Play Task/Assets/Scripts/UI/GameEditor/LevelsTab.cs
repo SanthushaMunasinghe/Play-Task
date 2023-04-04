@@ -6,10 +6,11 @@ using UnityEngine.UIElements;
 
 public class LevelsTab : EditorWindow
 {
+    [SerializeField] private Inspector inspector;
     [SerializeField] private LevelListManager levelListManager;
 
     //Level Values
-    private int prevLvlCount = 1;
+    private int prevLvlCount = 0;
 
     //UI Elements
     private VisualElement levelListView;
@@ -125,6 +126,11 @@ public class LevelsTab : EditorWindow
         {
             levelListManager.DeleteLevel(currentObj);
             UpdateLevelListView();
+        });
+        
+        levelLabel.RegisterCallback<MouseUpEvent>(evt =>
+        {
+            inspector.SelectLevel(currentObj);
         });
 
         //ADD ELEMENTS

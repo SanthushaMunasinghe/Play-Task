@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 18365816}
   - component: {fileID: 18365817}
+  - component: {fileID: 18365818}
   m_Layer: 0
   m_Name: LevelListManager
   m_TagString: Untagged
@@ -170,6 +171,30 @@ MonoBehaviour:
   levelPrefab: {fileID: 5179684718345089600, guid: 74103753deee9d340b8452b177903f32, type: 3}
   lvlObjectList: []
   levelsCount: 0
+--- !u!114 &18365818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18365815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 151f8a936a7af914288eb218698f6b6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedLevelObj: {fileID: 0}
+  templateTypes:
+  - None
+  - Quiz
+  - Puzzle
+  quizTypes:
+  - None
+  - Quiz
+  puzzleTypes:
+  - None
+  - Drag and Drop
+  - Select
 --- !u!1 &18974070
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,6 +743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectSettings: {fileID: 18974072}
+  levelSettings: {fileID: 18365818}
 --- !u!114 &1570118103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -730,6 +756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a98b4324a8459d447893b6d12e3132d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inspector: {fileID: 1570118102}
   levelListManager: {fileID: 18365817}
 --- !u!114 &1570118104
 MonoBehaviour:

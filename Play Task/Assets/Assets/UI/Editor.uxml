@@ -59,7 +59,7 @@
                         <ui:Label text="Inspector" display-tooltip-when-elided="true" style="font-size: 20px;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="tab-body" class="box-primary-body">
-                        <ui:ScrollView name="object-components" class="scroll-list-primary" style="display: flex;">
+                        <ui:ScrollView name="object-components" class="scroll-list-primary" style="display: none;">
                             <ui:VisualElement name="transform-component" class="component">
                                 <ui:VisualElement name="component-label" class="component-label">
                                     <ui:Label text="Transform" display-tooltip-when-elided="true" class="editor-label-text" />
@@ -241,7 +241,7 @@
                                 </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:ScrollView>
-                        <ui:ScrollView name="template-settings" class="scroll-list-primary" style="display: none;">
+                        <ui:ScrollView name="template-settings-list" class="scroll-list-primary" style="display: flex;">
                             <ui:VisualElement name="template-settings" class="component">
                                 <ui:VisualElement name="component-label" class="component-label">
                                     <ui:Label text="Template - Level 1" display-tooltip-when-elided="true" class="editor-label-text" />
@@ -263,11 +263,11 @@
                                         <ui:VisualElement name="question-label" class="value-item-label">
                                             <ui:Label text="Question" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
-                                        <ui:VisualElement name="x-value" class="value-holder">
-                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                        <ui:VisualElement name="q-value" class="value-holder">
+                                            <ui:TextField name="q-text-field" class="x-value-input" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
-                                    <ui:GroupBox name="quiz" style="display: none;">
+                                    <ui:GroupBox name="quiz" style="display: flex;">
                                         <ui:VisualElement name="answer-count" class="xy-value-item">
                                             <ui:VisualElement name="answer-count-label" class="value-item-label">
                                                 <ui:Label text="Answer Count" display-tooltip-when-elided="true" class="editor-list-text" />
@@ -471,7 +471,7 @@
                     <ui:VisualElement name="tab-body" class="box-primary-body">
                         <ui:ScrollView mode="VerticalAndHorizontal" class="scroll-list-primary">
                             <ui:VisualElement name="level-box-list" style="width: auto; height: auto; flex-direction: row; flex-wrap: nowrap;">
-                                <ui:VisualElement name="level-box" class="level-box" style="display: flex;">
+                                <ui:VisualElement name="level-box" class="level-box" style="display: none;">
                                     <ui:VisualElement name="level-label" class="level-box-label">
                                         <ui:Label text="Level" display-tooltip-when-elided="true" class="level-box-label-text" />
                                         <ui:VisualElement name="level-options-box" class="action-options-box">

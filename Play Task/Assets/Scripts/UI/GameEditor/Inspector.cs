@@ -7,15 +7,24 @@ public class Inspector : EditorWindow
 {
     //Child Elements
     [SerializeField] private ObjectSettings objectSettings;
+    [SerializeField] private LevelSettings levelSettings;
 
     void Start()
     {
-        objectSettings.componentList = inspectorTab.Q<VisualElement>("object-components");
+
     }
 
     public void SelectObject(GameObject obj)
     {
+        objectSettings.componentList = inspectorTab.Q<VisualElement>("object-components");
         objectSettings.selectedObject = obj;
         objectSettings.GetElements();
+    }
+
+    public void SelectLevel(GameObject obj)
+    {
+        levelSettings.templateSettings = inspectorTab.Q<VisualElement>("template-settings");
+        levelSettings.selectedLevelObj = obj;
+        levelSettings.GetElements();
     }
 }
