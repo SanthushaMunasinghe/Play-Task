@@ -13,6 +13,9 @@ public class LevelSettings : MonoBehaviour
     [SerializeField] private List<string> quizTypes = new List<string>();
     [SerializeField] private List<string> puzzleTypes = new List<string>();
 
+    //Quiz
+    [SerializeField] protected List<string> quizLogicTypes = new List<string>();
+
     //Values
     private string currentTemplateType;
     private string currentfeatureType;
@@ -82,7 +85,8 @@ public class LevelSettings : MonoBehaviour
         featureDropdown.RegisterValueChangedCallback(evt =>
         {
             string selectedValue = evt.newValue;
-            ActivateGroup(selectedValue);
+            currentfeatureType = selectedValue;
+            ActivateGroup(currentfeatureType);
         });
     }
 
@@ -96,7 +100,8 @@ public class LevelSettings : MonoBehaviour
         else if (typeName == templateTypes[2])
         {
             featureDropdown.choices = puzzleTypes;
-            featureDropdown.value = puzzleTypes[0];
+            currentfeatureType = puzzleTypes[0];
+            featureDropdown.value = currentfeatureType;
         }
         else
         {
@@ -133,6 +138,7 @@ public class LevelSettings : MonoBehaviour
         }
 
         featureDropdown.choices = null;
+        currentfeatureType = null;
         featureDropdown.value = null;
     }
 }

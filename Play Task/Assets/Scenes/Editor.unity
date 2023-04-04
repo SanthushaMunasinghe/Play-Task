@@ -195,6 +195,10 @@ MonoBehaviour:
   - None
   - Drag and Drop
   - Select
+  quizLogicTypes:
+  - None
+  - Select One
+  - Select Many
 --- !u!1 &18974070
 GameObject:
   m_ObjectHideFlags: 0

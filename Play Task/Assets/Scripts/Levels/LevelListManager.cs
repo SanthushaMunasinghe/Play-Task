@@ -65,3 +65,15 @@ public class LevelListManager : MonoBehaviour
         lvlObj.GetComponent<Level>().levelIndex = newValue - 1;
     }
 }
+
+public interface IAnswerContainer
+{
+    int AnswerIndex { get; set; }
+    string AnswerTxt { get; set; }
+}
+
+public class AnswerData : IAnswerContainer
+{
+    public int AnswerIndex { get; set; }
+    public string AnswerTxt { get; set; }
+}
