@@ -267,16 +267,10 @@
                                             <ui:TextField name="q-text-field" class="x-value-input" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
-                                    <ui:GroupBox name="quiz" style="display: flex;">
+                                    <ui:GroupBox name="quiz" style="display: none;">
                                         <ui:VisualElement name="answer-count" class="xy-value-item">
                                             <ui:VisualElement name="answer-count-label" class="value-item-label">
                                                 <ui:Label text="Answer Count" display-tooltip-when-elided="true" class="editor-list-text" />
-                                            </ui:VisualElement>
-                                            <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="select-type" class="value-dropdown" />
-                                        </ui:VisualElement>
-                                        <ui:VisualElement name="quiz-type" class="xy-value-item">
-                                            <ui:VisualElement name="quiz-type-label" class="value-item-label">
-                                                <ui:Label text="Quiz Type" display-tooltip-when-elided="true" class="editor-list-text" />
                                             </ui:VisualElement>
                                             <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="select-type" class="value-dropdown" />
                                         </ui:VisualElement>
@@ -297,18 +291,27 @@
                                             <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="answer-type" class="value-dropdown" style="width: 30%;" />
                                         </ui:VisualElement>
                                     </ui:GroupBox>
-                                    <ui:GroupBox name="drag-puzzle" style="display: none;">
+                                    <ui:GroupBox name="drag-puzzle" style="display: flex;">
                                         <ui:VisualElement name="slots-count" class="xy-value-item">
                                             <ui:VisualElement name="slots-count-label" class="value-item-label">
-                                                <ui:Label text="Slots" display-tooltip-when-elided="true" class="editor-list-text" />
+                                                <ui:Label text="Slots Count" display-tooltip-when-elided="true" class="editor-list-text" />
                                             </ui:VisualElement>
                                             <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="select-type" class="value-dropdown" />
                                         </ui:VisualElement>
                                         <ui:VisualElement name="match-count" class="xy-value-item">
                                             <ui:VisualElement name="match-count-label" class="value-item-label">
-                                                <ui:Label text="Matches" display-tooltip-when-elided="true" class="editor-list-text" />
+                                                <ui:Label text="Matches Count" display-tooltip-when-elided="true" class="editor-list-text" />
                                             </ui:VisualElement>
                                             <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="select-type" class="value-dropdown" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="slot-text" class="xy-value-item">
+                                            <ui:VisualElement name="slot-text-label" class="value-item-label">
+                                                <ui:Label text="Slot Text" display-tooltip-when-elided="true" class="editor-list-text" />
+                                            </ui:VisualElement>
+                                            <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="slot" class="value-dropdown" style="width: 30%;" />
+                                            <ui:VisualElement name="text" class="xy-value-holder">
+                                                <ui:TextField name="x-text-field" class="x-value-input" />
+                                            </ui:VisualElement>
                                         </ui:VisualElement>
                                         <ui:VisualElement name="match-text" class="xy-value-item">
                                             <ui:VisualElement name="match-text-label" class="value-item-label">

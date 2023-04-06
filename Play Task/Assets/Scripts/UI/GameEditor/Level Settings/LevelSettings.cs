@@ -9,6 +9,7 @@ public class LevelSettings : MonoBehaviour
     private Level selectedLevel;
 
     [SerializeField] private QuizComponent quizComponent;
+    [SerializeField] private DragAndDropPuzzleComponent dragAndDropPuzzleComponent;
 
     //Value Lists
     [SerializeField] private List<string> templateTypes = new List<string>();
@@ -116,17 +117,17 @@ public class LevelSettings : MonoBehaviour
         foreach (GroupBox featureGroup in featureGroups)
         {
             featureGroup.style.display = DisplayStyle.None;
-            quizComponent.Setup(quizGroup);
         }
 
         if (boxName == quizTypes[1])
         {
             quizGroup.style.display = DisplayStyle.Flex;
-
+            quizComponent.Setup(quizGroup);
         }
         else if (boxName == puzzleTypes[1])
         {
             dragDropPuzzleGroup.style.display = DisplayStyle.Flex;
+            dragAndDropPuzzleComponent.Setup(dragDropPuzzleGroup);
         }
         else if (boxName == puzzleTypes[2])
         {

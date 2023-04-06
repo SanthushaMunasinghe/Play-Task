@@ -7,7 +7,6 @@ public class QuizComponent : MonoBehaviour
 {
     //UI Elements
     private DropdownField answerCountDropdowwn;
-    private DropdownField quizTypeDropdown;
     private DropdownField answersDropdown;
     private TextField answerTextField;
     private DropdownField answersSelectDropdown;
@@ -15,14 +14,12 @@ public class QuizComponent : MonoBehaviour
 
     //Value Lists
     [SerializeField] private List<string> answerCountList = new List<string>();
-    [SerializeField] private List<string> quizTypeList = new List<string>();
     [SerializeField] private List<string> answerTypeList = new List<string>();
 
     private List<string> currentAnswers = new List<string>();
 
     //Values
     public int answerCount;
-    public string quizType;
     private string selectedAnswerForTxt;
     private string selectedAnswerForType;
     public List<AnswerData> answerData = new List<AnswerData>();
@@ -32,7 +29,6 @@ public class QuizComponent : MonoBehaviour
     {
         //Get Elements
         answerCountDropdowwn = parent.Q<VisualElement>("answer-count").Q<DropdownField>();
-        quizTypeDropdown = parent.Q<VisualElement>("quiz-type").Q<DropdownField>();
         answersDropdown = parent.Q<VisualElement>("answers").Q<DropdownField>();
         answerTextField = parent.Q<VisualElement>("answers").Q<TextField>();
         answersSelectDropdown = parent.Q<VisualElement>("answers-type").Q<DropdownField>("answer");
@@ -40,7 +36,6 @@ public class QuizComponent : MonoBehaviour
 
         //Set Choices
         answerCountDropdowwn.choices = answerCountList;
-        quizTypeDropdown.choices = quizTypeList;
         answersDropdown.choices = currentAnswers;
         answersSelectDropdown.choices = currentAnswers;
         answersTypeDropdown.choices = answerTypeList;
@@ -90,7 +85,6 @@ public class QuizComponent : MonoBehaviour
     private void UpdateAnswerCount(string acCount)
     {
         answerCount = int.Parse(acCount);
-        quizType = quizTypeList[0];
 
         currentAnswers.Clear();
         answerData.Clear();
@@ -122,7 +116,6 @@ public class QuizComponent : MonoBehaviour
 
         //Set Dropdown Values
         answerCountDropdowwn.value = answerCount.ToString();
-        quizTypeDropdown.value = quizType;
         answersDropdown.value = selectedAnswerForTxt;
         answerTextField.value = answerData[0].AnswerTxt;
         answersSelectDropdown.value = selectedAnswerForType;

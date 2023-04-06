@@ -119,7 +119,7 @@ public class Level : MonoBehaviour
     {
         foreach (Dictionary<string, int> sltMtch in slotMatches)
         {
-            if (sltMtch["Slot"] == slotMatch["Slot"])
+            if (sltMtch["Slot"] == slotMatch["Match"])
             {
                 slotMatches.Remove(sltMtch);
             }
