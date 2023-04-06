@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 18365816}
   - component: {fileID: 18365817}
   - component: {fileID: 18365818}
+  - component: {fileID: 18365819}
   m_Layer: 0
   m_Name: LevelListManager
   m_TagString: Untagged
@@ -184,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedLevelObj: {fileID: 0}
+  quizComponent: {fileID: 18365819}
   templateTypes:
   - None
   - Quiz
@@ -199,6 +201,29 @@ MonoBehaviour:
   - None
   - Select One
   - Select Many
+--- !u!114 &18365819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18365815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada45e8172db877459acd7de224d585e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  answerCountList:
+  - 2
+  - 3
+  - 4
+  quizTypeList:
+  - Correct Answers
+  answerTypeList:
+  - Correct
+  - Incdorrect
+  answerCount: 0
+  quizType: 
 --- !u!1 &18974070
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ public class LevelSettings : MonoBehaviour
     public GameObject selectedLevelObj;
     private Level selectedLevel;
 
+    [SerializeField] private QuizComponent quizComponent;
+
     //Value Lists
     [SerializeField] private List<string> templateTypes = new List<string>();
     [SerializeField] private List<string> quizTypes = new List<string>();
@@ -59,7 +61,7 @@ public class LevelSettings : MonoBehaviour
         selectedLevel = selectedLevelObj.GetComponent<Level>();
 
         //Label
-        templateLabel.text = "Template - Level " + selectedLevel.levelIndex;
+        templateLabel.text = "Template - Level " + (selectedLevel.levelIndex + 1);
 
         //Template Type
         templateTypeDropdown.choices = templateTypes;
@@ -114,11 +116,13 @@ public class LevelSettings : MonoBehaviour
         foreach (GroupBox featureGroup in featureGroups)
         {
             featureGroup.style.display = DisplayStyle.None;
+            quizComponent.Setup(quizGroup);
         }
 
         if (boxName == quizTypes[1])
         {
             quizGroup.style.display = DisplayStyle.Flex;
+
         }
         else if (boxName == puzzleTypes[1])
         {

@@ -13,7 +13,7 @@ public class Level : MonoBehaviour
 
     //Quiz
     public int answerCount = 0;
-    public string quizLogic = "";
+    public string quizType = "";
     public List<AnswerData> answerData = new List<AnswerData>();
     public List<AnswerData> answerValues = new List<AnswerData>();
 
@@ -62,7 +62,7 @@ public class Level : MonoBehaviour
 
     public void SetQuizLogic(string qLogic)
     {
-        quizLogic = qLogic;
+        quizType = qLogic;
     }
 
     public void AddToAnswerDataList(AnswerData aData)
