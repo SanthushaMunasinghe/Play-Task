@@ -350,8 +350,8 @@
                                             <ui:VisualElement name="match-value-label" class="value-item-label">
                                                 <ui:Label text="Value" display-tooltip-when-elided="true" class="editor-list-text" />
                                             </ui:VisualElement>
-                                            <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="slot" class="value-dropdown" style="width: 30%;" />
                                             <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="match" class="value-dropdown" style="width: 30%;" />
+                                            <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="value" class="value-dropdown" style="width: 30%;" />
                                         </ui:VisualElement>
                                     </ui:GroupBox>
                                 </ui:VisualElement>

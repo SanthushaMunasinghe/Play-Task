@@ -10,6 +10,7 @@ public class LevelSettings : MonoBehaviour
 
     [SerializeField] private QuizComponent quizComponent;
     [SerializeField] private DragAndDropPuzzleComponent dragAndDropPuzzleComponent;
+    [SerializeField] private SelectPuzzleComponent selectPuzzleComponent;
 
     //Value Lists
     [SerializeField] private List<string> templateTypes = new List<string>();
@@ -132,6 +133,7 @@ public class LevelSettings : MonoBehaviour
         else if (boxName == puzzleTypes[2])
         {
             selectPuzzleGroup.style.display = DisplayStyle.Flex;
+            selectPuzzleComponent.Setup(selectPuzzleGroup);
         }
     }
 

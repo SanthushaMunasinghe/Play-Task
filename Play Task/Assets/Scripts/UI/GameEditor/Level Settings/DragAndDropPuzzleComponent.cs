@@ -104,7 +104,7 @@ public class DragAndDropPuzzleComponent : MonoBehaviour
         {
             string selectedValue = evt.newValue;
             selectedSlotForMatch = selectedValue;
-            matchesSelectDropdown.value = (slotMatches[int.Parse(selectedValue) - 1]["Match"] + 1).ToString();
+            matchesSelectDropdown.value = (slotMatches[int.Parse(selectedSlotForMatch) - 1]["Match"] + 1).ToString();
         });
 
         matchesSelectDropdown.RegisterValueChangedCallback(evt =>
@@ -219,9 +219,9 @@ public class DragAndDropPuzzleComponent : MonoBehaviour
     {
         foreach (Dictionary<string, int> sM in slotMatches)
         {
-            if (sM["Slot"] == int.Parse(selectedSlotForMatch))
+            if (sM["Slot"] == int.Parse(selectedSlotForMatch) - 1)
             {
-                sM["Match"] = int.Parse(matchValue);
+                sM["Match"] = int.Parse(matchValue) - 1;
             }
         }
     }
