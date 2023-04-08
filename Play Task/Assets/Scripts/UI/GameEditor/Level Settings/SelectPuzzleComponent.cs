@@ -19,11 +19,11 @@ public class SelectPuzzleComponent : MonoBehaviour
     private List<string> currentMatchList = new List<string>();
 
     //Values
-    public int matchesCount;
+    public int selectsCount;
     private string selectedMatchForTxt;
     private string selectedMatchForValue;
-    public List<AnswerData> matchData = new List<AnswerData>();
-    public List<AnswerData> matchValue = new List<AnswerData>();
+    public List<AnswerData> selectData = new List<AnswerData>();
+    public List<AnswerData> selectValue = new List<AnswerData>();
 
     public void Setup(VisualElement parent)
     {
@@ -59,7 +59,7 @@ public class SelectPuzzleComponent : MonoBehaviour
         {
             string selectedValue = evt.newValue;
             selectedMatchForTxt = selectedValue;
-            matchTextField.value = matchData[int.Parse(selectedValue) - 1].AnswerTxt;
+            matchTextField.value = selectData[int.Parse(selectedValue) - 1].AnswerTxt;
         });
 
         matchTextField.RegisterCallback<BlurEvent>(evt =>
@@ -72,7 +72,7 @@ public class SelectPuzzleComponent : MonoBehaviour
         {
             string selectedValue = evt.newValue;
             selectedMatchForValue = selectedValue;
-            matchValueDropdown.value = matchValue[int.Parse(selectedValue) - 1].AnswerTxt;
+            matchValueDropdown.value = selectValue[int.Parse(selectedValue) - 1].AnswerTxt;
         });
         
         matchValueDropdown.RegisterValueChangedCallback(evt =>
@@ -84,13 +84,13 @@ public class SelectPuzzleComponent : MonoBehaviour
 
     private void UpdateCounts(string mCount)
     {
-        matchesCount = int.Parse(mCount);
+        selectsCount = int.Parse(mCount);
 
         currentMatchList.Clear();
-        matchValue.Clear();
-        matchData.Clear();
+        selectValue.Clear();
+        selectData.Clear();
 
-        for (int i = 0; i < matchesCount; i++)
+        for (int i = 0; i < selectsCount; i++)
         {
             currentMatchList.Add((i + 1).ToString());
         }
@@ -100,7 +100,7 @@ public class SelectPuzzleComponent : MonoBehaviour
             AnswerData mData = new AnswerData();
             mData.AnswerIndex = int.Parse(count);
             mData.AnswerTxt = "";
-            matchData.Add(mData);
+            selectData.Add(mData);
         }
 
         foreach (string count in currentMatchList)
@@ -108,23 +108,23 @@ public class SelectPuzzleComponent : MonoBehaviour
             AnswerData mValue = new AnswerData();
             mValue.AnswerIndex = int.Parse(count);
             mValue.AnswerTxt = matchValues[0];
-            matchValue.Add(mValue);
+            selectValue.Add(mValue);
         }
 
-        selectedMatchForTxt = matchData[0].AnswerIndex.ToString();
-        selectedMatchForValue = matchValue[0].AnswerIndex.ToString();
+        selectedMatchForTxt = selectData[0].AnswerIndex.ToString();
+        selectedMatchForValue = selectValue[0].AnswerIndex.ToString();
 
         //Set Dropdown Values
-        matchesCountDropdown.value = matchesCount.ToString();
+        matchesCountDropdown.value = selectsCount.ToString();
         matchDropdown.value = selectedMatchForTxt;
-        matchTextField.value = matchData[0].AnswerTxt;
+        matchTextField.value = selectData[0].AnswerTxt;
         matchesSelectDropdown.value = selectedMatchForValue;
         matchValueDropdown.value = matchValues[0];
     }
 
     private void UpdateMatchData(string textValue)
     {
-        foreach (AnswerData mData in matchData)
+        foreach (AnswerData mData in selectData)
         {
             if (mData.AnswerIndex == int.Parse(selectedMatchForTxt))
             {
@@ -135,7 +135,7 @@ public class SelectPuzzleComponent : MonoBehaviour
     
     private void UpdateMatchValue(string textValue)
     {
-        foreach (AnswerData mValue in matchValue)
+        foreach (AnswerData mValue in selectValue)
         {
             if (mValue.AnswerIndex == int.Parse(selectedMatchForValue))
             {

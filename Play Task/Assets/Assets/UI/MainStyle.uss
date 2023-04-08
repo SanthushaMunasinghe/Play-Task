@@ -661,5 +661,48 @@
     margin-bottom: 0;
     -unity-text-align: lower-center;
     -unity-font-style: normal;
-    color: rgba(0, 0, 0, 255);
+    color: rgb(0, 0, 0);
+}
+
+.editor-tab-error {
+    width: 100%;
+    height: auto;
+    background-color: rgb(91, 91, 91);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.editor-tab-error-label {
+    width: 100%;
+    height: auto;
+    font-size: 15px;
+    white-space: normal;
+    color: rgb(255, 255, 255);
+    margin-bottom: 5px;
+    -unity-text-align: upper-left;
+}
+
+.editor-tab-submit {
+    width: 100%;
+    align-items: center;
+}
+
+.editor-tab-submit-btn {
+    width: 100%;
+    height: 25px;
+    background-color: rgb(255, 82, 82);
+    -unity-font-style: bold;
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+}
+
+.editor-tab-submit-btn:hover {
+    background-color: rgba(91, 91, 91, 255);
+}
+
+.editor-tab-submit-btn:active {
+    background-color: rgba(0, 0, 0, 255);
 }

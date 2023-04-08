@@ -24,6 +24,7 @@ public class Inspector : EditorWindow
     public void SelectLevel(GameObject obj)
     {
         levelSettings.templateSettings = inspectorTab.Q<VisualElement>("template-settings");
+        levelSettings.generateTemplate = inspectorTab.Q<VisualElement>("generate-template");
         levelSettings.selectedLevelObj = obj;
         levelSettings.GetElements();
     }

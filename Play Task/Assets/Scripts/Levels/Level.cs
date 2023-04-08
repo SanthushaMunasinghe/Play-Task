@@ -6,157 +6,76 @@ public class Level : MonoBehaviour
 {
     public int levelIndex;
 
+    //Objects
+    [SerializeField] private GameObject slotObject;
+    [SerializeField] private GameObject matchObject;
+
     //Initial Lists
-    public string levelType = "None";
-    public string featureType = "None";
-    public string questionTxt;
+    private string levelType;
+    private string featureType;
+    private string questionTxt;
 
     //Quiz
-    public int answerCount = 0;
-    public string quizType = "";
-    public List<AnswerData> answerData = new List<AnswerData>();
-    public List<AnswerData> answerValues = new List<AnswerData>();
+    private int answerCount = 0;
+    private List<AnswerData> answerData;
+    private List<AnswerData> answerValues;
 
     //Drag and Drop Puzzle
-    public int slotsCount = 0;
-    public int matchesCount = 0;
-    public List<AnswerData> matchData = new List<AnswerData>();
-    public List<Dictionary<string, int>> slotMatches = new List<Dictionary<string, int>>();
+    private int slotsCount = 0;
+    private int matchesCount = 0;
+    private List<AnswerData> slotData;
+    private List<AnswerData> matchData;
+    private List<Dictionary<string, int>> slotMatches;
 
     //Select Puzzle
-    public int selectsCount = 0;
-    public List<AnswerData> selectData = new List<AnswerData>();
-    public List<AnswerData> selectValue = new List<AnswerData>();
+    private int selectsCount = 0;
+    private List<AnswerData> selectData;
+    private List<AnswerData> selectValue;
 
-    void Start()
+    public void SaveDefaultValues(string type, string fType, string qTxt = "")
     {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
-    //Set Default Data
-    public void SetLevelType(string lvlType)
-    {
-        levelType = lvlType;
-    }
-
-    public void SetFeatureType(string ftType)
-    {
-        featureType = ftType;
-    }
-
-    public void SetQuestionText(string qTxt)
-    {
+        levelType = type;
+        featureType = fType;
         questionTxt = qTxt;
+
+        Debug.Log("Level : " + levelType);
+        Debug.Log("Question : " + questionTxt);
     }
 
-    //Set Quiz Data
-    public void SetAnswerCount(int count)
+    public void SaveQuizValues(int aCount, List<AnswerData> aData, List<AnswerData> aValues)
     {
-        answerCount = count;
+        answerCount = aCount;
+        answerData = aData;
+        answerValues = aValues;
+
+        Debug.Log("Answer Count : " + answerCount);
+        Debug.Log("AnswerData : " + answerData.Count);
+        Debug.Log("Answer Values : " + answerValues.Count);
     }
-
-    public void SetQuizLogic(string qLogic)
+    
+    public void SaveDragDropPuzzleValues(int sCount, int mCount, List<AnswerData> sData, List<AnswerData> mData, List<Dictionary<string, int>> sMatches)
     {
-        quizType = qLogic;
+        slotsCount = sCount;
+        matchesCount = mCount;
+        slotData = sData;
+        matchData = mData;
+        slotMatches = sMatches;
+
+        Debug.Log("Slots Count : " + slotsCount);
+        Debug.Log("Matches Count : " + matchesCount);
+        Debug.Log("SlotData : " + slotData.Count);
+        Debug.Log("MatchData : " + matchData.Count);
+        Debug.Log("Slot Matches : " + slotMatches.Count);
     }
-
-    public void AddToAnswerDataList(AnswerData aData)
+    
+    public void SaveSelectPuzzleValues(int sCount, List<AnswerData> sData, List<AnswerData> sValues)
     {
-        foreach (AnswerData data in answerData)
-        {
-            if (data.AnswerIndex == aData.AnswerIndex)
-            {
-                answerData.Remove(data);
-            }
+        selectsCount = sCount;
+        selectData = sData;
+        selectValue = sValues;
 
-            answerData.Add(aData);
-        }
-    }
-
-    public void AddToAnswerValuesList(AnswerData aValue)
-    {
-        foreach (AnswerData data in answerValues)
-        {
-            if (data.AnswerIndex == aValue.AnswerIndex)
-            {
-                answerValues.Remove(data);
-            }
-
-            answerValues.Add(aValue);
-        }
-    }
-
-    //Set Drag and Drop Puzzle Data
-    public void SetSlotsCount(int count)
-    {
-        slotsCount = count;
-    }
-
-    public void SetMatchesCount(int count)
-    {
-        matchesCount = count;
-    }
-
-    public void AddToMatchDataList(AnswerData mData)
-    {
-        foreach (AnswerData data in matchData)
-        {
-            if (data.AnswerIndex == mData.AnswerIndex)
-            {
-                matchData.Remove(data);
-            }
-
-            matchData.Add(mData);
-        }
-    }
-
-    public void AddToSlotMatches (Dictionary<string, int> slotMatch)
-    {
-        foreach (Dictionary<string, int> sltMtch in slotMatches)
-        {
-            if (sltMtch["Slot"] == slotMatch["Match"])
-            {
-                slotMatches.Remove(sltMtch);
-            }
-
-            slotMatches.Add(slotMatch);
-        }
-    }
-
-    //Set SelectPuzzleData
-    public void SetSelectsCount(int count)
-    {
-        selectsCount = count;
-    }
-
-    public void AddToSelectsDataList(AnswerData sData)
-    {
-        foreach (AnswerData data in selectData)
-        {
-            if (data.AnswerIndex == sData.AnswerIndex)
-            {
-                selectData.Remove(data);
-            }
-
-            selectData.Add(sData);
-        }
-    }
-
-    public void AddToSelectsValuesList(AnswerData sValue)
-    {
-        foreach (AnswerData data in selectValue)
-        {
-            if (data.AnswerIndex == sValue.AnswerIndex)
-            {
-                selectValue.Remove(data);
-            }
-
-            selectValue.Add(sValue);
-        }
+        Debug.Log("Selects Count : " + selectsCount);
+        Debug.Log("SelectData : " + selectData);
+        Debug.Log("SelectValue : " + selectValue);
     }
 }

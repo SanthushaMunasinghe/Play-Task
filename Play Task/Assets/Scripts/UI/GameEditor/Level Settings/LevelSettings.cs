@@ -23,16 +23,22 @@ public class LevelSettings : MonoBehaviour
     //Values
     private string currentTemplateType;
     private string currentfeatureType;
+    private string questionTxt;
 
     //Parent UI Element
     public VisualElement templateSettings;
+    public VisualElement generateTemplate;
 
     //Default UI Elements
     private Label templateLabel;
     private DropdownField templateTypeDropdown;
     private DropdownField featureDropdown;
     private Label featureLabel;
-    private TextField questionLabel;
+    private TextField questionTextField;
+
+    //Generate Template UI Elements
+    private VisualElement errorListElement;
+    private Button generateBtn;
 
     //Hidden UI Element Groups
     private GroupBox quizGroup;
@@ -47,7 +53,11 @@ public class LevelSettings : MonoBehaviour
         templateTypeDropdown = templateSettings.Q<VisualElement>("type").Q<DropdownField>();
         featureDropdown = templateSettings.Q<VisualElement>("type-type").Q<DropdownField>();
         featureLabel = templateSettings.Q<VisualElement>("type-type").Q<VisualElement>("type-type-label").Q<Label>();
-        questionLabel = templateSettings.Q<VisualElement>("question").Q<TextField>("q-text-field");
+        questionTextField = templateSettings.Q<VisualElement>("question").Q<TextField>("q-text-field");
+
+        //Get Generate Template Elements
+        errorListElement = generateTemplate.Q<VisualElement>("template-generate-error");
+        generateBtn = generateTemplate.Q<VisualElement>("generate").Q<Button>();
 
         //Get Hidden Groups
         quizGroup = templateSettings.Q<GroupBox>("quiz");
@@ -55,6 +65,7 @@ public class LevelSettings : MonoBehaviour
         selectPuzzleGroup = templateSettings.Q<GroupBox>("select-puzzle");
 
         SetupDefault();
+        SetupGenerate();
     }
 
     private void SetupDefault()
@@ -92,24 +103,31 @@ public class LevelSettings : MonoBehaviour
             currentfeatureType = selectedValue;
             ActivateGroup(currentfeatureType);
         });
+
+        questionTextField.RegisterCallback<BlurEvent>(evt =>
+        {
+            string typedValue = questionTextField.value;
+            questionTxt = typedValue;
+        });
     }
 
     private void SelectTemplateType(string typeName)
     {
-        if (typeName == templateTypes[1])
+        currentTemplateType = typeName;
+
+        if (typeName == templateTypes[0])
         {
             featureDropdown.choices = quizTypes;
-            featureDropdown.value = quizTypes[0];
+            currentfeatureType = quizTypes[0];
+            featureDropdown.value = currentfeatureType;
+            featureLabel.text = "Quiz Type";
         }
-        else if (typeName == templateTypes[2])
+        else if (typeName == templateTypes[1])
         {
             featureDropdown.choices = puzzleTypes;
             currentfeatureType = puzzleTypes[0];
             featureDropdown.value = currentfeatureType;
-        }
-        else
-        {
-            ResetTemplate();
+            featureLabel.text = "Puzzle Type";
         }
     }
 
@@ -120,32 +138,71 @@ public class LevelSettings : MonoBehaviour
             featureGroup.style.display = DisplayStyle.None;
         }
 
-        if (boxName == quizTypes[1])
+        if (boxName == quizTypes[0])
         {
             quizGroup.style.display = DisplayStyle.Flex;
             quizComponent.Setup(quizGroup);
         }
-        else if (boxName == puzzleTypes[1])
+        else if (boxName == puzzleTypes[0])
         {
             dragDropPuzzleGroup.style.display = DisplayStyle.Flex;
             dragAndDropPuzzleComponent.Setup(dragDropPuzzleGroup);
         }
-        else if (boxName == puzzleTypes[2])
+        else if (boxName == puzzleTypes[1])
         {
             selectPuzzleGroup.style.display = DisplayStyle.Flex;
             selectPuzzleComponent.Setup(selectPuzzleGroup);
         }
     }
 
-    private void ResetTemplate()
+    //Generate Template
+    private void SetupGenerate()
     {
-        foreach (GroupBox featureGroup in featureGroups)
-        {
-            featureGroup.style.display = DisplayStyle.None;
-        }
+        RegisterGenerateEvents();
+    }
 
-        featureDropdown.choices = null;
-        currentfeatureType = null;
-        featureDropdown.value = null;
+    private void RegisterGenerateEvents()
+    {
+        generateBtn.RegisterCallback<MouseUpEvent>(evt =>
+        {
+            if (currentTemplateType == templateTypes[0])
+            {
+                SubmitQuizData();
+            }
+            else if (currentTemplateType == templateTypes[1])
+            {
+                SelectPuzzleType();
+            }
+
+            selectedLevel.SaveDefaultValues(currentTemplateType, currentfeatureType, questionTxt);
+        });
+    }
+
+    private void SubmitQuizData()
+    {
+        selectedLevel.SaveQuizValues(quizComponent.answerCount, quizComponent.answerData, quizComponent.answerValues);
+    }
+
+    private void SelectPuzzleType()
+    {
+        if (currentfeatureType == puzzleTypes[0])
+        {
+            SubmitDragAndDropPuzzleData();
+        }
+        else if (currentfeatureType == puzzleTypes[1])
+        {
+            SubmitSelectPuzzleData();
+        }
+    }
+
+    private void SubmitDragAndDropPuzzleData()
+    {
+        selectedLevel.SaveDragDropPuzzleValues(dragAndDropPuzzleComponent.slotsCount, dragAndDropPuzzleComponent.matchesCount, dragAndDropPuzzleComponent.slotData, 
+            dragAndDropPuzzleComponent.matchData, dragAndDropPuzzleComponent.slotMatches);
+    }
+
+    private void SubmitSelectPuzzleData()
+    {
+        selectedLevel.SaveSelectPuzzleValues(selectPuzzleComponent.selectsCount, selectPuzzleComponent.selectData, selectPuzzleComponent.selectValue);
     }
 }

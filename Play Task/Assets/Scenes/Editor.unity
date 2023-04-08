@@ -191,14 +191,11 @@ MonoBehaviour:
   dragAndDropPuzzleComponent: {fileID: 18365820}
   selectPuzzleComponent: {fileID: 18365821}
   templateTypes:
-  - None
   - Quiz
   - Puzzle
   quizTypes:
-  - None
   - Quiz
   puzzleTypes:
-  - None
   - Drag and Drop
   - Select
   quizLogicTypes:

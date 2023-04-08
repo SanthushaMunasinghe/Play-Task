@@ -356,6 +356,16 @@
                                     </ui:GroupBox>
                                 </ui:VisualElement>
                             </ui:VisualElement>
+                            <ui:VisualElement name="generate-template" class="component">
+                                <ui:VisualElement name="component-body" class="component-body">
+                                    <ui:VisualElement name="template-generate-error" class="editor-tab-error">
+                                        <ui:Label display-tooltip-when-elided="true" text="Error: " class="editor-tab-error-label" style="display: none;" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="generate" class="editor-tab-submit">
+                                        <ui:Button text="Generate" display-tooltip-when-elided="true" name="generate-btn" class="editor-tab-submit-btn" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
                         </ui:ScrollView>
                         <ui:ScrollView name="animation-trigger" class="scroll-list-primary" style="display: none;">
                             <ui:VisualElement name="trigger-component" class="component">
