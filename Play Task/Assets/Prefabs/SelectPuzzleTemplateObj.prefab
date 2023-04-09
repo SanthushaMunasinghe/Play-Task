@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5179684718345089600
+--- !u!1 &2524742818555613842
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 935569708005721733}
-  - component: {fileID: 331875890491659772}
+  - component: {fileID: 8885061998067293925}
+  - component: {fileID: 322292805267090630}
   m_Layer: 0
-  m_Name: Level
+  m_Name: SelectPuzzleTemplateObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &935569708005721733
+--- !u!4 &8885061998067293925
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5179684718345089600}
+  m_GameObject: {fileID: 2524742818555613842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,23 +32,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &331875890491659772
+--- !u!114 &322292805267090630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5179684718345089600}
+  m_GameObject: {fileID: 2524742818555613842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbe4e801953a5534996ae405bdff102d, type: 3}
+  m_Script: {fileID: 11500000, guid: cb4ec189170e6574b8244ce5df477f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelIndex: 0
-  isCreated: 0
-  quizTemplateObject: {fileID: 7121042451580108994, guid: 7bb8d937d7ee3814bb6709ebec84cd50, type: 3}
-  dragDropPuzzleTemplateObject: {fileID: 8745457630473649039, guid: 208dd25bf904bf34284ea227ead97484, type: 3}
-  selectPuzzleTemplateObject: {fileID: 2524742818555613842, guid: 0cba4e89a5122314aa0c081ea1bfb674, type: 3}
-  slotObject: {fileID: 0}
-  matchObject: {fileID: 0}
-  selectsObject: {fileID: 0}
+  selectsCount: 0
+  selectsObject: {fileID: 8294426788389101764, guid: 12ea22e05c3b90344b416ae0efde16a8, type: 3}

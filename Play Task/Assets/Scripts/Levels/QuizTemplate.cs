@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class QuizTemplate : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int answerCount = 0;
+    public List<AnswerData> answerData;
+    public List<AnswerData> answerValues;
 }

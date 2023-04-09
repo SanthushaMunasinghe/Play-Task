@@ -5,77 +5,62 @@ using UnityEngine;
 public class Level : MonoBehaviour
 {
     public int levelIndex;
+    public bool isCreated = false;
 
-    //Objects
-    [SerializeField] private GameObject slotObject;
-    [SerializeField] private GameObject matchObject;
+    private GameObject templateObject;
+
+    //Template Objects
+    [SerializeField] private GameObject quizTemplateObject;
+    [SerializeField] private GameObject dragDropPuzzleTemplateObject;
+    [SerializeField] private GameObject selectPuzzleTemplateObject;
 
     //Initial Lists
     private string levelType;
     private string featureType;
     private string questionTxt;
 
-    //Quiz
-    private int answerCount = 0;
-    private List<AnswerData> answerData;
-    private List<AnswerData> answerValues;
-
-    //Drag and Drop Puzzle
-    private int slotsCount = 0;
-    private int matchesCount = 0;
-    private List<AnswerData> slotData;
-    private List<AnswerData> matchData;
-    private List<Dictionary<string, int>> slotMatches;
-
-    //Select Puzzle
-    private int selectsCount = 0;
-    private List<AnswerData> selectData;
-    private List<AnswerData> selectValue;
-
     public void SaveDefaultValues(string type, string fType, string qTxt = "")
     {
         levelType = type;
         featureType = fType;
         questionTxt = qTxt;
-
-        Debug.Log("Level : " + levelType);
-        Debug.Log("Question : " + questionTxt);
+        isCreated = true;
     }
 
     public void SaveQuizValues(int aCount, List<AnswerData> aData, List<AnswerData> aValues)
     {
-        answerCount = aCount;
-        answerData = aData;
-        answerValues = aValues;
+        templateObject = Instantiate(quizTemplateObject, Vector2.zero, Quaternion.identity);
+        templateObject.transform.parent = transform;
 
-        Debug.Log("Answer Count : " + answerCount);
-        Debug.Log("AnswerData : " + answerData.Count);
-        Debug.Log("Answer Values : " + answerValues.Count);
+        QuizTemplate currentTemplate = templateObject.GetComponent<QuizTemplate>();
+        currentTemplate.answerCount = aCount;
+        currentTemplate.answerData = aData;
+        currentTemplate.answerValues = aValues;
     }
     
     public void SaveDragDropPuzzleValues(int sCount, int mCount, List<AnswerData> sData, List<AnswerData> mData, List<Dictionary<string, int>> sMatches)
     {
-        slotsCount = sCount;
-        matchesCount = mCount;
-        slotData = sData;
-        matchData = mData;
-        slotMatches = sMatches;
+        templateObject = Instantiate(dragDropPuzzleTemplateObject, Vector2.zero, Quaternion.identity);
+        templateObject.transform.parent = transform;
 
-        Debug.Log("Slots Count : " + slotsCount);
-        Debug.Log("Matches Count : " + matchesCount);
-        Debug.Log("SlotData : " + slotData.Count);
-        Debug.Log("MatchData : " + matchData.Count);
-        Debug.Log("Slot Matches : " + slotMatches.Count);
+        DragDropPuzzleTemplate currentTemplate = templateObject.GetComponent<DragDropPuzzleTemplate>();
+
+        currentTemplate.slotsCount = sCount;
+        currentTemplate.matchesCount = mCount;
+        currentTemplate.slotData = sData;
+        currentTemplate.matchData = mData;
+        currentTemplate.slotMatches = sMatches;
     }
     
     public void SaveSelectPuzzleValues(int sCount, List<AnswerData> sData, List<AnswerData> sValues)
     {
-        selectsCount = sCount;
-        selectData = sData;
-        selectValue = sValues;
+        templateObject = Instantiate(selectPuzzleTemplateObject, Vector2.zero, Quaternion.identity);
+        templateObject.transform.parent = transform;
 
-        Debug.Log("Selects Count : " + selectsCount);
-        Debug.Log("SelectData : " + selectData);
-        Debug.Log("SelectValue : " + selectValue);
+        SelectPuzzleTemplate currentTemplate = templateObject.GetComponent<SelectPuzzleTemplate>();
+
+        currentTemplate.selectsCount = sCount;
+        currentTemplate.selectData = sData;
+        currentTemplate.selectValue = sValues;
     }
 }

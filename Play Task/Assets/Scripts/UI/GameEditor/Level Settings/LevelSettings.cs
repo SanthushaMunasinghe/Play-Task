@@ -165,13 +165,16 @@ public class LevelSettings : MonoBehaviour
     {
         generateBtn.RegisterCallback<MouseUpEvent>(evt =>
         {
-            if (currentTemplateType == templateTypes[0])
+            if (!selectedLevel.isCreated)
             {
-                SubmitQuizData();
-            }
-            else if (currentTemplateType == templateTypes[1])
-            {
-                SelectPuzzleType();
+                if (currentTemplateType == templateTypes[0])
+                {
+                    SubmitQuizData();
+                }
+                else if (currentTemplateType == templateTypes[1])
+                {
+                    SelectPuzzleType();
+                }
             }
 
             selectedLevel.SaveDefaultValues(currentTemplateType, currentfeatureType, questionTxt);

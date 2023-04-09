@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class SelectPuzzleTemplate : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int selectsCount = 0;
+    public List<AnswerData> selectData;
+    public List<AnswerData> selectValue;
+
+    [SerializeField] private GameObject selectsObject;
+
+    private void Start()
     {
-        
+        for (int i = 0; i < selectsCount; i++)
+        {
+            GenerateObj(selectsObject, "Select-" + (i + 1));
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void GenerateObj(GameObject obj, string name)
     {
-        
+        GameObject objClone = Instantiate(obj, Vector2.zero, Quaternion.identity);
+        objClone.name = name;
+        objClone.transform.parent = transform.parent;
     }
 }
