@@ -8,6 +8,7 @@ public class LevelDetailsComponent : MonoBehaviour
     //Get UI Elements
     //Parent
     public VisualElement templateDetails;
+    public Label templateLevelLabel;
 
     // Default
     private Label typeLabel;
@@ -23,11 +24,6 @@ public class LevelDetailsComponent : MonoBehaviour
 
     //Select Puzzle
     private GroupBox selectPuzzleGroup;
-    private Label selectsCountlabel;
-    private DropdownField selectsDropdownforTxt;
-    private Label selectTextLabel;
-    private DropdownField selectsDropdownforValue;
-    private Label selectValueLabel;
 
     //Template Refs
     public GameObject levelGameObj;
@@ -61,6 +57,7 @@ public class LevelDetailsComponent : MonoBehaviour
     public void GetElements()
     {
         //Get Defaul Elements
+        templateLevelLabel = templateDetails.Q<VisualElement>("component-label").Q<Label>();
         typeLabel = templateDetails.Q<VisualElement>("type").Q<VisualElement>("type-value").Q<Label>();
         featureElementLabel = templateDetails.Q<VisualElement>("type-type").Q<VisualElement>("type-type-label").Q<Label>();
         featureLabel = templateDetails.Q<VisualElement>("type-type").Q<VisualElement>("type-value").Q<Label>();
@@ -71,8 +68,14 @@ public class LevelDetailsComponent : MonoBehaviour
         dragAndDropPuzzleGroup = templateDetails.Q<GroupBox>("drag-puzzle");
         selectPuzzleGroup = templateDetails.Q<GroupBox>("select-puzzle");
 
+        quizGroup.style.display = DisplayStyle.None;
+        dragAndDropPuzzleGroup.style.display = DisplayStyle.None;
+        selectPuzzleGroup.style.display = DisplayStyle.None;
+
         //Set Default Values
         level = levelGameObj.GetComponent<Level>();
+
+        templateLevelLabel.text = "Template-Level " + (level.levelIndex + 1);
 
         type = level.levelType;
         feature = level.featureType;
@@ -214,10 +217,39 @@ public class LevelDetailsComponent : MonoBehaviour
         selectPuzzleGroup.style.display = DisplayStyle.Flex;
         SelectPuzzleTemplate selectPuzzleTemplate = level.GetTemplateObject().GetComponent<SelectPuzzleTemplate>();
 
+        //Get Elements
+        Label selectsCountlabel = selectPuzzleGroup.Q<VisualElement>("match-count").Q<VisualElement>("match-count-value").Q<Label>();
+        DropdownField selectsDropdownforTxt = selectPuzzleGroup.Q<VisualElement>("match-text").Q<DropdownField>();
+        Label selectTextLabel = selectPuzzleGroup.Q<VisualElement>("match-text").Q<VisualElement>("text").Q<Label>();
+        DropdownField selectsDropdownforValue = selectPuzzleGroup.Q<VisualElement>("match-value").Q<DropdownField>();
+        Label selectValueLabel = selectPuzzleGroup.Q<VisualElement>("match-value").Q<VisualElement>("text").Q<Label>();
+
         //Get values
         selectsCount = selectPuzzleTemplate.selectsCount.ToString();
         selectData = selectPuzzleTemplate.selectData;
         selectValue = selectPuzzleTemplate.selectValue;
+
+        //Setup
+        List<string> selectsList = new List<string>();
+
+        for (int i = 0; i < selectData.Count; i++)
+        {
+            selectsList.Add(selectData[i].AnswerIndex.ToString());
+        }
+
+        selectsDropdownforTxt.choices = selectsList;
+        selectsDropdownforValue.choices = selectsList;
+
+        //Set Values
+        selectsCountlabel.text = selectsCount;
+        selectsDropdownforTxt.value = selectsList[0];
+        selectTextLabel.text = selectData[0].AnswerTxt;
+        selectsDropdownforValue.value = selectsList[0];
+        selectValueLabel.text = selectValue[0].AnswerTxt;
+
+        //Register Eventes
+        RegisterEvents(selectsDropdownforTxt, selectTextLabel, selectData);
+        RegisterEvents(selectsDropdownforValue, selectValueLabel, selectValue);
     }
 
     private void RegisterEvents(DropdownField dropdown, Label label, List<AnswerData> aData)
