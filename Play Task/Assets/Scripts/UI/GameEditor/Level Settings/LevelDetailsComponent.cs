@@ -17,22 +17,9 @@ public class LevelDetailsComponent : MonoBehaviour
 
     //Quiz
     private GroupBox quizGroup;
-    private Label answerCountlabel;
-    private DropdownField answersDropdownforTxt;
-    private Label answerTextLabel;
-    private DropdownField answersDropdownforValue;
-    private Label answerValueLabel;
 
     //Puzzle
     private GroupBox dragAndDropPuzzleGroup;
-    private Label slotsCountlabel;
-    private Label matchesCountlabel;
-    private DropdownField slotsDropdownforTxt;
-    private Label slotTextLabel;
-    private DropdownField matchesDropdownforTxt;
-    private Label matchTextLabel;
-    private DropdownField slotDropdown;
-    private Label matchLabel;
 
     //Select Puzzle
     private GroupBox selectPuzzleGroup;
@@ -75,7 +62,7 @@ public class LevelDetailsComponent : MonoBehaviour
     {
         //Get Defaul Elements
         typeLabel = templateDetails.Q<VisualElement>("type").Q<VisualElement>("type-value").Q<Label>();
-        featureElementLabel = templateDetails.Q<VisualElement>("type-type").Q<Label>("type-type-label");
+        featureElementLabel = templateDetails.Q<VisualElement>("type-type").Q<VisualElement>("type-type-label").Q<Label>();
         featureLabel = templateDetails.Q<VisualElement>("type-type").Q<VisualElement>("type-value").Q<Label>();
         questionLabel = templateDetails.Q<VisualElement>("question").Q<VisualElement>("question-value").Q<Label>();
 
@@ -101,15 +88,18 @@ public class LevelDetailsComponent : MonoBehaviour
             GetQuizElements();
             featureElementLabel.text = "Quiz Type";
         }
-        else if (type == "Drag and Drop")
+        else
         {
-            GetDragDropPuzzleElements();
-            featureElementLabel.text = "Puzzle Type";
-        }
-        else if (type == "Select")
-        {
-            GetSelectPuzzleElements();
-            featureElementLabel.text = "Puzzle Type";
+            if (feature == "Drag and Drop")
+            {
+                GetDragDropPuzzleElements();
+                featureElementLabel.text = "Puzzle Type";
+            }
+            else if (feature == "Select")
+            {
+                GetSelectPuzzleElements();
+                featureElementLabel.text = "Puzzle Type";
+            }
         }
     }
 
@@ -119,11 +109,11 @@ public class LevelDetailsComponent : MonoBehaviour
         QuizTemplate quizTemplate = level.GetTemplateObject().GetComponent<QuizTemplate>();
 
         //Get Elements
-        answerCountlabel = quizGroup.Q<VisualElement>("answer-count").Q<Label>("answer-count-value");
-        answersDropdownforTxt = quizGroup.Q<VisualElement>("answers").Q<DropdownField>();
-        answerTextLabel = quizGroup.Q<VisualElement>("answers").Q<VisualElement>("text").Q<Label>();
-        answersDropdownforValue = quizGroup.Q<VisualElement>("answers-type").Q<DropdownField>();
-        answerValueLabel = quizGroup.Q<VisualElement>("answers-type").Q<VisualElement>("text").Q<Label>();
+        Label answerCountlabel = quizGroup.Q<VisualElement>("answer-count").Q<VisualElement>("answer-count-value").Q<Label>();
+        DropdownField answersDropdownforTxt = quizGroup.Q<VisualElement>("answers").Q<DropdownField>();
+        Label answerTextLabel = quizGroup.Q<VisualElement>("answers").Q<VisualElement>("text").Q<Label>();
+        DropdownField answersDropdownforValue = quizGroup.Q<VisualElement>("answers-type").Q<DropdownField>();
+        Label answerValueLabel = quizGroup.Q<VisualElement>("answers-type").Q<VisualElement>("text").Q<Label>();
 
         //Get values
         answerCount = quizTemplate.answerCount.ToString();
@@ -157,12 +147,66 @@ public class LevelDetailsComponent : MonoBehaviour
         dragAndDropPuzzleGroup.style.display = DisplayStyle.Flex;
         DragDropPuzzleTemplate dragAndDropPuzzleTemplate = level.GetTemplateObject().GetComponent<DragDropPuzzleTemplate>();
 
+        //Get Elements
+        Label slotsCountlabel = dragAndDropPuzzleGroup.Q<VisualElement>("slots-count").Q<VisualElement>("slots-count-value").Q<Label>();
+        Label matchesCountlabel = dragAndDropPuzzleGroup.Q<VisualElement>("match-count").Q<VisualElement>("matches-count-value").Q<Label>();
+        DropdownField slotsDropdownforTxt = dragAndDropPuzzleGroup.Q<VisualElement>("slot-text").Q<DropdownField>();
+        Label slotTextLabel = dragAndDropPuzzleGroup.Q<VisualElement>("slot-text").Q<VisualElement>("text").Q<Label>();
+        DropdownField matchesDropdownforTxt = dragAndDropPuzzleGroup.Q<VisualElement>("match-text").Q<DropdownField>();
+        Label matchTextLabel = dragAndDropPuzzleGroup.Q<VisualElement>("match-text").Q<VisualElement>("text").Q<Label>();
+        DropdownField slotDropdown = dragAndDropPuzzleGroup.Q<VisualElement>("slot-matches").Q<DropdownField>();
+        Label matchLabel = dragAndDropPuzzleGroup.Q<VisualElement>("slot-matches").Q<VisualElement>("text").Q<Label>();
+
         //Get values
         slotsCount = dragAndDropPuzzleTemplate.slotsCount.ToString();
         matchesCount = dragAndDropPuzzleTemplate.matchesCount.ToString();
         slotData = dragAndDropPuzzleTemplate.slotData;
         matchData = dragAndDropPuzzleTemplate.matchData;
         slotMatches = dragAndDropPuzzleTemplate.slotMatches;
+
+        //Setup
+        List<string> slotList = new List<string>();
+        List<string> matchList = new List<string>();
+        List<string> slotMatchesList = new List<string>();
+
+        for (int i = 0; i < slotData.Count; i++)
+        {
+            slotList.Add(slotData[i].AnswerIndex.ToString());
+        }
+        
+        for (int i = 0; i < matchData.Count; i++)
+        {
+            matchList.Add(matchData[i].AnswerIndex.ToString());
+        }
+        
+        for (int i = 0; i < slotMatches.Count; i++)
+        {
+            slotMatchesList.Add((slotMatches[i]["Slot"] + 1).ToString());
+        }
+
+        slotsDropdownforTxt.choices = slotList;
+        matchesDropdownforTxt.choices = matchList;
+        slotDropdown.choices = slotMatchesList;
+
+        //SetValues
+        slotsCountlabel.text = slotsCount;
+        matchesCountlabel.text = matchesCount;
+        slotsDropdownforTxt.value = slotList[0];
+        slotTextLabel.text = slotData[0].AnswerTxt;
+        matchesDropdownforTxt.value = matchList[0];
+        matchTextLabel.text = matchData[0].AnswerTxt;
+        slotDropdown.value = slotMatchesList[0];
+        matchLabel.text = (slotMatches[0]["Match"] + 1).ToString();
+
+        //Events
+        RegisterEvents(slotsDropdownforTxt, slotTextLabel, slotData);
+        RegisterEvents(matchesDropdownforTxt, matchTextLabel, matchData);
+
+        slotDropdown.RegisterValueChangedCallback(evt =>
+        {
+            string selectedValue = evt.newValue;
+            matchLabel.text = (slotMatches[int.Parse(selectedValue) - 1]["Match"] + 1).ToString();
+        });
     }
     
     private void GetSelectPuzzleElements()
