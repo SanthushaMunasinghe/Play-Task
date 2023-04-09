@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 18365819}
   - component: {fileID: 18365820}
   - component: {fileID: 18365821}
+  - component: {fileID: 18365822}
   m_Layer: 0
   m_Name: LevelListManager
   m_TagString: Untagged
@@ -190,6 +191,7 @@ MonoBehaviour:
   quizComponent: {fileID: 18365819}
   dragAndDropPuzzleComponent: {fileID: 18365820}
   selectPuzzleComponent: {fileID: 18365821}
+  levelDetailsComponent: {fileID: 18365822}
   templateTypes:
   - Quiz
   - Puzzle
@@ -278,6 +280,18 @@ MonoBehaviour:
   - Correct
   - Incorrect
   selectsCount: 0
+--- !u!114 &18365822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18365815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63068fa1c27dad4880672fb5969ec98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &18974070
 GameObject:
   m_ObjectHideFlags: 0

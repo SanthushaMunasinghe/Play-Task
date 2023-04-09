@@ -11,6 +11,7 @@ public class LevelSettings : MonoBehaviour
     [SerializeField] private QuizComponent quizComponent;
     [SerializeField] private DragAndDropPuzzleComponent dragAndDropPuzzleComponent;
     [SerializeField] private SelectPuzzleComponent selectPuzzleComponent;
+    public LevelDetailsComponent levelDetailsComponent;
 
     //Value Lists
     [SerializeField] private List<string> templateTypes = new List<string>();
@@ -18,14 +19,14 @@ public class LevelSettings : MonoBehaviour
     [SerializeField] private List<string> puzzleTypes = new List<string>();
 
     //Quiz
-    [SerializeField] protected List<string> quizLogicTypes = new List<string>();
+    [SerializeField] private List<string> quizLogicTypes = new List<string>();
 
     //Values
     private string currentTemplateType;
     private string currentfeatureType;
     private string questionTxt;
 
-    //Parent UI Element
+    //Parent UI Elements
     public VisualElement templateSettings;
     public VisualElement generateTemplate;
 
@@ -48,6 +49,24 @@ public class LevelSettings : MonoBehaviour
 
     public void GetElements()
     {
+        selectedLevel = selectedLevelObj.GetComponent<Level>();
+
+        if (selectedLevel.isCreated)
+        {
+            LevelDetailsSetup();
+        }
+        else
+        {
+            GetDefaultElements();
+        }
+    }
+
+    private void GetDefaultElements()
+    {
+        templateSettings.style.display = DisplayStyle.Flex;
+        generateTemplate.style.display = DisplayStyle.Flex;
+        levelDetailsComponent.templateDetails.style.display = DisplayStyle.None;
+
         //Get Default Elements
         templateLabel = templateSettings.Q<VisualElement>("component-label").Q<Label>();
         templateTypeDropdown = templateSettings.Q<VisualElement>("type").Q<DropdownField>();
@@ -71,8 +90,6 @@ public class LevelSettings : MonoBehaviour
     private void SetupDefault()
     {
         //Initial Values
-        selectedLevel = selectedLevelObj.GetComponent<Level>();
-
         //Label
         templateLabel.text = "Template - Level " + (selectedLevel.levelIndex + 1);
 
@@ -175,9 +192,11 @@ public class LevelSettings : MonoBehaviour
                 {
                     SelectPuzzleType();
                 }
-            }
 
-            selectedLevel.SaveDefaultValues(currentTemplateType, currentfeatureType, questionTxt);
+                selectedLevel.SaveDefaultValues(currentTemplateType, currentfeatureType, questionTxt);
+
+                LevelDetailsSetup();
+            }
         });
     }
 
@@ -207,5 +226,15 @@ public class LevelSettings : MonoBehaviour
     private void SubmitSelectPuzzleData()
     {
         selectedLevel.SaveSelectPuzzleValues(selectPuzzleComponent.selectsCount, selectPuzzleComponent.selectData, selectPuzzleComponent.selectValue);
+    }
+
+    //Display Details
+    private void LevelDetailsSetup()
+    {
+        templateSettings.style.display = DisplayStyle.None;
+        generateTemplate.style.display = DisplayStyle.None;
+        levelDetailsComponent.templateDetails.style.display = DisplayStyle.Flex;
+        levelDetailsComponent.levelGameObj = selectedLevelObj;
+        levelDetailsComponent.GetElements();
     }
 }

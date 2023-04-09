@@ -14,10 +14,10 @@ public class Level : MonoBehaviour
     [SerializeField] private GameObject dragDropPuzzleTemplateObject;
     [SerializeField] private GameObject selectPuzzleTemplateObject;
 
-    //Initial Lists
-    private string levelType;
-    private string featureType;
-    private string questionTxt;
+    //Initial values
+    public string levelType;
+    public string featureType;
+    public string questionTxt;
 
     public void SaveDefaultValues(string type, string fType, string qTxt = "")
     {
@@ -62,5 +62,10 @@ public class Level : MonoBehaviour
         currentTemplate.selectsCount = sCount;
         currentTemplate.selectData = sData;
         currentTemplate.selectValue = sValues;
+    }
+
+    public GameObject GetTemplateObject()
+    {
+        return templateObject;
     }
 }
