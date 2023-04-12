@@ -9,11 +9,6 @@ public class Inspector : EditorWindow
     [SerializeField] private ObjectSettings objectSettings;
     [SerializeField] private LevelSettings levelSettings;
 
-    void Start()
-    {
-
-    }
-
     public void SelectObject(GameObject obj)
     {
         objectSettings.componentList = inspectorTab.Q<VisualElement>("object-components");

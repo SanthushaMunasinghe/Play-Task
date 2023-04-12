@@ -10,6 +10,8 @@ public class SelectPuzzleTemplate : MonoBehaviour
 
     [SerializeField] private GameObject selectsObject;
 
+    public List<GameObject> currentObjectsList = new List<GameObject>();
+
     private void Start()
     {
         for (int i = 0; i < selectsCount; i++)
@@ -23,5 +25,6 @@ public class SelectPuzzleTemplate : MonoBehaviour
         GameObject objClone = Instantiate(obj, Vector2.zero, Quaternion.identity);
         objClone.name = name;
         objClone.transform.parent = transform.parent;
+        currentObjectsList.Add(objClone);
     }
 }

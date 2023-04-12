@@ -24,7 +24,7 @@
                             <ui:Label text="Template" display-tooltip-when-elided="true" class="editor-label-text" />
                         </ui:VisualElement>
                         <ui:ScrollView name="template-object-list" class="scroll-list-primary">
-                            <ui:VisualElement name="list-Item" class="editor-list-item">
+                            <ui:VisualElement name="list-Item" class="editor-list-item" style="display: none;">
                                 <ui:Label text="Object 01" display-tooltip-when-elided="true" class="editor-list-text" />
                             </ui:VisualElement>
                         </ui:ScrollView>

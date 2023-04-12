@@ -292,6 +292,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c63068fa1c27dad4880672fb5969ec98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelGameObj: {fileID: 0}
+  slotsCount: 
+  matchesCount: 
+  selectsCount: 
 --- !u!1 &18974070
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,6 +741,7 @@ GameObject:
   - component: {fileID: 1570118099}
   - component: {fileID: 1570118101}
   - component: {fileID: 1570118102}
+  - component: {fileID: 1570118105}
   - component: {fileID: 1570118104}
   - component: {fileID: 1570118103}
   m_Layer: 5
@@ -792,7 +797,7 @@ MonoBehaviour:
   sceneCam: {fileID: 1687097350}
   panningSpeedX: 3
   panningSpeedY: 10
-  zoomSpeed: 0.5
+  zoomSpeed: 0.35
 --- !u!114 &1570118100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -854,6 +859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inspector: {fileID: 1570118102}
+  hierarchy: {fileID: 1570118105}
   levelListManager: {fileID: 18365817}
 --- !u!114 &1570118104
 MonoBehaviour:
@@ -868,6 +874,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelListManager: {fileID: 18365817}
+--- !u!114 &1570118105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570118096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1cf1b71e1462f4a8b47f4c25636916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1687097348
 GameObject:
   m_ObjectHideFlags: 0

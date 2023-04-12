@@ -13,6 +13,8 @@ public class DragDropPuzzleTemplate : MonoBehaviour
     [SerializeField] private GameObject slotObject;
     [SerializeField] private GameObject matchObject;
 
+    public List<GameObject> currentObjectsList = new List<GameObject>();
+
     private void Start()
     {
         for (int i = 0; i < slotsCount; i++)
@@ -31,5 +33,6 @@ public class DragDropPuzzleTemplate : MonoBehaviour
         GameObject objClone = Instantiate(obj, Vector2.zero, Quaternion.identity);
         objClone.name = name;
         objClone.transform.parent = transform.parent;
+        currentObjectsList.Add(objClone);
     }
 }

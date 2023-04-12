@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class LevelsTab : EditorWindow
 {
     [SerializeField] private Inspector inspector;
+    [SerializeField] private Hierarchy hierarchy;
     [SerializeField] private LevelListManager levelListManager;
 
     //Level Values
@@ -131,6 +132,7 @@ public class LevelsTab : EditorWindow
         levelLabel.RegisterCallback<MouseUpEvent>(evt =>
         {
             inspector.SelectLevel(currentObj);
+            hierarchy.SelectLevel(currentObj);
         });
 
         //ADD ELEMENTS

@@ -68,4 +68,20 @@ public class Level : MonoBehaviour
     {
         return templateObject;
     }
+
+    public List<GameObject> GetTemplateObjectList()
+    {
+        if (featureType == "Drag and Drop")
+        {
+            return templateObject.GetComponent<DragDropPuzzleTemplate>().currentObjectsList;
+        }
+        else if (featureType == "Select")
+        {
+            return templateObject.GetComponent<SelectPuzzleTemplate>().currentObjectsList;
+        }
+        else
+        {
+            return null;
+        }
+    }
 }

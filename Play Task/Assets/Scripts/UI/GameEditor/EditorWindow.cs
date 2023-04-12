@@ -13,6 +13,9 @@ public class EditorWindow : MonoBehaviour
     //UI Elements Assets
     protected VisualElement assetsTab;
 
+    //UI Elements Hierarchy
+    protected VisualElement hiearchyTab;
+
     //UI Elements Inspector
     protected VisualElement inspectorTab;
 
@@ -32,6 +35,7 @@ public class EditorWindow : MonoBehaviour
         sceneView = root.Q<VisualElement>("scene-view");
         assetsTab = root.Q<VisualElement>("assets-tab").Q<VisualElement>("tab-body");
         inspectorTab = root.Q<VisualElement>("inspector-tab").Q<VisualElement>("tab-body");
+        hiearchyTab = root.Q<VisualElement>("hierarchy-tab").Q<VisualElement>("tab-body");
         newToolbar = root.Q<VisualElement>("topbar").Q<VisualElement>("new-toolbar");
         projectToolbar = root.Q<VisualElement>("topbar").Q<VisualElement>("project-toolbar");
         levelListTab = root.Q<VisualElement>("levels-tab").Q<VisualElement>("tab-body");
