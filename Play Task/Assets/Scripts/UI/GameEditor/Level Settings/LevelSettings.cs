@@ -27,6 +27,7 @@ public class LevelSettings : MonoBehaviour
     private string questionTxt;
 
     //Parent UI Elements
+    public ScrollView templateSettingsListView;
     public VisualElement templateSettings;
     public VisualElement generateTemplate;
 

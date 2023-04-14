@@ -5,6 +5,9 @@ using UnityEngine.UIElements;
 
 public class Hierarchy : EditorWindow
 {
+    //Editor Tab Controllers
+    [SerializeField] private Inspector inspector;
+
     //Selected Object
     private GameObject selectedLvlObj;
     private Level selectedLvl;
@@ -24,10 +27,17 @@ public class Hierarchy : EditorWindow
 
     public void SelectLevel(GameObject obj)
     {
-        selectedLvlObj = obj;
-        selectedLvl = selectedLvlObj.GetComponent<Level>();
+        templateObjList.Clear();
+        objList.Clear();
+        templateObjListLabel.text = "Level ";
 
-        Setup();
+        if (obj)
+        {
+            selectedLvlObj = obj;
+            selectedLvl = selectedLvlObj.GetComponent<Level>();
+
+            Setup();
+        }
     }
 
     private void Setup()
@@ -36,11 +46,21 @@ public class Hierarchy : EditorWindow
         templateObjListLabel.text = "Level " + (selectedLvl.levelIndex + 1);
 
         List<GameObject> templategameObjList = selectedLvl.GetTemplateObjectList();
+        List<GameObject> levelObjList = selectedLvl.levelObjectList;
+
         if (templategameObjList != null)
         {
             foreach (GameObject item in templategameObjList)
             {
                 AddToListView(templateObjList, item);
+            }
+        }
+        
+        if (levelObjList.Count != 0)
+        {
+            foreach (GameObject item in levelObjList)
+            {
+                AddToListView(objList, item);
             }
         }
     }
@@ -62,6 +82,8 @@ public class Hierarchy : EditorWindow
             foreach (VisualElement childElement in scrollView.Children())
             {
                 childElement.RemoveFromClassList("editor-list-item-selected");
+
+                inspector.SelectObject(obj);
             }
 
             newItem.AddToClassList("editor-list-item-selected");

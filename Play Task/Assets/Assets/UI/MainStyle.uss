@@ -266,7 +266,15 @@
 }
 
 .editor-list-item-selected {
-    background-color: rgba(44, 44, 44, 255);
+    background-color: rgb(44, 44, 44);
+    border-left-color: rgba(255, 255, 255, 255);
+    border-right-color: rgba(255, 255, 255, 255);
+    border-top-color: rgba(255, 255, 255, 255);
+    border-bottom-color: rgba(255, 255, 255, 255);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
 }
 
 .editor-list-text {

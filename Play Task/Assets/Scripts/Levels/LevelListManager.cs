@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class LevelListManager : MonoBehaviour
 {
+    [SerializeField] private Inspector inspector;
+    [SerializeField] private Hierarchy hierarchy;
+
     [SerializeField] private GameObject levelPrefab;
+    [SerializeField] private GameObject lvlObjectPrefab;
 
     public List<GameObject> lvlObjectList = new List<GameObject>();
     public int levelsCount = 0;
 
     void Start()
     {
-        CreateLevel();
+        //CreateLevel();
     }
 
     void Update()
@@ -26,6 +30,9 @@ public class LevelListManager : MonoBehaviour
         Level.transform.parent = this.transform;
         SetLevelIndex(Level, levelsCount - 1);
         lvlObjectList.Add(Level);
+
+        inspector.SelectLevel(Level);
+        hierarchy.SelectLevel(Level);
     }
 
     public void DeleteLevel(GameObject level)
@@ -63,6 +70,18 @@ public class LevelListManager : MonoBehaviour
         }
 
         lvlObj.GetComponent<Level>().levelIndex = newValue - 1;
+    }
+
+    public void CreateLevelobject(GameObject lvl)
+    {
+        GameObject levelObjClone = Instantiate(lvlObjectPrefab, Vector2.zero, Quaternion.identity);
+        levelObjClone.transform.parent = lvl.transform;
+        levelObjClone.name = "Object " + (lvl.GetComponent<Level>().levelObjectList.Count + 1);
+        levelObjClone.GetComponent<ObjectTransform>().UpdatePosition(0, 2);
+
+        lvl.GetComponent<Level>().levelObjectList.Add(levelObjClone);
+
+        hierarchy.SelectLevel(lvl);
     }
 }
 

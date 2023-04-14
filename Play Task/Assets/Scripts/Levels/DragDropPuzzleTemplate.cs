@@ -19,20 +19,24 @@ public class DragDropPuzzleTemplate : MonoBehaviour
     {
         for (int i = 0; i < slotsCount; i++)
         {
-            GenerateObj(slotObject, "Slot-" + (i + 1));
+            Vector2 spawnPos = new Vector2(i - 7, 1);
+            GenerateObj(slotObject, "Slot-" + (i + 1), spawnPos);
         }
 
         for (int i = 0; i < matchesCount; i++)
         {
-            GenerateObj(matchObject, "Match-" + (i + 1));
+            Vector2 spawnPos = new Vector2(i - 7, -1);
+            GenerateObj(matchObject, "Match-" + (i + 1), spawnPos);
         }
+
     }
 
-    private void GenerateObj(GameObject obj, string name)
+    private void GenerateObj(GameObject obj, string name, Vector2 pos)
     {
         GameObject objClone = Instantiate(obj, Vector2.zero, Quaternion.identity);
         objClone.name = name;
         objClone.transform.parent = transform.parent;
+        objClone.GetComponent<ObjectTransform>().UpdatePosition(pos.x, pos.y);
         currentObjectsList.Add(objClone);
     }
 }

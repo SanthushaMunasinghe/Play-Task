@@ -7,6 +7,8 @@ public class ToolBar : EditorWindow
 {
     [SerializeField] private LevelListManager levelListManager;
 
+    [SerializeField] private LevelSettings levelSettings;
+
     //New Toolbar UI Elements
     private Button newProjectBtn;
     private Button newObjectBtn;
@@ -30,7 +32,10 @@ public class ToolBar : EditorWindow
 
         newObjectBtn.RegisterCallback<MouseUpEvent>(evt =>
         {
-            Debug.Log("New Object");
+            if (levelSettings.selectedLevelObj && levelSettings.selectedLevelObj.GetComponent<Level>().isCreated)
+            {
+                levelListManager.CreateLevelobject(levelSettings.selectedLevelObj);
+            }
         });
         
         newLeveltBtn.RegisterCallback<MouseUpEvent>(evt =>

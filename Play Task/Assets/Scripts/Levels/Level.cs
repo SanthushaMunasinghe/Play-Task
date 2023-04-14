@@ -14,6 +14,9 @@ public class Level : MonoBehaviour
     [SerializeField] private GameObject dragDropPuzzleTemplateObject;
     [SerializeField] private GameObject selectPuzzleTemplateObject;
 
+    //Level Objects
+    public List<GameObject> levelObjectList = new List<GameObject>();
+
     //Initial values
     public string levelType;
     public string featureType;

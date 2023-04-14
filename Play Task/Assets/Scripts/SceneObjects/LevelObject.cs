@@ -49,7 +49,7 @@ public class LevelObject : MonoBehaviour
         objectTF = gameObject.transform;
 
         position = Vector2.zero;
-        scale = new Vector2(1, 1);
+        scale = new Vector2(0.25f, 0.25f);
         rotation = 0;
 
         SetPosition(position);
