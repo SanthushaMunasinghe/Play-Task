@@ -241,7 +241,7 @@
                                 </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:ScrollView>
-                        <ui:ScrollView name="template-settings-list" class="scroll-list-primary" style="display: flex;">
+                        <ui:ScrollView name="template-settings-list" class="scroll-list-primary" style="display: none;">
                             <ui:VisualElement name="template-settings" class="component" style="display: flex;">
                                 <ui:VisualElement name="component-label" class="component-label">
                                     <ui:Label text="Template - Level 1" display-tooltip-when-elided="true" class="editor-label-text" />
@@ -521,14 +521,6 @@
                                             <ui:Label text="On" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
-                                    <ui:VisualElement name="loop" class="single-value-item">
-                                        <ui:VisualElement name="loop-label" class="value-item-label">
-                                            <ui:Label text="Loop" display-tooltip-when-elided="true" class="editor-list-text" />
-                                        </ui:VisualElement>
-                                        <ui:VisualElement name="x-value" class="single-value-holder">
-                                            <ui:Label text="On" display-tooltip-when-elided="true" class="editor-list-text" />
-                                        </ui:VisualElement>
-                                    </ui:VisualElement>
                                 </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:ScrollView>
@@ -613,8 +605,8 @@
                     </ui:VisualElement>
                     <ui:VisualElement name="tab-body" class="box-primary-body">
                         <ui:ScrollView mode="VerticalAndHorizontal" class="scroll-list-primary">
-                            <ui:VisualElement name="level-box-list" style="width: auto; height: auto; flex-direction: row; flex-wrap: nowrap;">
-                                <ui:VisualElement name="level-box" class="level-box" style="display: none;">
+                            <ui:VisualElement name="level-box-list" style="width: auto; height: auto; flex-direction: row; flex-wrap: nowrap; display: flex;">
+                                <ui:VisualElement name="level-box" class="level-box" style="display: flex;">
                                     <ui:VisualElement name="level-label" class="level-box-label">
                                         <ui:Label text="Level" display-tooltip-when-elided="true" class="level-box-label-text" />
                                         <ui:VisualElement name="level-options-box" class="action-options-box">

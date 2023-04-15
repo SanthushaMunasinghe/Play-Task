@@ -70,6 +70,9 @@ public class LevelListManager : MonoBehaviour
         }
 
         lvlObj.GetComponent<Level>().levelIndex = newValue - 1;
+
+        inspector.SelectLevel(lvlObj);
+        hierarchy.SelectLevel(lvlObj);
     }
 
     public void CreateLevelobject(GameObject lvl)

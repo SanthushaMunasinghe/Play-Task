@@ -14,8 +14,11 @@ public class Level : MonoBehaviour
     [SerializeField] private GameObject dragDropPuzzleTemplateObject;
     [SerializeField] private GameObject selectPuzzleTemplateObject;
 
-    //Level Objects
+    //Current Level Data
     public List<GameObject> levelObjectList = new List<GameObject>();
+    public List<string> levelConditiontList = new List<string>();
+    public List<AnimationTriggerData> levelAnimationList = new List<AnimationTriggerData>();
+    public List<PhysicsTriggerData> levelPhysicsList = new List<PhysicsTriggerData>();
 
     //Initial values
     public string levelType;
@@ -39,6 +42,11 @@ public class Level : MonoBehaviour
         currentTemplate.answerCount = aCount;
         currentTemplate.answerData = aData;
         currentTemplate.answerValues = aValues;
+
+        for (int i = 0; i < currentTemplate.answerCount; i++)
+        {
+            levelConditiontList.Add("Answer " + (i+1));
+        }
     }
     
     public void SaveDragDropPuzzleValues(int sCount, int mCount, List<AnswerData> sData, List<AnswerData> mData, List<Dictionary<string, int>> sMatches)
@@ -53,6 +61,14 @@ public class Level : MonoBehaviour
         currentTemplate.slotData = sData;
         currentTemplate.matchData = mData;
         currentTemplate.slotMatches = sMatches;
+
+        for (int i = 0; i < currentTemplate.slotsCount; i++)
+        {
+            for (int j = 0; j < currentTemplate.matchesCount; j++)
+            {
+                levelConditiontList.Add($"Slot {i+1} - Match {j+1}");
+            }
+        }
     }
     
     public void SaveSelectPuzzleValues(int sCount, List<AnswerData> sData, List<AnswerData> sValues)
@@ -65,6 +81,11 @@ public class Level : MonoBehaviour
         currentTemplate.selectsCount = sCount;
         currentTemplate.selectData = sData;
         currentTemplate.selectValue = sValues;
+
+        for (int i = 0; i < currentTemplate.selectsCount; i++)
+        {
+            levelConditiontList.Add("Select " + (i + 1));
+        }
     }
 
     public GameObject GetTemplateObject()
@@ -87,4 +108,38 @@ public class Level : MonoBehaviour
             return null;
         }
     }
+}
+
+public interface IAnimationTrigger
+{
+    int ConditionIndex { get; set; }
+    GameObject AnimationObject { get; set; }
+    bool isPlay { get; set; }
+}
+
+public class AnimationTriggerData : IAnimationTrigger
+{
+    public int ConditionIndex { get; set; }
+    public GameObject AnimationObject { get; set; }
+    public bool isPlay { get; set; }
+}
+
+public interface IPhysicsTrigger
+{
+    int ConditionIndex { get; set; }
+    GameObject PhysicsObject { get; set; }
+    bool isEnable { get; set; }
+    string PhysicsType { get; set; }
+    float PhysicsDuration { get; set; }
+    Vector2 Force { get; set; }
+}
+
+public class PhysicsTriggerData : IPhysicsTrigger
+{
+    public int ConditionIndex { get; set; }
+    public GameObject PhysicsObject { get; set; }
+    public bool isEnable { get; set; }
+    public string PhysicsType { get; set; }
+    public float PhysicsDuration { get; set; }
+    public Vector2 Force { get; set; }
 }
