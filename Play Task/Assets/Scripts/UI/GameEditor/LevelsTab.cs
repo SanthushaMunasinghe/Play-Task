@@ -207,6 +207,27 @@ public class LevelsTab : EditorWindow
         actionTypeDropdown.choices = actionTypeList;
         actionTypeDropdown.value = currentActionTypeValue;
 
+        //Button Text
+        addActionBtn.text = "+";
+
+        //Add to Condition body
+        foreach (AnimationTriggerData animationTriggerData in currentLvl.levelAnimationList)
+        {
+            if (animationTriggerData.ConditionIndex == currentLvl.levelConditiontList.IndexOf(conditionTxt))
+            {
+                UpdateAnimationActions(currentLvl.levelAnimationList.IndexOf(animationTriggerData), conditionBody, currentLvl);
+            }
+        }
+        
+        foreach (PhysicsTriggerData physicsTriggerData in currentLvl.levelPhysicsList)
+        {
+            if (physicsTriggerData.ConditionIndex == currentLvl.levelConditiontList.IndexOf(conditionTxt))
+            {
+                UpdatePhysicsActions(currentLvl.levelPhysicsList.IndexOf(physicsTriggerData), conditionBody, currentLvl);
+            }
+        }
+
+
         //REGISTER EVENTS
         actionTypeDropdown.RegisterValueChangedCallback(evt =>
         {
@@ -221,15 +242,15 @@ public class LevelsTab : EditorWindow
                 AnimationTriggerData animationTriggerData = new AnimationTriggerData();
                 animationTriggerData.ConditionIndex = currentLvl.levelConditiontList.IndexOf(conditionTxt);
                 currentLvl.levelAnimationList.Add(animationTriggerData);
-                CreateConditionAction("Animation");
             }
             else if (currentActionTypeValue == "Physics")
             {
                 PhysicsTriggerData physicsTriggerData = new PhysicsTriggerData();
                 physicsTriggerData.ConditionIndex = currentLvl.levelConditiontList.IndexOf(conditionTxt);
                 currentLvl.levelPhysicsList.Add(physicsTriggerData);
-                CreateConditionAction("Physics");
             }
+
+            UpdateLevelListView();
         });
 
         //ADD ELEMENTS
@@ -250,8 +271,87 @@ public class LevelsTab : EditorWindow
         conditionListElement.Add(newCondition);
     }
 
-    private void CreateConditionAction(string actionTxt)
+    private void UpdateAnimationActions(int index, VisualElement body, Level lvl)
     {
+        VisualElement levelAction = new VisualElement();
+        Label actionLbl = new Label();
+        Button removeActionButton = new Button();
 
+        //ADD CLASSES
+        levelAction.AddToClassList("level-action-box");
+        actionLbl.AddToClassList("level-action-text");
+        removeActionButton.AddToClassList("add-action-btn");
+
+        //ADD VALUES
+        AnimationTriggerData animationData = lvl.levelAnimationList[index];
+
+        actionLbl.text = "Animation " + index;
+        removeActionButton.text = "-";
+
+        //ADD ELEMENTS
+        levelAction.Add(actionLbl);
+        levelAction.Add(removeActionButton);
+
+        body.Add(levelAction);
     }
+
+    private void UpdatePhysicsActions(int index, VisualElement body, Level lvl)
+    {
+        VisualElement levelAction = new VisualElement();
+        Label actionLbl = new Label();
+        Button removeActionButton = new Button();
+
+        //ADD CLASSES
+        levelAction.AddToClassList("level-action-box");
+        actionLbl.AddToClassList("level-action-text");
+        removeActionButton.AddToClassList("add-action-btn");
+
+        //ADD VALUES
+        PhysicsTriggerData animationData = lvl.levelPhysicsList[index];
+
+        actionLbl.text = "Physics " + index;
+        removeActionButton.text = "-";
+
+        //REGISTER EVENTS
+
+        //ADD ELEMENTS
+        levelAction.Add(actionLbl);
+        levelAction.Add(removeActionButton);
+
+        body.Add(levelAction);
+    }
+}
+
+public interface IAnimationTrigger
+{
+    int ConditionIndex { get; set; }
+    GameObject AnimationObject { get; set; }
+    bool isPlay { get; set; }
+}
+
+public class AnimationTriggerData : IAnimationTrigger
+{
+    public int ConditionIndex { get; set; }
+    public GameObject AnimationObject { get; set; }
+    public bool isPlay { get; set; }
+}
+
+public interface IPhysicsTrigger
+{
+    int ConditionIndex { get; set; }
+    GameObject PhysicsObject { get; set; }
+    bool isEnable { get; set; }
+    string PhysicsType { get; set; }
+    float PhysicsDuration { get; set; }
+    Vector2 Force { get; set; }
+}
+
+public class PhysicsTriggerData : IPhysicsTrigger
+{
+    public int ConditionIndex { get; set; }
+    public GameObject PhysicsObject { get; set; }
+    public bool isEnable { get; set; }
+    public string PhysicsType { get; set; }
+    public float PhysicsDuration { get; set; }
+    public Vector2 Force { get; set; }
 }

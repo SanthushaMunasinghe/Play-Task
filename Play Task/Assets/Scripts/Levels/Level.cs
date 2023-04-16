@@ -109,37 +109,3 @@ public class Level : MonoBehaviour
         }
     }
 }
-
-public interface IAnimationTrigger
-{
-    int ConditionIndex { get; set; }
-    GameObject AnimationObject { get; set; }
-    bool isPlay { get; set; }
-}
-
-public class AnimationTriggerData : IAnimationTrigger
-{
-    public int ConditionIndex { get; set; }
-    public GameObject AnimationObject { get; set; }
-    public bool isPlay { get; set; }
-}
-
-public interface IPhysicsTrigger
-{
-    int ConditionIndex { get; set; }
-    GameObject PhysicsObject { get; set; }
-    bool isEnable { get; set; }
-    string PhysicsType { get; set; }
-    float PhysicsDuration { get; set; }
-    Vector2 Force { get; set; }
-}
-
-public class PhysicsTriggerData : IPhysicsTrigger
-{
-    public int ConditionIndex { get; set; }
-    public GameObject PhysicsObject { get; set; }
-    public bool isEnable { get; set; }
-    public string PhysicsType { get; set; }
-    public float PhysicsDuration { get; set; }
-    public Vector2 Force { get; set; }
-}

@@ -499,19 +499,17 @@
                                 </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:ScrollView>
-                        <ui:ScrollView name="animation-trigger" class="scroll-list-primary" style="display: none;">
+                        <ui:ScrollView name="animation-trigger" class="scroll-list-primary" style="display: flex;">
                             <ui:VisualElement name="trigger-component" class="component">
                                 <ui:VisualElement name="component-label" class="component-label">
                                     <ui:Label text="Animation Trigger" display-tooltip-when-elided="true" class="editor-label-text" />
                                 </ui:VisualElement>
                                 <ui:VisualElement name="component-body" class="component-body">
-                                    <ui:VisualElement name="animation" class="single-value-item">
-                                        <ui:VisualElement name="animation-label" class="value-item-label">
+                                    <ui:VisualElement name="select-animation" class="xy-value-item">
+                                        <ui:VisualElement name="select-animation-label" class="value-item-label">
                                             <ui:Label text="Animation" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
-                                        <ui:VisualElement name="x-value" class="single-value-holder">
-                                            <ui:Label text="Drop Animation" display-tooltip-when-elided="true" class="editor-list-text" />
-                                        </ui:VisualElement>
+                                        <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="select-anim" class="value-dropdown" />
                                     </ui:VisualElement>
                                     <ui:VisualElement name="play" class="single-value-item">
                                         <ui:VisualElement name="play-label" class="value-item-label">
