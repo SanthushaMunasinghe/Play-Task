@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 18365821}
   - component: {fileID: 18365822}
   - component: {fileID: 18365823}
+  - component: {fileID: 18365824}
   m_Layer: 0
   m_Name: LevelListManager
   m_TagString: Untagged
@@ -312,8 +313,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd244a6317407bb4f9852d7d016dde8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedObject: {fileID: 0}
   selectedAnimIndex: 0
+  selectedLevel: {fileID: 0}
+--- !u!114 &18365824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18365815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c67872c8e8ab141b7f0c99a52556eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedPhysicsIndex: 0
+  selectedLevel: {fileID: 0}
+  physicsTypes:
+  - Force
+  - Impulse
 --- !u!1 &18974070
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,6 +773,7 @@ MonoBehaviour:
   objectSettings: {fileID: 18974072}
   levelSettings: {fileID: 18365818}
   animationTriggerSettings: {fileID: 18365823}
+  physicsTriggerSettings: {fileID: 18365824}
 --- !u!114 &1570118103
 MonoBehaviour:
   m_ObjectHideFlags: 0

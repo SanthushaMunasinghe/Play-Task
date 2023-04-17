@@ -528,24 +528,11 @@
                                     <ui:Label text="Physics" display-tooltip-when-elided="true" class="editor-label-text" />
                                 </ui:VisualElement>
                                 <ui:VisualElement name="component-body" class="component-body">
-                                    <ui:VisualElement name="object" class="single-value-item">
-                                        <ui:VisualElement name="object-label" class="value-item-label">
-                                            <ui:Label text="Object" display-tooltip-when-elided="true" class="editor-list-text" />
+                                    <ui:VisualElement name="select-physics" class="xy-value-item">
+                                        <ui:VisualElement name="select-physics-label" class="value-item-label">
+                                            <ui:Label text="Physics" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
-                                        <ui:VisualElement name="x-value" class="single-value-holder">
-                                            <ui:Label text="Drop Object" display-tooltip-when-elided="true" class="editor-list-text" />
-                                        </ui:VisualElement>
-                                    </ui:VisualElement>
-                                    <ui:VisualElement name="enable-axis" class="xy-value-item">
-                                        <ui:VisualElement name="enable-axis-label" class="value-item-label">
-                                            <ui:Label text="Enable Axis" display-tooltip-when-elided="true" class="editor-list-text" />
-                                        </ui:VisualElement>
-                                        <ui:VisualElement name="x-value" class="xy-value-holder">
-                                            <ui:Label text="X: On" display-tooltip-when-elided="true" class="editor-list-text" />
-                                        </ui:VisualElement>
-                                        <ui:VisualElement name="y-value" class="xy-value-holder">
-                                            <ui:Label text="Y: Off" display-tooltip-when-elided="true" class="editor-list-text" />
-                                        </ui:VisualElement>
+                                        <ui:DropdownField label="Dropdown" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="select-phy" class="value-dropdown" />
                                     </ui:VisualElement>
                                     <ui:VisualElement name="physics-type" class="xy-value-item">
                                         <ui:VisualElement name="physics-type-label" class="value-item-label">

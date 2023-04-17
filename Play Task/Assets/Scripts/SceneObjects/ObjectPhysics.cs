@@ -29,6 +29,21 @@ public class ObjectPhysics : LevelObject
     {
         gravity = isTrue;
     }
+    
+    public void UpdatePhysicsType(string type)
+    {
+        physicsType = type;
+    }
+    
+    public void UpdatePhysicsDuration(float dura)
+    {
+        durationInRun = dura;
+    }
+    
+    public void UpdateForceVector(float x, float y)
+    {
+        forceVector = new Vector2(x, y);
+    }
 
     //Get
     public bool GetPhysicsPositionX()
@@ -54,5 +69,20 @@ public class ObjectPhysics : LevelObject
     public bool GetPhysicsGravity()
     {
         return gravity;
+    }
+    
+    public string GetPhysicsType()
+    {
+        return physicsType;
+    }
+    
+    public float GetDurationInRun()
+    {
+        return durationInRun;
+    }
+    
+    public Vector2 GetForceVector()
+    {
+        return forceVector;
     }
 }

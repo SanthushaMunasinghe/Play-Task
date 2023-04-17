@@ -28,6 +28,7 @@ public class ObjectAnimation : LevelObject
     public void UpdatePlay(bool isTrue)
     {
         isPlay = isTrue;
+        playInRun = isTrue;
     }
     
     public void UpdateLoop(bool isTrue)

@@ -16,12 +16,17 @@ public class LevelObject : MonoBehaviour
     protected Color color;
     protected float opacity;
 
-    //Rigidbody
-    protected bool freezPosX = true;
-    protected bool freezPosY = true;
-    protected bool freezRot = true;
-    protected bool collision = true;
-    protected bool gravity = false;
+    //Physics
+    protected bool freezPosX;
+    protected bool freezPosY;
+    protected bool freezRot;
+    protected bool collision;
+    protected bool gravity;
+
+    //Runtime Physics
+    protected string physicsType;
+    protected float durationInRun;
+    protected Vector2 forceVector;
 
     //Animation
     protected string animationType;
@@ -109,6 +114,10 @@ public class LevelObject : MonoBehaviour
         freezRot = true;
         collision = true;
         gravity = false;
+
+        physicsType = "";
+        durationInRun = 0;
+        forceVector = Vector2.zero;
     }
 
     //Set Animation

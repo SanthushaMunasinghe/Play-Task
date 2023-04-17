@@ -11,6 +11,7 @@ public class Inspector : EditorWindow
     [SerializeField] private ObjectSettings objectSettings;
     [SerializeField] private LevelSettings levelSettings;
     [SerializeField] private AnimationTriggerSettings animationTriggerSettings;
+    [SerializeField] private PhysicsTriggerSettings physicsTriggerSettings;
 
     //UI Element List
     private List<VisualElement> inspectorElements = new List<VisualElement>();
@@ -32,8 +33,10 @@ public class Inspector : EditorWindow
 
         //Condition Action Components
         animationTriggerSettings.animatonTriggerList = inspectorTab.Q<ScrollView>("animation-trigger");
+        physicsTriggerSettings.physicsTriggerList = inspectorTab.Q<ScrollView>("physics-trigger");
 
         inspectorElements.Add(animationTriggerSettings.animatonTriggerList);
+        inspectorElements.Add(physicsTriggerSettings.physicsTriggerList);
     }
 
     public void SelectObject(GameObject obj)
@@ -68,6 +71,17 @@ public class Inspector : EditorWindow
         animationTriggerSettings.selectedAnimIndex = index;
 
         animationTriggerSettings.GetElements();
+    }
+    
+    public void SelectPhysicsTriggerAction(Level lvl, int index)
+    {
+        HideElements();
+
+        physicsTriggerSettings.physicsTriggerList.style.display = DisplayStyle.Flex;
+        physicsTriggerSettings.selectedLevel = lvl;
+        physicsTriggerSettings.selectedPhysicsIndex = index;
+
+        physicsTriggerSettings.GetElements();
     }
 
     private void HideElements()

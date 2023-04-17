@@ -321,7 +321,7 @@ public class LevelsTab : EditorWindow
         //REGISTER EVENTS
         actionLbl.RegisterCallback<MouseUpEvent>(evt =>
         {
-            //inspector.SelectAnimationTriggerAction(lvl.gameObject, index);
+            inspector.SelectPhysicsTriggerAction(lvl, index);
         });
 
         //ADD ELEMENTS
@@ -348,18 +348,10 @@ public interface IPhysicsTrigger
 {
     int ConditionIndex { get; set; }
     GameObject PhysicsObject { get; set; }
-    bool isEnable { get; set; }
-    string PhysicsType { get; set; }
-    float PhysicsDuration { get; set; }
-    Vector2 Force { get; set; }
 }
 
 public class PhysicsTriggerData : IPhysicsTrigger
 {
     public int ConditionIndex { get; set; }
     public GameObject PhysicsObject { get; set; }
-    public bool isEnable { get; set; }
-    public string PhysicsType { get; set; }
-    public float PhysicsDuration { get; set; }
-    public Vector2 Force { get; set; }
 }
