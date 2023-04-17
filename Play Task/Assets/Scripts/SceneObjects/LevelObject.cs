@@ -16,11 +16,7 @@ public class LevelObject : MonoBehaviour
     protected Color color;
     protected float opacity;
 
-    //Collider
-    private PolygonCollider2D polygonCollider2D;
-
     //Rigidbody
-    private Rigidbody2D rb;
     protected bool freezPosX = true;
     protected bool freezPosY = true;
     protected bool freezRot = true;
@@ -90,8 +86,6 @@ public class LevelObject : MonoBehaviour
     protected void SetSprite(Sprite spr)
     {
         objectSprite.sprite = spr;
-        DestroyImmediate(polygonCollider2D);
-        polygonCollider2D = gameObject.AddComponent<PolygonCollider2D>();
     }
     
     protected void SetColor(Color clr)
@@ -110,73 +104,11 @@ public class LevelObject : MonoBehaviour
     //Set Rigidbody
     private void InitialPhysics()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
-
         freezPosX = true;
         freezPosY = true;
         freezRot = true;
         collision = true;
         gravity = false;
-    }
-
-    protected void PhysicsPositionX(bool isTrue)
-    {
-        if (isTrue)
-        {
-            rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
-        }
-        else
-        {
-            rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
-        }
-    }
-    
-    protected void PhysicsPositionY(bool isTrue)
-    {
-        if (isTrue)
-        {
-            rb.constraints |= RigidbodyConstraints2D.FreezePositionY;
-        }
-        else
-        {
-            rb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
-        }
-    }
-
-    protected void PhysicsRotation(bool isTrue)
-    {
-        if (isTrue)
-        {
-            rb.constraints |= RigidbodyConstraints2D.FreezeRotation;
-        }
-        else
-        {
-            rb.constraints &= ~RigidbodyConstraints2D.FreezeRotation;
-        }
-    }
-
-    protected void SetCollision(bool isTrue)
-    {
-        if (isTrue)
-        {
-            polygonCollider2D.isTrigger = false;
-        }
-        else
-        {
-            polygonCollider2D.isTrigger = true;
-        }
-    }
-
-    protected void PhysicsGravity(bool isTrue)
-    {
-        if (isTrue)
-        {
-            rb.gravityScale = 1;
-        }
-        else
-        {
-            rb.gravityScale = 0;
-        }
     }
 
     //Set Animation
