@@ -84,6 +84,7 @@ public class AnimationTriggerSettings : MonoBehaviour
             }
             else
             {
+                isPlay = false;
                 animationObjDropdown.value = "";
             }
 
