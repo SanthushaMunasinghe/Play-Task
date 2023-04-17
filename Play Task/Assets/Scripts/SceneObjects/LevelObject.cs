@@ -35,6 +35,8 @@ public class LevelObject : MonoBehaviour
     protected bool isPlay;
     protected bool isLoop;
 
+    protected bool playInRun;
+
     void Awake()
     {
         InitialTransform();
@@ -185,35 +187,7 @@ public class LevelObject : MonoBehaviour
         endVec = objectTF.position;
         isPlay = false;
         isLoop = false;
-    }
 
-    protected void SetAnimationType(string type)
-    {
-        Debug.Log(type);
-    }
-    
-    protected void SetDuration(float dura)
-    {
-        Debug.Log(dura);
-    }
-    
-    protected void SetStartVector(Vector2 startV)
-    {
-        Debug.Log(startV);
-    }
-    
-    protected void SetEndVector(Vector2 endV)
-    {
-        Debug.Log(endV);
-    }
-    
-    protected void SetPlay(bool isTrue)
-    {
-        Debug.Log(isTrue);
-    }
-    
-    protected void SetLoop(bool isTrue)
-    {
-        Debug.Log(isTrue);
+        playInRun = false;
     }
 }

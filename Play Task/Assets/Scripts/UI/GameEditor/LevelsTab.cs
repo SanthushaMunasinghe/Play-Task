@@ -288,6 +288,12 @@ public class LevelsTab : EditorWindow
         actionLbl.text = "Animation " + index;
         removeActionButton.text = "-";
 
+        //REGISTER EVENTS
+        levelAction.RegisterCallback<MouseUpEvent>(evt =>
+        {
+            inspector.SelectAnimationTriggerAction(lvl, index);
+        });
+
         //ADD ELEMENTS
         levelAction.Add(actionLbl);
         levelAction.Add(removeActionButton);
@@ -313,6 +319,10 @@ public class LevelsTab : EditorWindow
         removeActionButton.text = "-";
 
         //REGISTER EVENTS
+        actionLbl.RegisterCallback<MouseUpEvent>(evt =>
+        {
+            //inspector.SelectAnimationTriggerAction(lvl.gameObject, index);
+        });
 
         //ADD ELEMENTS
         levelAction.Add(actionLbl);
@@ -326,14 +336,12 @@ public interface IAnimationTrigger
 {
     int ConditionIndex { get; set; }
     GameObject AnimationObject { get; set; }
-    bool isPlay { get; set; }
 }
 
 public class AnimationTriggerData : IAnimationTrigger
 {
     public int ConditionIndex { get; set; }
     public GameObject AnimationObject { get; set; }
-    public bool isPlay { get; set; }
 }
 
 public interface IPhysicsTrigger

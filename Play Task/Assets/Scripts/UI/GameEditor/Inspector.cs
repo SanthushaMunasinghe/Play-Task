@@ -10,6 +10,7 @@ public class Inspector : EditorWindow
     //Child Elements
     [SerializeField] private ObjectSettings objectSettings;
     [SerializeField] private LevelSettings levelSettings;
+    [SerializeField] private AnimationTriggerSettings animationTriggerSettings;
 
     //UI Element List
     private List<VisualElement> inspectorElements = new List<VisualElement>();
@@ -28,6 +29,11 @@ public class Inspector : EditorWindow
         levelSettings.levelDetailsComponent.templateDetails = inspectorTab.Q<VisualElement>("template-details");
 
         inspectorElements.Add(levelSettings.templateSettingsListView);
+
+        //Condition Action Components
+        animationTriggerSettings.animatonTriggerList = inspectorTab.Q<ScrollView>("animation-trigger");
+
+        inspectorElements.Add(animationTriggerSettings.animatonTriggerList);
     }
 
     public void SelectObject(GameObject obj)
@@ -51,6 +57,17 @@ public class Inspector : EditorWindow
 
         levelSettings.selectedLevelObj = obj;
         levelSettings.GetElements();
+    }
+
+    public void SelectAnimationTriggerAction(Level lvl, int index)
+    {
+        HideElements();
+
+        animationTriggerSettings.animatonTriggerList.style.display = DisplayStyle.Flex;
+        animationTriggerSettings.selectedLevel = lvl;
+        animationTriggerSettings.selectedAnimIndex = index;
+
+        animationTriggerSettings.GetElements();
     }
 
     private void HideElements()

@@ -499,8 +499,8 @@
                                 </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:ScrollView>
-                        <ui:ScrollView name="animation-trigger" class="scroll-list-primary" style="display: flex;">
-                            <ui:VisualElement name="trigger-component" class="component">
+                        <ui:ScrollView name="animation-trigger" class="scroll-list-primary" style="display: none;">
+                            <ui:VisualElement name="animation-trigger-component" class="component">
                                 <ui:VisualElement name="component-label" class="component-label">
                                     <ui:Label text="Animation Trigger" display-tooltip-when-elided="true" class="editor-label-text" />
                                 </ui:VisualElement>
@@ -516,7 +516,7 @@
                                             <ui:Label text="Play" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
                                         <ui:VisualElement name="x-value" class="single-value-holder">
-                                            <ui:Label text="On" display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:Label display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
                                 </ui:VisualElement>

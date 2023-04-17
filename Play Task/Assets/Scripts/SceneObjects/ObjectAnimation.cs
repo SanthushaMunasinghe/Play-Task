@@ -8,37 +8,36 @@ public class ObjectAnimation : LevelObject
     public void UpdateType(string type)
     {
         animationType = type;
-        SetAnimationType(animationType);
     }
     
     public void UpdateDuration(float dura)
     {
         duration = dura;
-        SetDuration(duration);
     }
 
     public void UpdateStartVector(float x, float y)
     {
         startVec = new Vector2(x, y);
-        SetStartVector(startVec);
     }
     
     public void UpdateEndVector(float x, float y)
     {
         endVec = new Vector2(x, y);
-        SetEndVector(endVec);
     }
 
     public void UpdatePlay(bool isTrue)
     {
         isPlay = isTrue;
-        SetPlay(isPlay);
     }
     
     public void UpdateLoop(bool isTrue)
     {
         isLoop = isTrue;
-        SetLoop(isLoop);
+    }
+    
+    public void UpdatePlayInRun(bool isTrue)
+    {
+        playInRun = isTrue;
     }
 
     //Get
@@ -69,5 +68,10 @@ public class ObjectAnimation : LevelObject
     public bool GetIsLoop()
     {
         return isLoop;
+    }
+    
+    public bool GetPlayInRun()
+    {
+        return playInRun;
     }
 }
