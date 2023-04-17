@@ -74,14 +74,20 @@ public class AnimationTriggerSettings : MonoBehaviour
             }
             else
             {
-                animObject = levelObjList[0];
-                selectedLevel.levelAnimationList[selectedAnimIndex].AnimationObject = animObject;
+                animObject = null;
             }
 
-            isPlay = animObject.GetComponent<ObjectAnimation>().GetPlayInRun();
+            if (animObject != null)
+            {
+                isPlay = animObject.GetComponent<ObjectAnimation>().GetPlayInRun();
+                animationObjDropdown.value = levelObjNamesList[levelObjNamesList.IndexOf(animObject.name)];
+            }
+            else
+            {
+                animationObjDropdown.value = "";
+            }
 
             //Set Initial Values
-            animationObjDropdown.value = levelObjNamesList[levelObjNamesList.IndexOf(animObject.name)];
             isPlayText.text = GlobalMethods.SetBoolValue(isPlay);
 
             RegiterEvents();
@@ -94,17 +100,23 @@ public class AnimationTriggerSettings : MonoBehaviour
         {
             string selectedValue = evt.newValue;
 
-            animObject = levelObjList[levelObjNamesList.IndexOf(selectedValue)];
-            selectedLevel.levelAnimationList[selectedAnimIndex].AnimationObject = animObject;
-            isPlay = animObject.GetComponent<ObjectAnimation>().GetPlayInRun();
-            isPlayText.text = GlobalMethods.SetBoolValue(isPlay);
+            if (animationObjDropdown.index != -1)
+            {
+                animObject = levelObjList[levelObjNamesList.IndexOf(selectedValue)];
+                selectedLevel.levelAnimationList[selectedAnimIndex].AnimationObject = animObject;
+                isPlay = animObject.GetComponent<ObjectAnimation>().GetPlayInRun();
+                isPlayText.text = GlobalMethods.SetBoolValue(isPlay);
+            }
         });
 
         isPlayElement.RegisterCallback<MouseUpEvent>(evt =>
         {
-            isPlay = !isPlay;
-            animObject.GetComponent<ObjectAnimation>().UpdatePlayInRun(isPlay);
-            isPlayText.text = GlobalMethods.SetBoolValue(isPlay);
+            if (animationObjDropdown.index != -1)
+            {
+                isPlay = !isPlay;
+                animObject.GetComponent<ObjectAnimation>().UpdatePlayInRun(isPlay);
+                isPlayText.text = GlobalMethods.SetBoolValue(isPlay);
+            }
         });
     }
 }
