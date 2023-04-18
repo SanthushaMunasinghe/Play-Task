@@ -3,13 +3,11 @@
     <ui:VisualElement name="root" style="width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0); justify-content: flex-start;">
         <ui:VisualElement name="topbar" style="background-color: rgb(44, 44, 44); width: 100%; height: 5%; align-items: center; justify-content: space-between; flex-direction: row; padding-bottom: 0;">
             <ui:VisualElement name="new-toolbar" style="width: auto; height: 80%; margin-left: 20px; justify-content: space-between; align-items: flex-end; flex-direction: row; margin-right: 20px;">
-                <ui:Button text="New Project" display-tooltip-when-elided="true" name="new-project-btn" class="toolbar-btn" />
                 <ui:Button text="New Object" display-tooltip-when-elided="true" name="new-object-btn" class="toolbar-btn" />
                 <ui:Button text="New Level" display-tooltip-when-elided="true" name="new-level-btn" class="toolbar-btn" />
             </ui:VisualElement>
             <ui:VisualElement name="project-toolbar" style="width: auto; height: 80%; margin-left: 20px; justify-content: space-between; align-items: flex-end; flex-direction: row; margin-right: 20px;">
                 <ui:Button text="Save" display-tooltip-when-elided="true" name="save-btn" class="toolbar-btn" />
-                <ui:Button text="Submit" display-tooltip-when-elided="true" name="submit-btn" class="toolbar-btn" />
                 <ui:Button text="Exit" display-tooltip-when-elided="true" name="exit-btn" class="toolbar-btn" />
             </ui:VisualElement>
         </ui:VisualElement>
@@ -591,7 +589,7 @@
                     <ui:VisualElement name="tab-body" class="box-primary-body">
                         <ui:ScrollView mode="VerticalAndHorizontal" class="scroll-list-primary">
                             <ui:VisualElement name="level-box-list" style="width: auto; height: auto; flex-direction: row; flex-wrap: nowrap; display: flex;">
-                                <ui:VisualElement name="level-box" class="level-box" style="display: flex;">
+                                <ui:VisualElement name="level-box" class="level-box" style="display: none;">
                                     <ui:VisualElement name="level-label" class="level-box-label">
                                         <ui:Label text="Level" display-tooltip-when-elided="true" class="level-box-label-text" />
                                         <ui:VisualElement name="level-options-box" class="action-options-box">

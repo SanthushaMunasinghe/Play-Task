@@ -10,13 +10,11 @@ public class ToolBar : EditorWindow
     [SerializeField] private LevelSettings levelSettings;
 
     //New Toolbar UI Elements
-    private Button newProjectBtn;
     private Button newObjectBtn;
     private Button newLeveltBtn;
 
     void Start()
     {
-        newProjectBtn = newToolbar.Q<Button>("new-project-btn");
         newObjectBtn = newToolbar.Q<Button>("new-object-btn");
         newLeveltBtn = newToolbar.Q<Button>("new-level-btn");
 
@@ -25,11 +23,6 @@ public class ToolBar : EditorWindow
 
     private void RegisterEvents()
     {
-        newProjectBtn.RegisterCallback<MouseUpEvent>(evt =>
-        {
-            Debug.Log("New Projects");
-        });
-
         newObjectBtn.RegisterCallback<MouseUpEvent>(evt =>
         {
             if (levelSettings.selectedLevelObj && levelSettings.selectedLevelObj.GetComponent<Level>().isCreated)

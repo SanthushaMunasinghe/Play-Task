@@ -98,6 +98,7 @@ public class LevelSettings : MonoBehaviour
         templateTypeDropdown.choices = templateTypes;
         currentTemplateType = templateTypes[0];
         templateTypeDropdown.value = currentTemplateType;
+        questionTextField.value = "";
 
         //Group Box List
         featureGroups.Add(quizGroup);

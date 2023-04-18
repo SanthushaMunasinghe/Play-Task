@@ -38,6 +38,7 @@ public class ImageComponent : MonoBehaviour
 
         RegisterEvents();
 
+        colorField.Clear();
         foreach (Color color in colorList)
         {
             AddColors(color);
