@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StudentDashboardResults.unity
     guid: b13868885366f7c4f8f46dbe618c6738
+  - enabled: 1
+    path: Assets/Scenes/Editor.unity
+    guid: 650a859c84505bf40841feb47920a5c5
   m_configObjects: {}

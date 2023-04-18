@@ -267,10 +267,10 @@
 
 .editor-list-item-selected {
     background-color: rgb(44, 44, 44);
-    border-left-color: rgba(255, 255, 255, 255);
-    border-right-color: rgba(255, 255, 255, 255);
-    border-top-color: rgba(255, 255, 255, 255);
-    border-bottom-color: rgba(255, 255, 255, 255);
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
     border-left-width: 2px;
     border-right-width: 2px;
     border-top-width: 2px;
@@ -717,4 +717,37 @@
 
 .editor-tab-submit-btn:active {
     background-color: rgb(0, 0, 0);
+}
+
+.subtopic-btn {
+    background-color: rgb(255, 82, 82);
+    height: 100%;
+    font-size: 30px;
+    -unity-font-style: bold;
+    width: 150px;
+    color: rgb(255, 255, 255);
+}
+
+.subtopic-btn:hover {
+    background-color: rgba(44, 44, 44, 255);
+    border-left-color: rgba(255, 255, 255, 255);
+    border-right-color: rgba(255, 255, 255, 255);
+    border-top-color: rgba(255, 255, 255, 255);
+    border-bottom-color: rgba(255, 255, 255, 255);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+}
+
+.subtopic-btn:active {
+    background-color: rgba(0, 0, 0, 255);
+    border-left-color: rgba(255, 255, 255, 255);
+    border-right-color: rgba(255, 255, 255, 255);
+    border-top-color: rgba(255, 255, 255, 255);
+    border-bottom-color: rgba(255, 255, 255, 255);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
 }

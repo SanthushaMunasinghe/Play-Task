@@ -18,11 +18,20 @@ public class TeacherSubtopic : TeacherDashboardSubjects
     private Label subtopicDescriptionLabel;
     private ScrollView instructionList;
 
+    //Buttons
+    private Button newProjectBtn;
+    private Button editProjectBtn;
+    private Button submitProjectBtn;
+
     void Start()
     {
         subtopicLabel = subtopicBox.Q<VisualElement>("details-label").Q<Label>();
         subtopicTitleLabel = subtopicBox.Q<VisualElement>("subtopic-detail-title").Q<Label>();
         subtopicDescriptionLabel = subtopicBox.Q<VisualElement>("subtopic-description").Q<Label>();
+
+        newProjectBtn = subtopicBox.Q<VisualElement>("subtopics-buttons").Q<Button>("new-btn");
+        editProjectBtn = subtopicBox.Q<VisualElement>("subtopics-buttons").Q<Button>("edit-btn");
+        submitProjectBtn = subtopicBox.Q<VisualElement>("subtopics-buttons").Q<Button>("submit-btn");
 
         var nextBtn = subtopicBox.Q<Button>("subtopic-next-btn");
         var backBtn = subtopicBox.Q<Button>("subtopic-back-btn");
@@ -90,6 +99,7 @@ public class TeacherSubtopic : TeacherDashboardSubjects
     private void SelectInstructions()
     {
         instructionList.Clear();
+        ProjectButtons(currentSubtopicList[subtopicIndex].SbtID);
 
         if (currentSubtopicList.Count != 0)
         {
@@ -118,5 +128,42 @@ public class TeacherSubtopic : TeacherDashboardSubjects
         newItem.Add(instructionData);
 
         list.Add(newItem);
+    }
+
+    private void ProjectButtons(string subTID)
+    {
+        newProjectBtn.RegisterCallback<MouseUpEvent>(evt => {
+            // Define headers, and payload for the request
+            Dictionary<string, string> headers = new Dictionary<string, string>();
+            headers.Add("Authorization", "Bearer <token>");
+            string initialGameData = "";
+            bool initialGameState = false;
+            string payload = $"{{\"teacher\":\"{GlobalUser.userData.UserID}\",\"subtopic\":\"{subTID}\",\"state\":\"{initialGameState}\",\"gamedata\":\"{initialGameData}\"}}";
+
+            SendRequests sendPostRequest = GetComponent<SendRequests>();
+
+            Label label = new Label();
+
+            sendPostRequest.SendPostRequest(GlobalData.url + "/game", GlobalData.methodPost, headers, payload, label, (responseJson) => {
+                GlobalData.projectID = responseJson["gameId"].Value<string>();
+                GlobalData.projectData = responseJson["gamedata"].Value<string>();
+                GlobalMethods.LoadScene("Editor");
+            });
+        });
+
+        editProjectBtn.RegisterCallback<MouseUpEvent>(evt =>
+        {
+            // Define headers for the classroom request
+            Dictionary<string, string> headers = new Dictionary<string, string>();
+            headers.Add("Authorization", "Bearer <token>");
+
+            Label label = new Label();
+
+            sendRequests.SendGetRequest($"{GlobalData.url}/getgame/{GlobalUser.userData.UserID}/{subTID}", headers, label, (responseJson) => {
+                GlobalData.projectID = responseJson["gameId"].Value<string>();
+                GlobalData.projectData = responseJson["gamedata"].Value<string>();
+                GlobalMethods.LoadScene("Editor");
+            });
+        });
     }
 }

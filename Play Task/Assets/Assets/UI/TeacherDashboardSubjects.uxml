@@ -71,9 +71,9 @@
                         </ui:ScrollView>
                     </ui:VisualElement>
                     <ui:VisualElement name="subtopics-buttons" class="box-secondary" style="display: flex; height: 7%; justify-content: flex-end; align-items: stretch; flex-direction: row; margin-bottom: 10px; margin-top: 10px;">
-                        <ui:Button text="New" display-tooltip-when-elided="true" name="new-btn" style="background-color: rgb(255, 82, 82); height: 100%; font-size: 30px; -unity-font-style: bold; width: 150px; color: rgb(255, 255, 255);" />
-                        <ui:Button text="Edit" display-tooltip-when-elided="true" name="edit-btn" style="background-color: rgb(255, 82, 82); height: 100%; font-size: 30px; -unity-font-style: bold; width: 150px; color: rgb(255, 255, 255);" />
-                        <ui:Button text="Submit" display-tooltip-when-elided="true" name="submit-btn" style="background-color: rgb(255, 82, 82); height: 100%; font-size: 30px; -unity-font-style: bold; width: 150px; color: rgb(255, 255, 255);" />
+                        <ui:Button text="New" display-tooltip-when-elided="true" name="new-btn" class="subtopic-btn" />
+                        <ui:Button text="Edit" display-tooltip-when-elided="true" name="edit-btn" class="subtopic-btn" />
+                        <ui:Button text="Submit" display-tooltip-when-elided="true" name="submit-btn" class="subtopic-btn" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
