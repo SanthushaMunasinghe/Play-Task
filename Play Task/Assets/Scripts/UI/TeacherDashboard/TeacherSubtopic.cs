@@ -159,11 +159,17 @@ public class TeacherSubtopic : TeacherDashboardSubjects
 
             Label label = new Label();
 
-            sendRequests.SendGetRequest($"{GlobalData.url}/getgame/{GlobalUser.userData.UserID}/{subTID}", headers, label, (responseJson) => {
-                GlobalData.projectID = responseJson["gameId"].Value<string>();
+            sendRequests.SendGetRequest($"{GlobalData.url}/getgame/{GlobalUser.userData.UserID}/{subTID}", headers, label, (responseJson) =>
+            {
+                GlobalData.projectID = responseJson["id"].Value<string>();
                 GlobalData.projectData = responseJson["gamedata"].Value<string>();
                 GlobalMethods.LoadScene("Editor");
             });
+        });
+
+        submitProjectBtn.RegisterCallback<MouseUpEvent>(evt =>
+        {
+
         });
     }
 }
