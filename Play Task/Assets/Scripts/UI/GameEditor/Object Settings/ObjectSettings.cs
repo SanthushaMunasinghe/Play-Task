@@ -9,6 +9,7 @@ public class ObjectSettings : MonoBehaviour
     [SerializeField] private ImageComponent imageComponent;
     [SerializeField] private PhysicsComponent physicsComponent;
     [SerializeField] private AnimationComponent animationComponent;
+    [SerializeField] private TextComponent textComponent;
 
     public VisualElement componentList;
 
@@ -18,12 +19,14 @@ public class ObjectSettings : MonoBehaviour
     public ObjectSprite objectSprite;
     public ObjectPhysics objectPhysics;
     public ObjectAnimation objectAnimation;
+    public ObjectText objectText;
 
     //Components UI
     public VisualElement transformComponentElement;
     public VisualElement imageComponentElement;
     public VisualElement physicsComponentElement;
     public VisualElement animationComponentElement;
+    public VisualElement textComponentElement;
 
     public void AssignObjectComponents()
     {
@@ -31,6 +34,7 @@ public class ObjectSettings : MonoBehaviour
         objectSprite = selectedObject.GetComponent<ObjectSprite>();
         objectPhysics = selectedObject.GetComponent<ObjectPhysics>();
         objectAnimation = selectedObject.GetComponent<ObjectAnimation>();
+        objectText = selectedObject.GetComponent<ObjectText>();
     }
 
     public void GetElements()
@@ -39,6 +43,7 @@ public class ObjectSettings : MonoBehaviour
         imageComponentElement = componentList.Q<VisualElement>("image-component");
         physicsComponentElement = componentList.Q<VisualElement>("physics-component");
         animationComponentElement = componentList.Q<VisualElement>("animation-component");
+        textComponentElement = componentList.Q<VisualElement>("text-component");
 
         if (selectedObject != null)
         {
@@ -49,6 +54,7 @@ public class ObjectSettings : MonoBehaviour
             GetImageElements();
             GetPhysicsElements();
             GetAnimationElements();
+            GetTextElements();
         }
     }
 
@@ -106,5 +112,20 @@ public class ObjectSettings : MonoBehaviour
         animationComponent.loopLabel = animationComponent.loopElement.Q<Label>();
 
         animationComponent.Setup();
+    }
+
+    private void GetTextElements()
+    {
+        textComponent.enableTextElement = textComponentElement.Q<VisualElement>("enable-text").Q<VisualElement>("value");
+        textComponent.enableTextLabel = textComponent.enableTextElement.Q<Label>();
+        textComponent.scaleXField = textComponentElement.Q<VisualElement>("text-scale").Q<VisualElement>("x-value").Q<TextField>();
+        textComponent.scaleYField = textComponentElement.Q<VisualElement>("text-scale").Q<VisualElement>("y-value").Q<TextField>();
+        textComponent.textValueField = textComponentElement.Q<VisualElement>("text").Q<TextField>();
+        textComponent.colorField = textComponentElement.Q<VisualElement>("color-value");
+        textComponent.fontSizeField = textComponentElement.Q<VisualElement>("font-value").Q<TextField>();
+        textComponent.fontBoldElement = textComponentElement.Q<VisualElement>("text-bold").Q<VisualElement>("value");
+        textComponent.fontBoldLabel = textComponent.fontBoldElement.Q<Label>();
+
+        textComponent.Setup();
     }
 }

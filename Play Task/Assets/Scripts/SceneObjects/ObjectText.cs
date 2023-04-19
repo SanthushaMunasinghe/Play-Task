@@ -11,6 +11,12 @@ public class ObjectText : LevelObject
         SetEnableText(enableTxt);
     }
 
+    public void UpdateTextScale(float x, float y)
+    {
+        textScale = new Vector2(x, y);
+        SetTextScale(textScale);
+    }
+
     public void UpdateTextValue(string value)
     {
         textValue = value;
@@ -39,6 +45,11 @@ public class ObjectText : LevelObject
     public bool GetEnableText()
     {
         return enableTxt;
+    }
+
+    public Vector2 GetTextScale()
+    {
+        return textScale;
     }
 
     public string GetTextValue()

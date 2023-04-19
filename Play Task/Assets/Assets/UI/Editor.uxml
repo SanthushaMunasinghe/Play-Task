@@ -57,7 +57,7 @@
                         <ui:Label text="Inspector" display-tooltip-when-elided="true" style="font-size: 20px;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="tab-body" class="box-primary-body">
-                        <ui:ScrollView name="object-components" class="scroll-list-primary" style="display: flex;">
+                        <ui:ScrollView name="object-components" class="scroll-list-primary" style="display: none;">
                             <ui:VisualElement name="transform-component" class="component">
                                 <ui:VisualElement name="component-label" class="component-label">
                                     <ui:Label text="Transform" display-tooltip-when-elided="true" class="editor-label-text" />
@@ -145,6 +145,19 @@
                                             <ui:Label text="On" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
+                                    <ui:VisualElement name="text-scale" class="xy-value-item">
+                                        <ui:VisualElement name="scale-label" class="value-item-label">
+                                            <ui:Label text="Text Scale" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="x-value" class="xy-value-holder">
+                                            <ui:Label text="X: " display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="y-value" class="xy-value-holder">
+                                            <ui:Label text="Y: " display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:TextField name="x-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
                                     <ui:VisualElement name="text" class="single-value-item">
                                         <ui:VisualElement name="text-label" class="value-item-label">
                                             <ui:Label text="Text" display-tooltip-when-elided="true" class="editor-list-text" />
@@ -165,7 +178,7 @@
                                         <ui:VisualElement name="font-size-label" class="value-item-label">
                                             <ui:Label text="Font Size" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
-                                        <ui:VisualElement name="opacity-value" class="single-value-holder" style="justify-content: flex-end;">
+                                        <ui:VisualElement name="font-value" class="single-value-holder" style="justify-content: flex-end;">
                                             <ui:TextField name="x-text-field" class="x-value-input" style="-unity-text-align: upper-right;" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>

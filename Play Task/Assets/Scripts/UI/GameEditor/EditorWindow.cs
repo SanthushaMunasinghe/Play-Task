@@ -40,7 +40,7 @@ public class EditorWindow : MonoBehaviour
         projectToolbar = root.Q<VisualElement>("topbar").Q<VisualElement>("project-toolbar");
         levelListTab = root.Q<VisualElement>("levels-tab").Q<VisualElement>("tab-body");
 
-        Debug.Log(GlobalData.projectID);
-        Debug.Log(GlobalData.projectData);
+        //Debug.Log(GlobalData.projectID);
+        //Debug.Log(GlobalData.projectData);
     }
 }

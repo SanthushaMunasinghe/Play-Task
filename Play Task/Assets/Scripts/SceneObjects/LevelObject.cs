@@ -22,6 +22,7 @@ public class LevelObject : MonoBehaviour
     private GameObject spawnedTextObject;
     private TextMeshPro textComponent;
     protected bool enableTxt;
+    protected Vector2 textScale;
     protected string textValue;
     protected Color textColor;
     protected bool isBold;
@@ -56,6 +57,7 @@ public class LevelObject : MonoBehaviour
         InitialSpriteRenderer();
         InitialPhysics();
         InitialAnimation();
+        InitialText();
     }
 
     //Initial Values
@@ -70,7 +72,6 @@ public class LevelObject : MonoBehaviour
         SetPosition(position);
         SetScale(scale);
         SetRotation(rotation);
-        InitialText();
     }
 
     //Set Transform
@@ -123,7 +124,8 @@ public class LevelObject : MonoBehaviour
     private void InitialText()
     {
         enableTxt = false;
-        textValue = "";
+        textScale = new Vector2(1, 1);
+        textValue = "Text";
         textColor = Color.black;
         isBold = false;
         fontSize = 5.0f;
@@ -142,6 +144,14 @@ public class LevelObject : MonoBehaviour
         }
     }
 
+    protected void SetTextScale(Vector2 txtScale)
+    {
+        if (spawnedTextObject != null)
+        {
+            spawnedTextObject.GetComponent<RectTransform>().sizeDelta = txtScale;
+        }
+    }
+
     protected void SetTextValue(string value)
     {
         textComponent.text = value;
@@ -154,7 +164,7 @@ public class LevelObject : MonoBehaviour
     
     protected void SetBold(bool isTrue)
     {
-        if (isTrue)
+        if (isTrue && spawnedTextObject != null)
         {
             textComponent.fontStyle = FontStyles.Bold;
         }
@@ -166,7 +176,10 @@ public class LevelObject : MonoBehaviour
 
     protected void SetFontSize(float size)
     {
-        textComponent.fontSize = size;
+        if (spawnedTextObject != null)
+        {
+            textComponent.fontSize = size;
+        }
     }
 
     //Set Rigidbody
@@ -193,5 +206,13 @@ public class LevelObject : MonoBehaviour
         isLoop = false;
 
         playInRun = false;
+    }
+
+    private void Update()
+    {
+        if (spawnedTextObject != null)
+        {
+            spawnedTextObject.GetComponent<RectTransform>().position = objectTF.position;
+        }
     }
 }
