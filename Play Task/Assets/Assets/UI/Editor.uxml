@@ -57,7 +57,7 @@
                         <ui:Label text="Inspector" display-tooltip-when-elided="true" style="font-size: 20px;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="tab-body" class="box-primary-body">
-                        <ui:ScrollView name="object-components" class="scroll-list-primary" style="display: none;">
+                        <ui:ScrollView name="object-components" class="scroll-list-primary" style="display: flex;">
                             <ui:VisualElement name="transform-component" class="component">
                                 <ui:VisualElement name="component-label" class="component-label">
                                     <ui:Label text="Transform" display-tooltip-when-elided="true" class="editor-label-text" />
@@ -128,6 +128,53 @@
                                         <ui:VisualElement name="opacity-value" class="single-value-holder" style="justify-content: flex-end;">
                                             <ui:TextField name="x-text-field" class="x-value-input" style="-unity-text-align: upper-right;" />
                                             <ui:Label text="%" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement name="text-component" class="component">
+                                <ui:VisualElement name="component-label" class="component-label">
+                                    <ui:Label text="Text" display-tooltip-when-elided="true" class="editor-label-text" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="component-body" class="component-body">
+                                    <ui:VisualElement name="enable-text" class="single-value-item">
+                                        <ui:VisualElement name="enable-text-label" class="value-item-label">
+                                            <ui:Label text="Enable Text" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="value" class="single-value-holder">
+                                            <ui:Label text="On" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="text" class="single-value-item">
+                                        <ui:VisualElement name="text-label" class="value-item-label">
+                                            <ui:Label text="Text" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="text-value" class="value-holder">
+                                            <ui:TextField name="text-text-field" class="x-value-input" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="color" class="single-value-item" style="align-items: flex-start; height: 100px;">
+                                        <ui:VisualElement name="color-label" class="value-item-label" style="height: 30px;">
+                                            <ui:Label text="Color" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:ScrollView name="color-list-view" class="color-list-view">
+                                            <ui:VisualElement name="color-value" class="color-view" />
+                                        </ui:ScrollView>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="font-size" class="single-value-item">
+                                        <ui:VisualElement name="font-size-label" class="value-item-label">
+                                            <ui:Label text="Font Size" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="opacity-value" class="single-value-holder" style="justify-content: flex-end;">
+                                            <ui:TextField name="x-text-field" class="x-value-input" style="-unity-text-align: upper-right;" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="text-bold" class="single-value-item">
+                                        <ui:VisualElement name="text-bold-label" class="value-item-label">
+                                            <ui:Label text="Enable Text" display-tooltip-when-elided="true" class="editor-list-text" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="value" class="single-value-holder">
+                                            <ui:Label text="On" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
                                 </ui:VisualElement>
