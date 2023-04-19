@@ -2,17 +2,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectText : MonoBehaviour
+public class ObjectText : LevelObject
 {
-    // Start is called before the first frame update
-    void Start()
+    //Update
+    public void UpdateEnableText(bool isTrue)
     {
-        
+        enableTxt = isTrue;
+        SetEnableText(enableTxt);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateTextValue(string value)
     {
-        
+        textValue = value;
+        SetTextValue(textValue);
+    }
+
+    public void UpdateTextColor(Color col)
+    {
+        textColor = col;
+        SetTextColor(textColor);
+    }
+    
+    public void UpdateTextBold(bool IsTrue)
+    {
+        isBold = IsTrue;
+        SetBold(isBold);
+    }
+
+    public void UpdateTFontSize(float size)
+    {
+        fontSize = size;
+        SetFontSize(size);
+    }
+
+    //Get
+    public bool GetEnableText()
+    {
+        return enableTxt;
+    }
+
+    public string GetTextValue()
+    {
+        return textValue;
+    }
+
+    public Color GetTextColor()
+    {
+        return textColor;
+    }
+
+    public bool GetIsBold()
+    {
+        return isBold;
+    }
+
+    public float GetFontSize()
+    {
+        return fontSize;
     }
 }

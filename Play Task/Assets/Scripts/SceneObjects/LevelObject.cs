@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LevelObject : MonoBehaviour
 {
@@ -15,6 +16,17 @@ public class LevelObject : MonoBehaviour
     protected Sprite sprite;
     protected Color color;
     protected float opacity;
+
+    //Text
+    [SerializeField] private GameObject textObj;
+    private GameObject spawnedTextObject;
+    private TextMeshPro textComponent;
+    protected bool enableTxt;
+    protected string textValue;
+    protected Color textColor;
+    protected bool isBold;
+    protected float fontSize;
+
 
     //Physics
     protected bool freezPosX;
@@ -58,6 +70,7 @@ public class LevelObject : MonoBehaviour
         SetPosition(position);
         SetScale(scale);
         SetRotation(rotation);
+        InitialText();
     }
 
     //Set Transform
@@ -104,6 +117,56 @@ public class LevelObject : MonoBehaviour
         clr.a = alpha;
 
         objectSprite.color = clr;
+    }
+
+    //Set Text
+    private void InitialText()
+    {
+        enableTxt = false;
+        textValue = "";
+        textColor = Color.black;
+        isBold = false;
+        fontSize = 5.0f;
+    }
+
+    protected void SetEnableText(bool isTrue)
+    {
+        if (isTrue)
+        {
+            spawnedTextObject = Instantiate(textObj, transform.position, Quaternion.identity);
+            textComponent = spawnedTextObject.GetComponent<TextMeshPro>();
+        }
+        else if (spawnedTextObject != null)
+        {
+            DestroyImmediate(spawnedTextObject);
+        }
+    }
+
+    protected void SetTextValue(string value)
+    {
+        textComponent.text = value;
+    }
+    
+    protected void SetTextColor(Color col)
+    {
+        textComponent.color = col;
+    }
+    
+    protected void SetBold(bool isTrue)
+    {
+        if (isTrue)
+        {
+            textComponent.fontStyle = FontStyles.Bold;
+        }
+        else
+        {
+            textComponent.fontStyle = FontStyles.Normal;
+        }
+    }
+
+    protected void SetFontSize(float size)
+    {
+        textComponent.fontSize = size;
     }
 
     //Set Rigidbody

@@ -171,7 +171,7 @@
                                     </ui:VisualElement>
                                     <ui:VisualElement name="text-bold" class="single-value-item">
                                         <ui:VisualElement name="text-bold-label" class="value-item-label">
-                                            <ui:Label text="Enable Text" display-tooltip-when-elided="true" class="editor-list-text" />
+                                            <ui:Label text="Font Bold" display-tooltip-when-elided="true" class="editor-list-text" />
                                         </ui:VisualElement>
                                         <ui:VisualElement name="value" class="single-value-holder">
                                             <ui:Label text="On" display-tooltip-when-elided="true" class="editor-list-text" />
