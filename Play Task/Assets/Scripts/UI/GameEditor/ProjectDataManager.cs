@@ -8,7 +8,7 @@ public class ProjectDataManager : MonoBehaviour
 
     public void SaveData()
     {
-
+        Debug.Log(PrepareProjectData().Count);
     }
 
     private List<ILevelData> PrepareProjectData()

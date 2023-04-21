@@ -136,6 +136,7 @@ public class LevelObject : MonoBehaviour
         if (isTrue)
         {
             spawnedTextObject = Instantiate(textObj, transform.position, Quaternion.identity);
+            spawnedTextObject.transform.SetParent(transform.parent, false);
             textComponent = spawnedTextObject.GetComponent<TextMeshPro>();
         }
         else if (spawnedTextObject != null)
