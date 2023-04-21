@@ -1,14 +1,39 @@
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ProjectDataManager : MonoBehaviour
 {
+    [SerializeField] private SendRequests sendPostRequest;
+
     [SerializeField] private LevelListManager levelListManager;
+
+    private string gameDataString = "";
+    private string projectID = "";
+
+    void Start()
+    {
+        projectID = GlobalData.projectID;
+        gameDataString = GlobalData.projectData;
+
+        gameDataString = "Updated Data";
+    }
 
     public void SaveData()
     {
-        Debug.Log(PrepareProjectData().Count);
+        // Define headers, and payload for the request
+        Dictionary<string, string> headers = new Dictionary<string, string>();
+        headers.Add("Authorization", "Bearer <token>");
+        string payload = $"{{\"gamedata\":\"{gameDataString}\"}}";
+
+        Label label = new Label();
+
+        GlobalMethods.DisplayMessage(label, "Please Wait...");
+        sendPostRequest.SendPostPutRequest(GlobalData.url + "/updategame/" + projectID, GlobalData.methodPut, headers, payload, label, (responseJson) => {
+            Debug.Log(responseJson["success"].Value<string>());
+        });
     }
 
     private List<ILevelData> PrepareProjectData()

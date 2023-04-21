@@ -14,6 +14,7 @@ public static class GlobalData
 
     public static string url = "http://localhost:3000/api";
     public static string methodPost = "POST";
+    public static string methodPut = "PUT";
     public static string methodGet = "Get";
 }
 

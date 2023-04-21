@@ -29,7 +29,6 @@ public class SendRequests : MonoBehaviour
                 GlobalMethods.DisplayMessage(label, responseJson["message"].Value<string>(), true);
                 return;
             }
-
             callback(responseJson);
         }));
     }

@@ -734,6 +734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ea4cf52243cec4cb10e2b15674b0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sendPostRequest: {fileID: 1570118106}
   levelListManager: {fileID: 18365817}
 --- !u!4 &1426598500
 Transform:
@@ -767,6 +768,7 @@ GameObject:
   - component: {fileID: 1570118105}
   - component: {fileID: 1570118104}
   - component: {fileID: 1570118103}
+  - component: {fileID: 1570118106}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -915,6 +917,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inspector: {fileID: 1570118102}
+--- !u!114 &1570118106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570118096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 953688418cad1344bacfaec6ecb3a00f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1687097348
 GameObject:
   m_ObjectHideFlags: 0
