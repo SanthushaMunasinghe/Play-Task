@@ -7,7 +7,6 @@ using UnityEngine.Networking;
 
 public static class PostRequest
 {
-    //Post
     public static IEnumerator SendRequest(string url, string method, Dictionary<string, string> headers, string payload, Action<string, string> callback)
     {
         using (UnityWebRequest request = new UnityWebRequest(url, method))
@@ -18,8 +17,8 @@ public static class PostRequest
                 request.SetRequestHeader(header.Key, header.Value);
             }
 
-            // Set payload for POST requests
-            if (method == "POST")
+            // Set payload for POST or PUT requests
+            if (method == "POST" || method == "PUT")
             {
                 byte[] bodyRaw = Encoding.UTF8.GetBytes(payload);
                 request.uploadHandler = new UploadHandlerRaw(bodyRaw);
@@ -51,4 +50,5 @@ public static class PostRequest
             callback(responseBody, null);
         }
     }
+
 }

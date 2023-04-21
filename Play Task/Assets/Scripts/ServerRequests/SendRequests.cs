@@ -7,8 +7,8 @@ using UnityEngine.UIElements;
 
 public class SendRequests : MonoBehaviour
 {
-    //Send Post Request
-    public void SendPostRequest(string url, string method, Dictionary<string, string> headers, string payload, Label label, Action<JObject> callback)
+    //Send Post Or Put Request
+    public void SendPostPutRequest(string url, string method, Dictionary<string, string> headers, string payload, Label label, Action<JObject> callback)
     {
         StartCoroutine(PostRequest.SendRequest(url, method, headers, payload, (responseBody, error) =>
         {

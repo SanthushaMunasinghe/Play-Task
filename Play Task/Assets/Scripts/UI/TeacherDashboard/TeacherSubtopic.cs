@@ -144,7 +144,7 @@ public class TeacherSubtopic : TeacherDashboardSubjects
 
             Label label = new Label();
 
-            sendPostRequest.SendPostRequest(GlobalData.url + "/game", GlobalData.methodPost, headers, payload, label, (responseJson) => {
+            sendPostRequest.SendPostPutRequest(GlobalData.url + "/game", GlobalData.methodPost, headers, payload, label, (responseJson) => {
                 GlobalData.projectID = responseJson["gameId"].Value<string>();
                 GlobalData.projectData = responseJson["gamedata"].Value<string>();
                 GlobalMethods.LoadScene("Editor");

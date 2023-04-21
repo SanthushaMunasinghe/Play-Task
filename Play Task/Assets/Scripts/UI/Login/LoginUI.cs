@@ -60,7 +60,7 @@ public class LoginUI : MonoBehaviour
 
         if (userType == userTypes[0])
         {
-            sendPostRequest.SendPostRequest(GlobalData.url + "/teacherlogin", GlobalData.methodPost, headers, payload, label, (responseJson) => {
+            sendPostRequest.SendPostPutRequest(GlobalData.url + "/teacherlogin", GlobalData.methodPost, headers, payload, label, (responseJson) => {
                 GlobalUser.AssignUser(userType,
                     responseJson["userid"].Value<string>(),
                     responseJson["name"].Value<string>(),
