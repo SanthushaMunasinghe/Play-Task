@@ -13,16 +13,6 @@ public class LevelListManager : MonoBehaviour
     public List<GameObject> lvlObjectList = new List<GameObject>();
     public int levelsCount = 0;
 
-    void Start()
-    {
-        //CreateLevel();
-    }
-
-    void Update()
-    {
-        
-    }
-
     public void CreateLevel()
     {
         levelsCount++;
@@ -86,16 +76,4 @@ public class LevelListManager : MonoBehaviour
 
         hierarchy.SelectLevel(lvl);
     }
-}
-
-public interface IAnswerContainer
-{
-    int AnswerIndex { get; set; }
-    string AnswerTxt { get; set; }
-}
-
-public class AnswerData : IAnswerContainer
-{
-    public int AnswerIndex { get; set; }
-    public string AnswerTxt { get; set; }
 }

@@ -7,7 +7,7 @@ public class Level : MonoBehaviour
     public int levelIndex;
     public bool isCreated = false;
 
-    private GameObject templateObject;
+    public GameObject templateObject;
 
     //Template Objects
     [SerializeField] private GameObject quizTemplateObject;
