@@ -137,8 +137,7 @@ public class TeacherSubtopic : TeacherDashboardSubjects
             Dictionary<string, string> headers = new Dictionary<string, string>();
             headers.Add("Authorization", "Bearer <token>");
             string initialGameData = "";
-            bool initialGameState = false;
-            string payload = $"{{\"teacher\":\"{GlobalUser.userData.UserID}\",\"subtopic\":\"{subTID}\",\"state\":\"{initialGameState}\",\"gamedata\":\"{initialGameData}\"}}";
+            string payload = $"{{\"teacher\":\"{GlobalUser.userData.UserID}\",\"subtopic\":\"{subTID}\",\"gamedata\":\"{initialGameData}\"}}";
 
             SendRequests sendPostRequest = GetComponent<SendRequests>();
 
