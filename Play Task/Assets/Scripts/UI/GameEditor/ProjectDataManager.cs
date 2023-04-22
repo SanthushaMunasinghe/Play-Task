@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,8 +18,6 @@ public class ProjectDataManager : MonoBehaviour
     {
         projectID = GlobalData.projectID;
         gameDataString = GlobalData.projectData;
-
-        gameDataString = "Updated Data";
     }
 
     public void SaveData()
@@ -26,14 +25,23 @@ public class ProjectDataManager : MonoBehaviour
         // Define headers, and payload for the request
         Dictionary<string, string> headers = new Dictionary<string, string>();
         headers.Add("Authorization", "Bearer <token>");
-        string payload = $"{{\"gamedata\":\"{gameDataString}\"}}";
+        gameDataString = CreateGameDataString();
+        string payload = $"{{\"gamedata\":{JsonConvert.SerializeObject(gameDataString)}}}";
 
         Label label = new Label();
 
         GlobalMethods.DisplayMessage(label, "Please Wait...");
-        sendPostRequest.SendPostPutRequest(GlobalData.url + "/updategame/" + projectID, GlobalData.methodPut, headers, payload, label, (responseJson) => {
+        sendPostRequest.SendPostPutRequest(GlobalData.url + "/updategame/" + projectID, GlobalData.methodPut, headers, payload, label, (responseJson) =>
+        {
             Debug.Log(responseJson["success"].Value<string>());
         });
+    }
+
+    private string CreateGameDataString()
+    {
+        List<ILevelData> projDataList = PrepareProjectData();
+        string json = JsonConvert.SerializeObject(projDataList, Formatting.Indented);
+        return json;
     }
 
     private List<ILevelData> PrepareProjectData()
@@ -79,7 +87,7 @@ public class ProjectDataManager : MonoBehaviour
             }
 
             levelData.TemplateObjects = templateObjs;
-            
+
             List<ILevelObjectData> levelObjs = new List<ILevelObjectData>();
 
             foreach (GameObject tempObj in lvl.levelObjectList)
@@ -87,7 +95,7 @@ public class ProjectDataManager : MonoBehaviour
                 levelObjs.Add(NewLevelObject(tempObj));
             }
 
-            levelData.TemplateObjects = levelObjs;
+            levelData.LevelObjects = levelObjs;
         }
         else if (levelData.FeatureType == "Select")
         {
@@ -113,7 +121,7 @@ public class ProjectDataManager : MonoBehaviour
                 levelObjs.Add(NewLevelObject(tempObj));
             }
 
-            levelData.TemplateObjects = levelObjs;
+            levelData.LevelObjects = levelObjs;
         }
         else
         {
@@ -130,7 +138,7 @@ public class ProjectDataManager : MonoBehaviour
                 levelObjs.Add(NewLevelObject(tempObj));
             }
 
-            levelData.TemplateObjects = levelObjs;
+            levelData.LevelObjects = levelObjs;
         }
 
         //Get Conditions
@@ -176,22 +184,25 @@ public class ProjectDataManager : MonoBehaviour
 
         //Get Transform Data
         ObjectTransform objectTransform = levelObject.GetComponent<ObjectTransform>();
-        newLvlObj.Position = objectTransform.GetPosition();
-        newLvlObj.Scale = objectTransform.GetScale();
+        newLvlObj.PositionX = objectTransform.GetPosition().x;
+        newLvlObj.PositionY = objectTransform.GetPosition().y;
+        newLvlObj.ScaleX = objectTransform.GetScale().x;
+        newLvlObj.ScaleY = objectTransform.GetScale().y;
         newLvlObj.Rotation = objectTransform.GetRotation();
 
         //Get Image Data
         ObjectSprite objectSprite = levelObject.GetComponent<ObjectSprite>();
         newLvlObj.Sprite = objectSprite.GetSprite().name;
-        newLvlObj.ImageColor = objectSprite.GetColor();
+        newLvlObj.ImageColor = ColorUtility.ToHtmlStringRGBA(objectSprite.GetColor());
         newLvlObj.Opacity = objectSprite.GetOpacity();
 
         //Get Text Data
         ObjectText objectText = levelObject.GetComponent<ObjectText>();
         newLvlObj.EnableTxt = objectText.GetEnableText();
-        newLvlObj.TextScale = objectText.GetTextScale();
+        newLvlObj.TextScaleX = objectText.GetTextScale().x;
+        newLvlObj.TextScaleY = objectText.GetTextScale().y;
         newLvlObj.TextValue = objectText.GetTextValue();
-        newLvlObj.TextColor = objectText.GetTextColor();
+        newLvlObj.TextColor = ColorUtility.ToHtmlStringRGBA(objectText.GetTextColor());
         newLvlObj.IsBold = objectText.GetIsBold();
         newLvlObj.FontSize = objectText.GetFontSize();
 
@@ -205,14 +216,17 @@ public class ProjectDataManager : MonoBehaviour
 
         newLvlObj.PhysicsType = objectPhysics.GetPhysicsType();
         newLvlObj.Duration = objectPhysics.GetDurationInRun();
-        newLvlObj.ForceVector = objectPhysics.GetForceVector();
+        newLvlObj.ForceVectorX = objectPhysics.GetForceVector().x;
+        newLvlObj.ForceVectorY = objectPhysics.GetForceVector().y;
 
         //Get Animation Data
         ObjectAnimation objectAnimation = levelObject.GetComponent<ObjectAnimation>();
         newLvlObj.AnimationType = objectAnimation.GetAnimationType();
         newLvlObj.Duration = objectAnimation.GetDuration();
-        newLvlObj.StartVec = objectAnimation.GetStartVector();
-        newLvlObj.EndVec = objectAnimation.GetEndVector();
+        newLvlObj.StartVecX = objectAnimation.GetStartVector().x;
+        newLvlObj.StartVecY = objectAnimation.GetStartVector().y;
+        newLvlObj.EndVecX = objectAnimation.GetEndVector().x;
+        newLvlObj.EndVecY = objectAnimation.GetEndVector().y;
         newLvlObj.IsPlay = objectAnimation.GetIsPlay();
         newLvlObj.IsLoop = objectAnimation.GetIsLoop();
 
@@ -332,20 +346,23 @@ public interface ILevelObject
     string ObjectName { get; set; }
 
     //Transform
-    Vector2 Position { get; set; }
-    Vector2 Scale { get; set; }
+    float PositionX { get; set; }
+    float PositionY { get; set; }
+    float ScaleX { get; set; }
+    float ScaleY { get; set; }
     float Rotation { get; set; }
 
     //Image
     string Sprite { get; set; }
-    Color ImageColor { get; set; }
+    string ImageColor { get; set; }
     float Opacity { get; set; }
 
     //Text
     bool EnableTxt { get; set; }
-    Vector2 TextScale { get; set; }
+    float TextScaleX { get; set; }
+    float TextScaleY { get; set; }
     string TextValue { get; set; }
-    Color TextColor { get; set; }
+    string TextColor { get; set; }
     bool IsBold { get; set; }
     float FontSize { get; set; }
 
@@ -359,13 +376,16 @@ public interface ILevelObject
     //Runtime Physics
     string PhysicsType { get; set; }
     float DurationInRun { get; set; }
-    Vector2 ForceVector { get; set; }
+    float ForceVectorX { get; set; }
+    float ForceVectorY { get; set; }
 
     //Animation
     string AnimationType { get; set; }
     float Duration { get; set; }
-    Vector2 StartVec { get; set; }
-    Vector2 EndVec { get; set; }
+    float StartVecX { get; set; }
+    float StartVecY { get; set; }
+    float EndVecX { get; set; }
+    float EndVecY { get; set; }
     bool IsPlay { get; set; }
     bool IsLoop { get; set; }
 
@@ -377,18 +397,21 @@ public class ILevelObjectData : ILevelObject
 {
     public string ObjectName { get; set; }
 
-    public Vector2 Position { get; set; }
-    public Vector2 Scale { get; set; }
+    public float PositionX { get; set; }
+    public float PositionY { get; set; }
+    public float ScaleX { get; set; }
+    public float ScaleY { get; set; }
     public float Rotation { get; set; }
 
     public string Sprite { get; set; }
-    public Color ImageColor { get; set; }
+    public string ImageColor { get; set; }
     public float Opacity { get; set; }
 
     public bool EnableTxt { get; set; }
-    public Vector2 TextScale { get; set; }
+    public float TextScaleX { get; set; }
+    public float TextScaleY { get; set; }
     public string TextValue { get; set; }
-    public Color TextColor { get; set; }
+    public string TextColor { get; set; }
     public bool IsBold { get; set; }
     public float FontSize { get; set; }
 
@@ -400,12 +423,15 @@ public class ILevelObjectData : ILevelObject
 
     public string PhysicsType { get; set; }
     public float DurationInRun { get; set; }
-    public Vector2 ForceVector { get; set; }
+    public float ForceVectorX { get; set; }
+    public float ForceVectorY { get; set; }
 
     public string AnimationType { get; set; }
     public float Duration { get; set; }
-    public Vector2 StartVec { get; set; }
-    public Vector2 EndVec { get; set; }
+    public float StartVecX { get; set; }
+    public float StartVecY { get; set; }
+    public float EndVecX { get; set; }
+    public float EndVecY { get; set; }
     public bool IsPlay { get; set; }
     public bool IsLoop { get; set; }
 
