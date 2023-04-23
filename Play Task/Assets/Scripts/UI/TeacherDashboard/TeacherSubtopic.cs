@@ -21,6 +21,7 @@ public class TeacherSubtopic : TeacherDashboardSubjects
     //Buttons
     private Button newProjectBtn;
     private Button editProjectBtn;
+    private Button testProjectBtn;
     private Button submitProjectBtn;
 
     void Start()
@@ -31,6 +32,7 @@ public class TeacherSubtopic : TeacherDashboardSubjects
 
         newProjectBtn = subtopicBox.Q<VisualElement>("subtopics-buttons").Q<Button>("new-btn");
         editProjectBtn = subtopicBox.Q<VisualElement>("subtopics-buttons").Q<Button>("edit-btn");
+        testProjectBtn = subtopicBox.Q<VisualElement>("subtopics-buttons").Q<Button>("test-btn");
         submitProjectBtn = subtopicBox.Q<VisualElement>("subtopics-buttons").Q<Button>("submit-btn");
 
         var nextBtn = subtopicBox.Q<Button>("subtopic-next-btn");
@@ -163,6 +165,23 @@ public class TeacherSubtopic : TeacherDashboardSubjects
                 GlobalData.projectID = responseJson["id"].Value<string>();
                 GlobalData.projectData = responseJson["gamedata"].Value<string>();
                 GlobalMethods.LoadScene("Editor");
+            });
+        });
+        
+        testProjectBtn.RegisterCallback<MouseUpEvent>(evt =>
+        {
+            // Define headers for the classroom request
+            Dictionary<string, string> headers = new Dictionary<string, string>();
+            headers.Add("Authorization", "Bearer <token>");
+
+            Label label = new Label();
+
+            sendRequests.SendGetRequest($"{GlobalData.url}/getgame/{GlobalUser.userData.UserID}/{subTID}", headers, label, (responseJson) =>
+            {
+                GlobalData.projectID = responseJson["id"].Value<string>();
+                GlobalData.projectData = responseJson["gamedata"].Value<string>();
+                GlobalData.gameMode = "Test";
+                GlobalMethods.LoadScene("Player");
             });
         });
 

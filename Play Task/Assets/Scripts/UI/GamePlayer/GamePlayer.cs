@@ -23,8 +23,5 @@ public class GamePlayer : MonoBehaviour
         gameDisplay = root.Q<VisualElement>("game-display");
         infoTab = root.Q<VisualElement>("info-section");
         gameToolbar = root.Q<VisualElement>("topbar").Q<VisualElement>("project-toolbar");
-
-        //Debug.Log(GlobalData.projectID);
-        //Debug.Log(GlobalData.projectData);
     }
 }

@@ -8,6 +8,9 @@ public class GameDisplay : GamePlayer
     [SerializeField] private Camera displayCamera;
     [SerializeField] private SpriteRenderer boundary;
 
+    //UI Elements
+    public Label levelElementLabel;
+
     void Start()
     {
         gameDisplay.RegisterCallback<GeometryChangedEvent>(evt =>
@@ -30,5 +33,10 @@ public class GameDisplay : GamePlayer
                 displayCamera.orthographicSize = boundary.bounds.size.y / 2 * differenceInSize;
             }
         });
+    }
+
+    private void GetElements()
+    {
+        levelElementLabel = gameDisplay.Q<VisualElement>("LevelElement").Q<Label>();
     }
 }

@@ -73,6 +73,7 @@
                     <ui:VisualElement name="subtopics-buttons" class="box-secondary" style="display: flex; height: 7%; justify-content: flex-end; align-items: stretch; flex-direction: row; margin-bottom: 10px; margin-top: 10px;">
                         <ui:Button text="New" display-tooltip-when-elided="true" name="new-btn" class="subtopic-btn" />
                         <ui:Button text="Edit" display-tooltip-when-elided="true" name="edit-btn" class="subtopic-btn" />
+                        <ui:Button text="Test" display-tooltip-when-elided="true" name="test-btn" class="subtopic-btn" />
                         <ui:Button text="Submit" display-tooltip-when-elided="true" name="submit-btn" class="subtopic-btn" />
                     </ui:VisualElement>
                 </ui:VisualElement>
