@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class GameDataHandler : MonoBehaviour
 {
-    void Start()
+    public List<ILevelData> currentLevels;
+
+    private string dummyData;
+
+    public void GetGameData()
     {
-        List<ILevelData> projectDataList = JsonConvert.DeserializeObject<List<ILevelData>>(GlobalData.projectData);
+        currentLevels = JsonConvert.DeserializeObject<List<ILevelData>>(GlobalData.projectData);
     }
 }

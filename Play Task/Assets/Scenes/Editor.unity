@@ -227,7 +227,7 @@ MonoBehaviour:
   - 4
   answerTypeList:
   - Correct
-  - Incdorrect
+  - Incorrect
   answerCount: 0
 --- !u!114 &18365820
 MonoBehaviour:

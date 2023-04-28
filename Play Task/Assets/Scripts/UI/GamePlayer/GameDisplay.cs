@@ -35,8 +35,13 @@ public class GameDisplay : GamePlayer
         });
     }
 
-    private void GetElements()
+    public void GetElements()
     {
         levelElementLabel = gameDisplay.Q<VisualElement>("LevelElement").Q<Label>();
+    }
+
+    public void UpdateLevelText(int txt, int count)
+    {
+        levelElementLabel.text = "Level " + (txt + 1).ToString() + "/" + count;
     }
 }
