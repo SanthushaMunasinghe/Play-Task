@@ -193,7 +193,7 @@ public class ProjectDataManager : MonoBehaviour
         //Get Image Data
         ObjectSprite objectSprite = levelObject.GetComponent<ObjectSprite>();
         newLvlObj.Sprite = objectSprite.GetSprite().name;
-        newLvlObj.ImageColor = ColorUtility.ToHtmlStringRGBA(objectSprite.GetColor());
+        newLvlObj.ImageColor = "#" + ColorUtility.ToHtmlStringRGBA(objectSprite.GetColor());
         newLvlObj.Opacity = objectSprite.GetOpacity();
 
         //Get Text Data
@@ -202,7 +202,7 @@ public class ProjectDataManager : MonoBehaviour
         newLvlObj.TextScaleX = objectText.GetTextScale().x;
         newLvlObj.TextScaleY = objectText.GetTextScale().y;
         newLvlObj.TextValue = objectText.GetTextValue();
-        newLvlObj.TextColor = ColorUtility.ToHtmlStringRGBA(objectText.GetTextColor());
+        newLvlObj.TextColor = "#" + ColorUtility.ToHtmlStringRGBA(objectText.GetTextColor());
         newLvlObj.IsBold = objectText.GetIsBold();
         newLvlObj.FontSize = objectText.GetFontSize();
 

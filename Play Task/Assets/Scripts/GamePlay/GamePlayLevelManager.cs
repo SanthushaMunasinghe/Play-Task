@@ -9,7 +9,11 @@ public class GamePlayLevelManager : MonoBehaviour
     public GameDisplay gameDisplay;
     public GameInfoTab gameInfoTab;
 
+    public List<Sprite> assetSpritesList = new List<Sprite>();
+
     [SerializeField] private GameObject lvlGameObject;
+    public GameObject gamePlayLvlObjPrefab;
+    public GameObject gamePlayTextObject;
 
     //Running
     public List<GameObject> generatedLevelObjs = new List<GameObject>();

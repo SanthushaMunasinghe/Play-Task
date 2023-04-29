@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GamePlayLevelObject : MonoBehaviour
 {
+    public ILevelObjectData levelObjectData;
+
     void Start()
     {
         
