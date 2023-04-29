@@ -137,9 +137,36 @@ public class GamePlayLevel : MonoBehaviour
 
             textComponent.fontSize = lvlObjData.FontSize;
         }
-        
+
 
         //Set Physics
+        Rigidbody2D rbComponent = lvlObjClone.GetComponent<Rigidbody2D>();
 
+        PolygonCollider2D objCollider = lvlObjClone.AddComponent<PolygonCollider2D>();
+
+        if (lvlObjData.FreezPosX)
+        {
+            rbComponent.constraints |= RigidbodyConstraints2D.FreezePositionX;
+        }
+        
+        if (lvlObjData.FreezPosY)
+        {
+            rbComponent.constraints |= RigidbodyConstraints2D.FreezePositionY;
+        }
+
+        if (lvlObjData.FreezRot)
+        {
+            rbComponent.constraints |= RigidbodyConstraints2D.FreezeRotation;
+        }
+
+        if (lvlObjData.Collision)
+        {
+            objCollider.isTrigger = false;
+        }
+
+        if (lvlObjData.Gravity)
+        {
+            rbComponent.gravityScale = 1;
+        }
     }
 }
