@@ -40,8 +40,15 @@ public class AnimationComponent : MonoBehaviour
 
         //Initial Values
         //Set Default Type
-        animTypeValue = animationTypes[0];
-        objectSettings.objectAnimation.UpdateType(animTypeValue);
+        if (objectSettings.objectAnimation.GetAnimationType() == "")
+        {
+            animTypeValue = animationTypes[0];
+            objectSettings.objectAnimation.UpdateType(animTypeValue);
+        }
+        else
+        {
+            animTypeValue = objectSettings.objectAnimation.GetAnimationType();
+        }
 
         durationValue = objectSettings.objectAnimation.GetDuration();
         startX = objectSettings.objectAnimation.GetStartVector().x;
@@ -72,7 +79,11 @@ public class AnimationComponent : MonoBehaviour
 
             animTypeValue = selectedValue;
             objectSettings.objectAnimation.UpdateType(animTypeValue);
-            ResetValues();
+
+            if (animTypeValue == animationTypes[0])
+            {
+                ResetValues();
+            }
         });
 
         durationField.RegisterCallback<BlurEvent>(evt =>

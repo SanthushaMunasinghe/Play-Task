@@ -200,6 +200,7 @@ public class LevelObject : MonoBehaviour
     //Set Animation
     private void InitialAnimation()
     {
+        animationType = "";
         duration = 0;
         startVec = objectTF.position;
         endVec = objectTF.position;

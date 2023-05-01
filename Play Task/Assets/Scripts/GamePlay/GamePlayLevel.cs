@@ -170,5 +170,15 @@ public class GamePlayLevel : MonoBehaviour
         }
 
         //Set Animation
+        AnimationPlayer animPlayer = lvlObjClone.GetComponent<AnimationPlayer>();
+
+        animPlayer.animationType = lvlObjData.AnimationType;
+        animPlayer.duration = lvlObjData.Duration;
+        animPlayer.startVecX = lvlObjData.StartVecX;
+        animPlayer.startVecY = lvlObjData.StartVecY;
+        animPlayer.endVecX = lvlObjData.EndVecX;
+        animPlayer.endVecY = lvlObjData.EndVecY;
+        animPlayer.isPlay = lvlObjData.IsPlay;
+        animPlayer.isLoop = lvlObjData.IsLoop;
     }
 }
