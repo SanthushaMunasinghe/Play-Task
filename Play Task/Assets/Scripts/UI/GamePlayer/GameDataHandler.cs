@@ -7,8 +7,6 @@ public class GameDataHandler : MonoBehaviour
 {
     public List<ILevelData> currentLevels;
 
-    private string dummyData;
-
     public void GetGameData()
     {
         currentLevels = JsonConvert.DeserializeObject<List<ILevelData>>(GlobalData.projectData);
