@@ -30,12 +30,12 @@ public class GamePlayLevel : MonoBehaviour
         //Create Template
         if (levelType == "Quiz")
         {
-            gamePlayLevelManager.gameInfoTab.UpdateInfo(questionTxt, thisLevelData.AnswerData, thisLevelData.AnswerValues, true);
+            gamePlayLevelManager.gameInfoTab.UpdateQuestion(questionTxt);
             CreateQuizLevel();
         }
         else
         {
-            gamePlayLevelManager.gameInfoTab.UpdateInfo(questionTxt, null, null, false);
+            gamePlayLevelManager.gameInfoTab.UpdateQuestion(questionTxt);
 
             if (featureType == "Drag and Drop")
             {

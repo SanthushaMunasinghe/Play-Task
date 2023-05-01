@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class QuizGamePlay : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //Initial
+    public GameInfoTab gameInfoTab;
+
+    public List<AnswerData> answerData;
+    public List<AnswerData> answerValues;
+
     void Start()
     {
-        
+        for (int i = 0; i < answerData.Count; i++)
+        {
+            gameInfoTab.UpdateAnswerList(answerData[i].AnswerIndex, answerData[i].AnswerTxt, answerValues[i].AnswerTxt);
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         

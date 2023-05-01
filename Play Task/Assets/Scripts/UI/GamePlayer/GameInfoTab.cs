@@ -15,21 +15,15 @@ public class GameInfoTab : GamePlayer
         answerElement = infoTab.Q<VisualElement>("answer-element");
     }
 
-    public void UpdateInfo(string qTxt, List<AnswerData> answerData, List<AnswerData> answerValues, bool isAnswers)
+    public void UpdateQuestion(string qTxt)
     {
         questionLabel.text = qTxt;
-
-        if (isAnswers)
-        {
-            for (int i = 0; i < answerData.Count; i++)
-            {
-                CreateAnswerList(answerData[i].AnswerIndex, answerData[i].AnswerTxt, answerValues[i].AnswerTxt);
-            }
-        }
     }
 
-    private void CreateAnswerList(int aIndex, string text, string value)
+    public void UpdateAnswerList(int aIndex, string text, string value)
     {
+        answerElement.Clear();
+
         //CREATE
         VisualElement answerItem = new VisualElement();
         Label answerTxt = new Label();
