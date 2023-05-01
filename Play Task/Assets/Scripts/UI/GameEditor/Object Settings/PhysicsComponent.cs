@@ -40,7 +40,7 @@ public class PhysicsComponent : MonoBehaviour
         //Display Initial Values
         axisLabelX.text = "X: " + GlobalMethods.SetBoolValue(!axisX);
         axisLabelY.text = "Y: " + GlobalMethods.SetBoolValue(!axisY);
-        rotationLabel.text = GlobalMethods.SetBoolValue(rot);
+        rotationLabel.text = GlobalMethods.SetBoolValue(!rot);
         collisionLabel.text = GlobalMethods.SetBoolValue(col);
         gravityLabel.text = GlobalMethods.SetBoolValue(grav);
 
@@ -67,7 +67,7 @@ public class PhysicsComponent : MonoBehaviour
         {
             rot = GlobalMethods.SwitchBool(rot);
             objectSettings.objectPhysics.UpdatePhysicsRotation(rot);
-            rotationLabel.text = GlobalMethods.SetBoolValue(rot);
+            rotationLabel.text = GlobalMethods.SetBoolValue(!rot);
         });
 
         collisionElement.RegisterCallback<MouseUpEvent>(evt =>

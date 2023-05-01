@@ -105,8 +105,8 @@ public class GamePlayLevel : MonoBehaviour
         Color imgColor;
         if (ColorUtility.TryParseHtmlString(lvlObjData.ImageColor, out imgColor))
         {
+            imgColor.a = lvlObjData.Opacity;
             lvlObjClone.GetComponent<SpriteRenderer>().color = imgColor;
-            Debug.Log(imgColor);
         }
 
         //Set Text
@@ -142,7 +142,7 @@ public class GamePlayLevel : MonoBehaviour
         //Set Physics
         Rigidbody2D rbComponent = lvlObjClone.GetComponent<Rigidbody2D>();
 
-        PolygonCollider2D objCollider = lvlObjClone.AddComponent<PolygonCollider2D>();
+        lvlObjClone.AddComponent<PolygonCollider2D>();
 
         if (lvlObjData.FreezPosX)
         {
@@ -159,9 +159,9 @@ public class GamePlayLevel : MonoBehaviour
             rbComponent.constraints |= RigidbodyConstraints2D.FreezeRotation;
         }
 
-        if (lvlObjData.Collision)
+        if (!lvlObjData.Collision)
         {
-            objCollider.isTrigger = false;
+            lvlObjClone.GetComponent<PolygonCollider2D>().isTrigger = true;
         }
 
         if (lvlObjData.Gravity)
