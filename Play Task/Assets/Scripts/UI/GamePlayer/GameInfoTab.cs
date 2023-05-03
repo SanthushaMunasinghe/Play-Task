@@ -20,7 +20,7 @@ public class GameInfoTab : GamePlayer
         questionLabel.text = qTxt;
     }
 
-    public void UpdateAnswerList(int aIndex, string text, string value)
+    public void UpdateAnswerList(int aIndex, string text, string value, GamePlayLevel gpLvl)
     {
         //CREATE
         VisualElement answerItem = new VisualElement();
@@ -35,7 +35,7 @@ public class GameInfoTab : GamePlayer
 
         //ADD EVENTS
         answerItem.RegisterCallback<MouseUpEvent>(evt => {
-            //Return Value
+            gpLvl.ConditionTrigger(aIndex - 1);
         });
 
         //ADD ELEMENTs

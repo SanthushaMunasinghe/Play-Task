@@ -12,16 +12,37 @@ public class GamePlayLevelObject : MonoBehaviour
     public float forceVectorX;
     public float forceVectorY;
 
+    private float currentDuration = 0;
+    bool isImpulse = false;
+
     //Animation Trigger Data
     public bool playInRun;
 
-    void Start()
+    public void SetPhysicsTrigger()
     {
-        
+        if (physicsType == "Force")
+        {
+            currentDuration = durationInRun;
+        }
+        else if (physicsType == "Impulse")
+        {
+            isImpulse = true;
+        }
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        
+        if (currentDuration >= 0)
+        {
+            Vector2 forceVec = new Vector2(forceVectorX, forceVectorY);
+            gameObject.GetComponent<Rigidbody2D>().AddForce(forceVec);
+            currentDuration -= Time.deltaTime;
+        }
+
+        if (isImpulse)
+        {
+            Vector2 forceVec = new Vector2(forceVectorX, forceVectorY);
+            gameObject.GetComponent<Rigidbody2D>().AddForce(forceVec, ForceMode2D.Impulse);
+        }
     }
 }

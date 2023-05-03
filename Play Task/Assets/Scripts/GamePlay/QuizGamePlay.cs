@@ -17,12 +17,7 @@ public class QuizGamePlay : MonoBehaviour
 
         for (int i = 0; i < answerData.Count; i++)
         {
-            gameInfoTab.UpdateAnswerList(answerData[i].AnswerIndex, answerData[i].AnswerTxt, answerValues[i].AnswerTxt);
+            gameInfoTab.UpdateAnswerList(answerData[i].AnswerIndex, answerData[i].AnswerTxt, answerValues[i].AnswerTxt, gamePlayLevel);
         }
-    }
-
-    public void ClickAnswer(int indexValue)
-    {
-
     }
 }

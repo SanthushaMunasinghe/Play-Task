@@ -32,6 +32,16 @@ public class GamePlayLevel : MonoBehaviour
         featureType = thisLevelData.FeatureType;
         questionTxt = thisLevelData.QuestionTxt;
 
+        animDataList = thisLevelData.AnimationTriggerList;
+        phyDataList = thisLevelData.PhysicsTriggerList;
+
+
+        //Create GameplayLevelObjects
+        foreach (ILevelObjectData objData in thisLevelData.LevelObjects)
+        {
+            CreateGamePlayeLevelObject(objData);
+        }
+
         //Create Template
         if (levelType == "Quiz")
         {
@@ -53,12 +63,6 @@ public class GamePlayLevel : MonoBehaviour
         }
 
         gamePlayLevelManager.gameDisplay.UpdateLevelText(levelIndex, gamePlayLevelManager.generatedLevelObjs.Count);
-
-        //Create GameplayLevelObjects
-        foreach (ILevelObjectData objData in thisLevelData.LevelObjects)
-        {
-            CreateGamePlayeLevelObject(objData);
-        }
     }
 
     private void CreateQuizLevel()
@@ -199,6 +203,54 @@ public class GamePlayLevel : MonoBehaviour
         animPlayer.isPlay = lvlObjData.IsPlay;
         animPlayer.isLoop = lvlObjData.IsLoop;
 
+        //SET TRIGGERS
+
+        //Physics Trigger
+        GamePlayLevelObject gamePlayLevelObject = lvlObjClone.GetComponent<GamePlayLevelObject>();
+
+        gamePlayLevelObject.physicsType = lvlObjData.PhysicsType;
+        gamePlayLevelObject.durationInRun = lvlObjData.DurationInRun;
+        gamePlayLevelObject.forceVectorX = lvlObjData.ForceVectorX;
+        gamePlayLevelObject.forceVectorY = lvlObjData.ForceVectorY;
+
+        //Animation Trigger
+        gamePlayLevelObject.playInRun = lvlObjData.playInRun;
+
         gameLvlObjList.Add(lvlObjClone);
+    }
+
+    public void ConditionTrigger(int indexValue)
+    {
+        //Set Physics
+        foreach (IPhysicsData data in phyDataList)
+        {
+            Debug.Log($"data index: {data.ConditionIndex}, index: {indexValue}");
+            if (data.ConditionIndex == indexValue)
+            {
+                foreach (GameObject obj in gameLvlObjList)
+                {
+                    Debug.Log($"Object: {obj.name}, Data: {data.PhysicsObject}");
+                    if (obj.name == data.PhysicsObject)
+                    {
+                        obj.GetComponent<GamePlayLevelObject>().SetPhysicsTrigger();
+                    }
+                }
+            }
+        }
+
+        //Set Animation
+        foreach (IAnimationData data in animDataList)
+        {
+            if (data.ConditionIndex == indexValue)
+            {
+                foreach (GameObject obj in gameLvlObjList)
+                {
+                    if (obj.name == data.AnimationObject)
+                    {
+                        obj.GetComponent<AnimationPlayer>().isPlay = obj.GetComponent<GamePlayLevelObject>().playInRun;
+                    }
+                }
+            }
+        }
     }
 }
