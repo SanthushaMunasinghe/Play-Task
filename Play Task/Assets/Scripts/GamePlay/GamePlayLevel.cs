@@ -9,6 +9,8 @@ public class GamePlayLevel : MonoBehaviour
     public GamePlayLevelManager gamePlayLevelManager;
     public ILevelData thisLevelData;
 
+    public List<GameObject> gameLvlObjList = new List<GameObject>();
+
     public float startTime;
     public float endTime;
     public int score;
@@ -18,6 +20,9 @@ public class GamePlayLevel : MonoBehaviour
     private string levelType;
     private string featureType;
     private string questionTxt;
+
+    public List<IAnimationData> animDataList;
+    public List<IPhysicsData> phyDataList;
 
     public void StartLevel()
     {
@@ -58,7 +63,18 @@ public class GamePlayLevel : MonoBehaviour
 
     private void CreateQuizLevel()
     {
-        Debug.Log("Quiz");
+        GameObject quizObj = Instantiate(gamePlayLevelManager.quizPrefab, transform.position, Quaternion.identity);
+        quizObj.transform.parent = transform;
+
+        QuizGamePlay quizGamePlay = quizObj.GetComponent<QuizGamePlay>();
+
+        quizGamePlay.gamePlayLevel = GetComponent<GamePlayLevel>();
+
+        quizGamePlay.gameInfoTab = gamePlayLevelManager.gameInfoTab;
+        quizGamePlay.answerData = thisLevelData.AnswerData;
+        quizGamePlay.answerValues = thisLevelData.AnswerValues;
+
+        quizGamePlay.StartQuiz();
     }
     
     private void CreateDragDropLevel()
@@ -73,14 +89,16 @@ public class GamePlayLevel : MonoBehaviour
 
     public void CreateGamePlayeLevelObject(ILevelObjectData lvlObjData)
     {
-        //CREATE and Set Transform
+        //CREATE and Set Rotation
         GameObject lvlObjClone = Instantiate(gamePlayLevelManager.gamePlayLvlObjPrefab, 
             Vector2.zero, 
             Quaternion.Euler(0, 0, lvlObjData.Rotation));
 
+        //Set Name and Parent
         lvlObjClone.name = lvlObjData.ObjectName;
         lvlObjClone.transform.parent = transform;
-
+        
+        //Set Transform
         lvlObjClone.transform.position = new Vector2(lvlObjData.PositionX, lvlObjData.PositionY);
 
         lvlObjClone.transform.localScale = new Vector2(lvlObjData.ScaleX, lvlObjData.ScaleY);
@@ -180,5 +198,7 @@ public class GamePlayLevel : MonoBehaviour
         animPlayer.endVecY = lvlObjData.EndVecY;
         animPlayer.isPlay = lvlObjData.IsPlay;
         animPlayer.isLoop = lvlObjData.IsLoop;
+
+        gameLvlObjList.Add(lvlObjClone);
     }
 }

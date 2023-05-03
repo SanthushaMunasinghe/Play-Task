@@ -195,6 +195,7 @@ MonoBehaviour:
   lvlGameObject: {fileID: 8161496214093534977, guid: c47b07a1d21774c47bdf6db73cf39486, type: 3}
   gamePlayLvlObjPrefab: {fileID: 6319108163342812041, guid: 776592469792cb84184ed9fdbf0b17a5, type: 3}
   gamePlayTextObject: {fileID: 2357471484210504859, guid: ba0ec3a10d3a11d489d27cc297a0d911, type: 3}
+  quizPrefab: {fileID: 3467805237881357489, guid: 34e6a557f874e4941837a85f54f92d96, type: 3}
   generatedLevelObjs: []
 --- !u!1 &223799848
 GameObject:

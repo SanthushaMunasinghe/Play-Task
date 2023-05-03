@@ -14,6 +14,8 @@ public class GamePlayer : MonoBehaviour
     protected VisualElement infoTab;
     protected VisualElement gameToolbar;
 
+    private Button exitBtn;
+
     void Awake()
     {
         pwDoc = GameObject.Find("UIDocument").GetComponent<UIDocument>();
@@ -23,5 +25,11 @@ public class GamePlayer : MonoBehaviour
         gameDisplay = root.Q<VisualElement>("game-display");
         infoTab = root.Q<VisualElement>("info-section");
         gameToolbar = root.Q<VisualElement>("topbar").Q<VisualElement>("project-toolbar");
+
+        exitBtn = gameToolbar.Q<Button>("exit-btn");
+
+        exitBtn.RegisterCallback<MouseUpEvent>(evt => {
+            GlobalMethods.LoadScene("TeacherDashboardSubject");
+        });
     }
 }

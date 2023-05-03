@@ -15,6 +15,9 @@ public class GamePlayLevelManager : MonoBehaviour
     public GameObject gamePlayLvlObjPrefab;
     public GameObject gamePlayTextObject;
 
+    //Quiz
+    public GameObject quizPrefab;
+
     //Running
     public List<GameObject> generatedLevelObjs = new List<GameObject>();
     private int currentlvlIndex = 0;

@@ -7,7 +7,7 @@ public class GameInfoTab : GamePlayer
 {
     //UI Elements
     private Label questionLabel;
-    private VisualElement answerElement;
+    public VisualElement answerElement;
 
     public void GetElements()
     {
@@ -22,8 +22,6 @@ public class GameInfoTab : GamePlayer
 
     public void UpdateAnswerList(int aIndex, string text, string value)
     {
-        answerElement.Clear();
-
         //CREATE
         VisualElement answerItem = new VisualElement();
         Label answerTxt = new Label();
