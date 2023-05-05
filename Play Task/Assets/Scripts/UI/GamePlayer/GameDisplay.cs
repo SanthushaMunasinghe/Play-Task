@@ -9,7 +9,8 @@ public class GameDisplay : GamePlayer
     [SerializeField] private SpriteRenderer boundary;
 
     [SerializeField] private LayerMask m_layerMask;
-    private RaycastHit m_hit;
+    private RaycastHit2D hit;
+    private Vector3 worldPos;
 
     //UI Elements
     public Label levelElementLabel;
@@ -37,18 +38,14 @@ public class GameDisplay : GamePlayer
             }
         });
 
-        gameDisplay.RegisterCallback<PointerUpEvent>(evt =>
+        gameDisplay.RegisterCallback<MouseDownEvent>(evt =>
         {
-            Ray ray = displayCamera.ScreenPointToRay(evt.position);
-            if (Physics.Raycast(ray, out m_hit, Mathf.Infinity, m_layerMask))
+            worldPos = displayCamera.ScreenToWorldPoint(evt.mousePosition);
+            Debug.Log(worldPos.y + 1.0f);
+            hit = Physics2D.Raycast(new Vector2(worldPos.x, worldPos.y + 1.5f), Vector2.zero);
+            if (hit.collider != null)
             {
-                Collider hitCollider = m_hit.collider;
-                Debug.Log(m_hit.point);
-                Debug.Log("Selected object: " + hitCollider.gameObject.name);
-            }
-            else
-            {
-                Debug.Log(m_hit.point);
+                Debug.Log(hit.collider.gameObject.name);
             }
         });
     }
@@ -61,5 +58,9 @@ public class GameDisplay : GamePlayer
     public void UpdateLevelText(int txt, int count)
     {
         levelElementLabel.text = "Level " + (txt + 1).ToString() + "/" + count;
+    }
+
+    private void Update()
+    {
     }
 }
