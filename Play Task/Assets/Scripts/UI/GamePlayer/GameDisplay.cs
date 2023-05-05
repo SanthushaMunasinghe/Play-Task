@@ -38,16 +38,16 @@ public class GameDisplay : GamePlayer
             }
         });
 
-        gameDisplay.RegisterCallback<MouseDownEvent>(evt =>
-        {
-            worldPos = displayCamera.ScreenToWorldPoint(evt.mousePosition);
-            Debug.Log(worldPos.y + 1.0f);
-            hit = Physics2D.Raycast(new Vector2(worldPos.x, worldPos.y + 1.5f), Vector2.zero);
-            if (hit.collider != null)
-            {
-                Debug.Log(hit.collider.gameObject.name);
-            }
-        });
+        //gameDisplay.RegisterCallback<MouseDownEvent>(evt =>
+        //{
+        //    worldPos = displayCamera.ScreenToWorldPoint(evt.mousePosition);
+        //    Debug.Log(worldPos.y + 1.0f);
+        //    hit = Physics2D.Raycast(new Vector2(worldPos.x, worldPos.y + 1.5f), Vector2.zero);
+        //    if (hit.collider != null)
+        //    {
+        //        Debug.Log(hit.collider.gameObject.name);
+        //    }
+        //});
     }
 
     public void GetElements()
@@ -58,9 +58,5 @@ public class GameDisplay : GamePlayer
     public void UpdateLevelText(int txt, int count)
     {
         levelElementLabel.text = "Level " + (txt + 1).ToString() + "/" + count;
-    }
-
-    private void Update()
-    {
     }
 }
