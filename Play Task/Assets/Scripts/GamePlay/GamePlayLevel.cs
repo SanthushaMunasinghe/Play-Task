@@ -11,9 +11,7 @@ public class GamePlayLevel : MonoBehaviour
 
     public List<GameObject> gameLvlObjList = new List<GameObject>();
 
-    public float startTime;
-    public float endTime;
-    public int score;
+    public float levelScore;
 
     //Default
     public int levelIndex;
@@ -27,14 +25,12 @@ public class GamePlayLevel : MonoBehaviour
     public void StartLevel()
     {
         //Set Default
-        levelIndex = thisLevelData.LevelIndex;
         levelType = thisLevelData.LevelType;
         featureType = thisLevelData.FeatureType;
         questionTxt = thisLevelData.QuestionTxt;
 
         animDataList = thisLevelData.AnimationTriggerList;
         phyDataList = thisLevelData.PhysicsTriggerList;
-
 
         //Create GameplayLevelObjects
         foreach (ILevelObjectData objData in thisLevelData.LevelObjects)
@@ -224,12 +220,10 @@ public class GamePlayLevel : MonoBehaviour
         //Set Physics
         foreach (IPhysicsData data in phyDataList)
         {
-            Debug.Log($"data index: {data.ConditionIndex}, index: {indexValue}");
             if (data.ConditionIndex == indexValue)
             {
                 foreach (GameObject obj in gameLvlObjList)
                 {
-                    Debug.Log($"Object: {obj.name}, Data: {data.PhysicsObject}");
                     if (obj.name == data.PhysicsObject)
                     {
                         obj.GetComponent<GamePlayLevelObject>().SetPhysicsTrigger();
@@ -252,5 +246,12 @@ public class GamePlayLevel : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void EndLevel()
+    {
+        gamePlayLevelManager.gameScore += levelScore;
+
+        gamePlayLevelManager.UpdateLevel();
     }
 }

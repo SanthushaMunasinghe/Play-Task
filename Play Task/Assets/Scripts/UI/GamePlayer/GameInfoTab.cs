@@ -36,6 +36,17 @@ public class GameInfoTab : GamePlayer
         //ADD EVENTS
         answerItem.RegisterCallback<MouseUpEvent>(evt => {
             gpLvl.ConditionTrigger(aIndex - 1);
+
+            if (value == "Correct")
+            {
+                gpLvl.levelScore = 1;
+            }
+            else
+            {
+                gpLvl.levelScore = 0;
+            }
+            gpLvl.EndLevel();
+            //answerElement.Clear();
         });
 
         //ADD ELEMENTs

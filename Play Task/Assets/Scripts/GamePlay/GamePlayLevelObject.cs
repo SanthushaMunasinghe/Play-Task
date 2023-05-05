@@ -32,10 +32,10 @@ public class GamePlayLevelObject : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (currentDuration >= 0)
+        if (currentDuration > 0)
         {
             Vector2 forceVec = new Vector2(forceVectorX, forceVectorY);
-            gameObject.GetComponent<Rigidbody2D>().AddForce(forceVec);
+            gameObject.GetComponent<Rigidbody2D>().AddForce(forceVec * 10);
             currentDuration -= Time.deltaTime;
         }
 
@@ -43,6 +43,7 @@ public class GamePlayLevelObject : MonoBehaviour
         {
             Vector2 forceVec = new Vector2(forceVectorX, forceVectorY);
             gameObject.GetComponent<Rigidbody2D>().AddForce(forceVec, ForceMode2D.Impulse);
+            isImpulse = false;
         }
     }
 }

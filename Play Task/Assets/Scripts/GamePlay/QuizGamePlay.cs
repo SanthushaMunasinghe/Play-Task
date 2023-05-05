@@ -13,8 +13,6 @@ public class QuizGamePlay : MonoBehaviour
 
     public void StartQuiz()
     {
-        gameInfoTab.answerElement.Clear();
-
         for (int i = 0; i < answerData.Count; i++)
         {
             gameInfoTab.UpdateAnswerList(answerData[i].AnswerIndex, answerData[i].AnswerTxt, answerValues[i].AnswerTxt, gamePlayLevel);
