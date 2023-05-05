@@ -46,7 +46,6 @@ public class GameInfoTab : GamePlayer
                 gpLvl.levelScore = 0;
             }
             gpLvl.EndLevel();
-            //answerElement.Clear();
         });
 
         //ADD ELEMENTs

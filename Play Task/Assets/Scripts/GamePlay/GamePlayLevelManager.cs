@@ -18,6 +18,8 @@ public class GamePlayLevelManager : MonoBehaviour
 
     //Quiz
     public GameObject quizPrefab;
+    public GameObject selectPrefab;
+    public GameObject dragDropPrefab;
 
     //Running
     public List<GameObject> generatedLevelObjs = new List<GameObject>();

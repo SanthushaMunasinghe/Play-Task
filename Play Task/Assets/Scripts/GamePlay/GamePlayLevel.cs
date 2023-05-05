@@ -35,7 +35,7 @@ public class GamePlayLevel : MonoBehaviour
         //Create GameplayLevelObjects
         foreach (ILevelObjectData objData in thisLevelData.LevelObjects)
         {
-            CreateGamePlayeLevelObject(objData);
+            CreateGamePlayeLevelObject(objData, ref gameLvlObjList);
         }
 
         //Create Template
@@ -84,10 +84,18 @@ public class GamePlayLevel : MonoBehaviour
     
     private void CreateSelectLevel()
     {
-        Debug.Log("Select");
+        GameObject selectObj = Instantiate(gamePlayLevelManager.selectPrefab, transform.position, Quaternion.identity);
+        selectObj.transform.parent = transform;
+
+        SelectPuzzleGamePlay selectGamePlay = selectObj.GetComponent<SelectPuzzleGamePlay>();
+
+        selectGamePlay.gamePlayLevel = GetComponent<GamePlayLevel>();
+        selectGamePlay.templateObjects = thisLevelData.TemplateObjects;
+
+        selectGamePlay.StartPuzzle();
     }
 
-    public void CreateGamePlayeLevelObject(ILevelObjectData lvlObjData)
+    public void CreateGamePlayeLevelObject(ILevelObjectData lvlObjData, ref List<GameObject> objList)
     {
         //CREATE and Set Rotation
         GameObject lvlObjClone = Instantiate(gamePlayLevelManager.gamePlayLvlObjPrefab, 
@@ -212,7 +220,7 @@ public class GamePlayLevel : MonoBehaviour
         //Animation Trigger
         gamePlayLevelObject.playInRun = lvlObjData.playInRun;
 
-        gameLvlObjList.Add(lvlObjClone);
+        objList.Add(lvlObjClone);
     }
 
     public void ConditionTrigger(int indexValue)
