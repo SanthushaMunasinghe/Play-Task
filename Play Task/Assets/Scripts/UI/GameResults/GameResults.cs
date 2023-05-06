@@ -15,6 +15,8 @@ public class GameResults : MonoBehaviour
     protected Label finalDurationElement;
     protected Label finalScoreElement;
 
+    protected ScrollView levelResultsView;
+
     //UI Elements
     protected VisualElement gameToolbar;
 
@@ -27,6 +29,7 @@ public class GameResults : MonoBehaviour
         var root = prDoc.rootVisualElement;
 
         gameResulsView = root.Q<VisualElement>("results-view");
+        levelResultsView = gameResulsView.Q<ScrollView>();
         gameToolbar = root.Q<VisualElement>("topbar").Q<VisualElement>("project-toolbar");
 
         exitBtn = gameToolbar.Q<Button>("exit-btn");
@@ -36,6 +39,11 @@ public class GameResults : MonoBehaviour
         });
 
         DisplayFinalResults();
+
+        foreach (GameplayLevelData data in GlobalData.currentGameplayData.GameLevelData)
+        {
+            DisplayLevelResult(data);
+        }
     }
 
     private void DisplayFinalResults()
@@ -49,7 +57,7 @@ public class GameResults : MonoBehaviour
         //Set Values
         startTimeElement.text = $"Start Time: {GlobalData.currentGameplayData.StartDateTime}";
         endTimeElement.text = $"End Time: {GlobalData.currentGameplayData.EndDateTime}";
-        finalDurationElement.text = $"Duration: {GlobalData.currentGameplayData.Duration}Seconds";
+        finalDurationElement.text = $"Duration: {GlobalData.currentGameplayData.Duration} Sec";
         finalScoreElement.text = $"Final Score: {GlobalData.currentGameplayData.FinalScore}%";
     }
 
@@ -64,10 +72,14 @@ public class GameResults : MonoBehaviour
         VisualElement levelResultsElement = new VisualElement();
         //-Duration
         VisualElement durationElement = new VisualElement();
-        Label durationLabel = new Label();
+        //--
+        VisualElement durationDetailsLabelElement = new VisualElement();
+        Label durationDetailsLabel = new Label();
         //-Score
         VisualElement scoreElement = new VisualElement();
-        Label scoreLabel = new Label();
+        //--
+        VisualElement scoreDetailsLabelElement = new VisualElement();
+        Label scoreDetailsLabel = new Label();
 
         //ADD CLASSES
         levelLabelElement.AddToClassList("box-label-primary");
@@ -77,8 +89,39 @@ public class GameResults : MonoBehaviour
 
         durationElement.AddToClassList("list-primary-item");
         durationElement.AddToClassList("results-body-content");
+        durationDetailsLabelElement.AddToClassList("list-primary-item-text");
+        durationDetailsLabel.AddToClassList("student-item-label");
 
         scoreElement.AddToClassList("list-primary-item");
         scoreElement.AddToClassList("results-body-content");
+        scoreDetailsLabelElement.AddToClassList("list-primary-item-text");
+        scoreDetailsLabel.AddToClassList("student-item-label");
+
+        //ADD VALUES
+        levelLabel.text = $"Level {gpLvlData.LevelIndex + 1}";
+        durationDetailsLabel.text = $"Duration: {gpLvlData.Duration}";
+        scoreDetailsLabel.text = $"Duration: {gpLvlData.Score} Sec";
+
+        //ADD TO
+        //durationDetailsLabelElement
+        durationDetailsLabelElement.Add(durationDetailsLabel);
+        //durationElement
+        durationElement.Add(durationDetailsLabelElement);
+
+        //scoreDetailsLabelElement
+        scoreDetailsLabelElement.Add(scoreDetailsLabel);
+        //scoreElement
+        scoreElement.Add(scoreDetailsLabelElement);
+
+        //levelResultsElement
+        levelResultsElement.Add(durationElement);
+        levelResultsElement.Add(scoreElement);
+
+        //levelLabelElement
+        levelLabelElement.Add(levelLabel);
+
+        //levelResultsView
+        levelResultsView.Add(levelLabelElement);
+        levelResultsView.Add(levelResultsElement);
     }
 }

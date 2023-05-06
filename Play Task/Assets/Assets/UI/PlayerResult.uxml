@@ -37,10 +37,10 @@
                                 </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:VisualElement>
-                        <ui:VisualElement name="level-results-label" class="box-label-primary result-label">
+                        <ui:VisualElement name="level-results-label" class="box-label-primary result-label" style="display: none;">
                             <ui:Label text="Level 1" display-tooltip-when-elided="true" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="level-results" class="results-body">
+                        <ui:VisualElement name="level-results" class="results-body" style="display: none;">
                             <ui:VisualElement name="duration" class="list-primary-item results-body-content">
                                 <ui:VisualElement name="detail-label" class="list-primary-item-text">
                                     <ui:Label text="Duration:" display-tooltip-when-elided="true" name="detail-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
