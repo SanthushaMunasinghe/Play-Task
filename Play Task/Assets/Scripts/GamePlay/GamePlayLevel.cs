@@ -11,7 +11,10 @@ public class GamePlayLevel : MonoBehaviour
 
     public List<GameObject> gameLvlObjList = new List<GameObject>();
 
+    private float startTime;
+    private float endTime;
     public float levelScore;
+    private GameplayLevelData gameplayLevelData = new GameplayLevelData();
 
     //Default
     public int levelIndex;
@@ -59,6 +62,7 @@ public class GamePlayLevel : MonoBehaviour
         }
 
         gamePlayLevelManager.gameDisplay.UpdateLevelText(levelIndex, gamePlayLevelManager.generatedLevelObjs.Count);
+        startTime = Time.time;
     }
 
     private void CreateQuizLevel()
@@ -79,7 +83,15 @@ public class GamePlayLevel : MonoBehaviour
     
     private void CreateDragDropLevel()
     {
-        Debug.Log("DD");
+        GameObject dragandDropObj = Instantiate(gamePlayLevelManager.dragDropPrefab, transform.position, Quaternion.identity);
+        dragandDropObj.transform.parent = transform;
+
+        DragDropPuzzleGamePlay dragdropGamePlay = dragandDropObj.GetComponent<DragDropPuzzleGamePlay>();
+
+        dragdropGamePlay.gamePlayLevel = GetComponent<GamePlayLevel>();
+        dragdropGamePlay.templateObjects = thisLevelData.TemplateObjects;
+
+        dragdropGamePlay.StartPuzzle();
     }
     
     private void CreateSelectLevel()
@@ -258,8 +270,19 @@ public class GamePlayLevel : MonoBehaviour
 
     public void EndLevel()
     {
-        gamePlayLevelManager.gameScore += levelScore;
+        endTime = Time.time;
 
-        gamePlayLevelManager.UpdateLevel();
+        //Assigne Game Level Data
+        gameplayLevelData.LevelIndex = thisLevelData.LevelIndex;
+        gameplayLevelData.Score = levelScore;
+        gameplayLevelData.Duration = endTime - startTime;
+
+        //Assign To Game Data
+        gamePlayLevelManager.gameScore += levelScore;
+        gamePlayLevelManager.gameplayLevelDataList.Add(gameplayLevelData);
+        //gamePlayLevelManager.UpdateLevel();
+
+        gamePlayLevelManager.gameInfoTab.answerElement.Clear();
+        gamePlayLevelManager.gameDisplay.ActivateNextButton();
     }
 }

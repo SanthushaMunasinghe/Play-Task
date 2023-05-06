@@ -5,6 +5,8 @@ using UnityEngine.UIElements;
 
 public class GameDisplay : GamePlayer
 {
+    [SerializeField] private GamePlayLevelManager gamePlayLevelManager;
+
     [SerializeField] private Camera displayCamera;
     [SerializeField] private SpriteRenderer boundary;
 
@@ -14,6 +16,7 @@ public class GameDisplay : GamePlayer
 
     //UI Elements
     public Label levelElementLabel;
+    public Button nextLvlBtn;
 
     void Start()
     {
@@ -38,21 +41,23 @@ public class GameDisplay : GamePlayer
             }
         });
 
-        //gameDisplay.RegisterCallback<MouseDownEvent>(evt =>
-        //{
-        //    worldPos = displayCamera.ScreenToWorldPoint(evt.mousePosition);
-        //    Debug.Log(worldPos.y + 1.0f);
-        //    hit = Physics2D.Raycast(new Vector2(worldPos.x, worldPos.y + 1.5f), Vector2.zero);
-        //    if (hit.collider != null)
-        //    {
-        //        Debug.Log(hit.collider.gameObject.name);
-        //    }
-        //});
+        nextLvlBtn.RegisterCallback<MouseUpEvent>(evt =>
+        {
+            gamePlayLevelManager.UpdateLevel();
+        });
     }
 
     public void GetElements()
     {
         levelElementLabel = gameDisplay.Q<VisualElement>("LevelElement").Q<Label>();
+        nextLvlBtn = gameDisplay.Q<VisualElement>("NextElement").Q<Button>();
+
+        nextLvlBtn.style.display = DisplayStyle.None;
+    }
+
+    public void ActivateNextButton()
+    {
+        nextLvlBtn.style.display = DisplayStyle.Flex;
     }
 
     public void UpdateLevelText(int txt, int count)

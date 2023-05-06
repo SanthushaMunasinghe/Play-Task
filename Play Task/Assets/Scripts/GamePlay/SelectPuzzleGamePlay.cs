@@ -81,6 +81,7 @@ public class SelectPuzzleGamePlay : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
+            gamePlayLevel.ConditionTrigger(selectedObjectIndex);
             if (gamePlayLevel.thisLevelData.SelectValue[selectedObjectIndex].AnswerTxt == "Correct")
             {
                 gamePlayLevel.levelScore = 1;

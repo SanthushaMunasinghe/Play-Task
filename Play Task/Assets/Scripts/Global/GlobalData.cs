@@ -14,6 +14,8 @@ public static class GlobalData
 
     public static string gameMode;
 
+    public static GameplayData currentGameplayData;
+
     public static string url = "http://localhost:3000/api";
     public static string methodPost = "POST";
     public static string methodPut = "PUT";

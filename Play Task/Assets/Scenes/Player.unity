@@ -198,7 +198,7 @@ MonoBehaviour:
   quizPrefab: {fileID: 3467805237881357489, guid: 34e6a557f874e4941837a85f54f92d96, type: 3}
   selectPrefab: {fileID: 1791347341109842181, guid: 3ebf97d869f6afb40b2bf01757f45bc4, type: 3}
   objectPointer: {fileID: 2712506741977099373, guid: fea7b59d410a8144b91117d1b7154a23, type: 3}
-  dragDropPrefab: {fileID: 0}
+  dragDropPrefab: {fileID: 5106297233927022235, guid: 8098c6119463f05409b9b6aa6ea519c6, type: 3}
   generatedLevelObjs: []
   duration: 0
   gameScore: 0
@@ -461,6 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9152fddc3e3153044966e708cd4f413f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamePlayLevelManager: {fileID: 218918095}
   displayCamera: {fileID: 1687097350}
   boundary: {fileID: 341632143}
   m_layerMask:

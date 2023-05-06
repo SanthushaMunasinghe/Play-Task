@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GamePlayLevelManager : MonoBehaviour
 {
@@ -38,6 +39,8 @@ public class GamePlayLevelManager : MonoBehaviour
 
     public string startDateTime;
     public string endDateTime;
+
+    public List<GameplayLevelData> gameplayLevelDataList = new List<GameplayLevelData>();
 
     void Start()
     {
@@ -78,7 +81,6 @@ public class GamePlayLevelManager : MonoBehaviour
     public void UpdateLevel()
     {
         generatedLevelObjs[currentlvlIndex].SetActive(false);
-        gameInfoTab.answerElement.Clear();
         currentlvlIndex++;
 
         if (currentlvlIndex < generatedLevelObjs.Count)
@@ -87,6 +89,7 @@ public class GamePlayLevelManager : MonoBehaviour
         }
         else
         {
+            //Calculate Gameplay Data
             endTime = Time.time;
             duration = endTime - startTime;
 
@@ -94,7 +97,51 @@ public class GamePlayLevelManager : MonoBehaviour
 
             finalScore = (gameScore / generatedLevelObjs.Count) * 100;
 
-            Debug.Log($"Score: {finalScore}%");
+            //Assign Current Gameplay Data
+            gameDataHandler.gameplayData.StartDateTime = startDateTime;
+            gameDataHandler.gameplayData.EndDateTime = endDateTime;
+            gameDataHandler.gameplayData.Duration = duration;
+            gameDataHandler.gameplayData.FinalScore = finalScore;
+            gameDataHandler.gameplayData.GameLevelData = gameplayLevelDataList;
+
+            gameDataHandler.SetGameplayData();
         }
+
+        gameDisplay.nextLvlBtn.style.display = DisplayStyle.None;
     }
+}
+
+public interface IGameplayData
+{
+    string StartDateTime { get; set; }
+    string EndDateTime { get; set; }
+    float Duration { get; set; }
+    float FinalScore { get; set; }
+
+    List<GameplayLevelData> GameLevelData { get; set; }
+}
+
+public class GameplayData : IGameplayData
+{
+    public string StartDateTime { get; set; }
+    public string EndDateTime { get; set; }
+    public float Duration { get; set; }
+    public float FinalScore { get; set; }
+
+    public List<GameplayLevelData> GameLevelData { get; set; }
+}
+
+
+public interface IGameplayLevelData
+{
+    int LevelIndex { get; set; }
+    float Score { get; set; }
+    float Duration { get; set; }
+}
+
+public class GameplayLevelData : IGameplayLevelData
+{
+    public int LevelIndex { get; set; }
+    public float Score { get; set; }
+    public float Duration { get; set; }
 }
