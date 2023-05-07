@@ -8,7 +8,6 @@ public static class GlobalData
 
     public static List<string> subjects = new List<string>();
     public static List<string> classrooms = new List<string>();
-    public static string classroom;
 
     public static string projectID;
     public static string projectData;

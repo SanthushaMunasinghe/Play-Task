@@ -91,8 +91,6 @@ public class LoginUI : MonoBehaviour
 
                 GlobalMethods.InitializeSubjects(subjectArray);
 
-                GlobalData.classroom = responseJson["classroom"].Value<string>();
-
                 GlobalMethods.LoadScene("StudentDashboardResults");
             });
         }
