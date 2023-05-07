@@ -29,7 +29,14 @@ public class GamePlayer : MonoBehaviour
         exitBtn = gameToolbar.Q<Button>("exit-btn");
 
         exitBtn.RegisterCallback<MouseUpEvent>(evt => {
-            GlobalMethods.LoadScene("TeacherDashboardSubject");
+            if (GlobalData.gameMode == "Test")
+            {
+                GlobalMethods.LoadScene("TeacherDashboardSubject");
+            }
+            else
+            {
+
+            }
         });
     }
 }

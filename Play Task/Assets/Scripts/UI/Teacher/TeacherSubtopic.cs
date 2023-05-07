@@ -187,7 +187,24 @@ public class TeacherSubtopic : TeacherDashboardSubjects
 
         submitProjectBtn.RegisterCallback<MouseUpEvent>(evt =>
         {
+            // Define headers, and payload for the request
+            Dictionary<string, string> headers = new Dictionary<string, string>();
+            headers.Add("Authorization", "Bearer <token>");
 
+            Label label = new Label();
+
+            sendRequests.SendGetRequest($"{GlobalData.url}/getgame/{GlobalUser.userData.UserID}/{subTID}", headers, label, (responseJson) =>
+            {
+                GlobalData.projectID = responseJson["id"].Value<string>();
+
+                string payload = $"{{\"status\":\"Done\"}}";
+
+                GlobalMethods.DisplayMessage(label, "Please Wait...");
+                sendRequests.SendPostPutRequest(GlobalData.url + "/submitgame/" + GlobalData.projectID, GlobalData.methodPut, headers, payload, label, (responseJson) =>
+                {
+                    Debug.Log(responseJson["message"].Value<string>());
+                });
+            });
         });
     }
 }

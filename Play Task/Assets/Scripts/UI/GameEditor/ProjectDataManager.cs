@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class ProjectDataManager : MonoBehaviour
 {
-    [SerializeField] private SendRequests sendPostRequest;
+    [SerializeField] private SendRequests sendRequests;
 
     [SerializeField] private LevelListManager levelListManager;
 
@@ -31,7 +31,7 @@ public class ProjectDataManager : MonoBehaviour
         Label label = new Label();
 
         GlobalMethods.DisplayMessage(label, "Please Wait...");
-        sendPostRequest.SendPostPutRequest(GlobalData.url + "/updategame/" + projectID, GlobalData.methodPut, headers, payload, label, (responseJson) =>
+        sendRequests.SendPostPutRequest(GlobalData.url + "/updategame/" + projectID, GlobalData.methodPut, headers, payload, label, (responseJson) =>
         {
             Debug.Log(responseJson["success"].Value<string>());
         });
