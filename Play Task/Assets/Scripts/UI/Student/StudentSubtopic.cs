@@ -1,4 +1,5 @@
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -113,11 +114,12 @@ public class StudentSubtopic : StudentDashboardSubjects
 
             Label label = new Label();
 
-            sendRequests.SendGetRequest($"{GlobalData.url}/getgame/{GlobalUser.userData.UserID}/{subTID}", headers, label, (responseJson) =>
+            sendRequests.SendGetRequest($"{GlobalData.url}/getgamestudent/{subTID}", headers, label, (responseJson) =>
             {
                 GlobalData.projectID = responseJson["id"].Value<string>();
                 GlobalData.projectData = responseJson["gamedata"].Value<string>();
                 GlobalData.gameMode = "";
+                
                 GlobalMethods.LoadScene("Player");
             });
         });

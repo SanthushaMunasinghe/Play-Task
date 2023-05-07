@@ -35,7 +35,14 @@ public class GameResults : MonoBehaviour
         exitBtn = gameToolbar.Q<Button>("exit-btn");
 
         exitBtn.RegisterCallback<MouseUpEvent>(evt => {
-            GlobalMethods.LoadScene("TeacherDashboardSubject");
+            if (GlobalData.gameMode == "Test")
+            {
+                GlobalMethods.LoadScene("TeacherDashboardSubject");
+            }
+            else
+            {
+                GlobalMethods.LoadScene("StudentDashboardSubject");
+            }
         });
 
         DisplayFinalResults();
