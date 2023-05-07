@@ -80,8 +80,21 @@ public class LoginUI : MonoBehaviour
         }
         else if (userType == userTypes[1])
         {
-            //GlobalMethods.AssignUser(loginDummyDataStudent.Username, loginDummyDataStudent.Institution);
-            //GlobalMethods.LoadScene("StudentDashboardSubject");
+            sendPostRequest.SendPostPutRequest(GlobalData.url + "/studentlogin", GlobalData.methodPost, headers, payload, label, (responseJson) => {
+                GlobalUser.AssignUser(userType,
+                    responseJson["userid"].Value<string>(),
+                    responseJson["name"].Value<string>(),
+                    responseJson["institution"].Value<string>(),
+                    responseJson["dp"].Value<string>());
+
+                JArray subjectArray = (JArray)responseJson["subjects"];
+
+                GlobalMethods.InitializeSubjects(subjectArray);
+
+                GlobalData.classroom = responseJson["classroom"].Value<string>();
+
+                GlobalMethods.LoadScene("StudentDashboardResults");
+            });
         }
     }
 
