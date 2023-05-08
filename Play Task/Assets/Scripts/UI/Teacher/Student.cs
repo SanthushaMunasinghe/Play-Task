@@ -7,7 +7,11 @@ using UnityEngine.UIElements;
 public class Student : TeacherDashboardClassroom
 {
     public StudentData selectedStudent;
-    public List<Dictionary<string, string>> subjectList = new List<Dictionary<string, string>>();
+    //public List<Dictionary<string, string>> subjectList = new List<Dictionary<string, string>>();
+    public List<ISubjectc> subjectList = new List<ISubjectc>();
+    public List<ITopic> topicList = new List<ITopic>();
+    public List<SubtopicData> subtopicList = new List<SubtopicData>();
+    public List<ISubtopictResults> subtopicResultsList = new List<ISubtopictResults>();
 
     private Label studentLabel;
 
@@ -45,6 +49,9 @@ public class Student : TeacherDashboardClassroom
         emailBox = studentBox.Q<VisualElement>("student-detail-email").Q<Label>();
         homeBox = studentBox.Q<VisualElement>("student-detail-home").Q<Label>();
 
+        //Results Box
+
+
         //Buttons
         var nextBtn = studentBox.Q<Button>("student-next-btn");
         var backBtn = studentBox.Q<Button>("student-back-btn");
@@ -66,7 +73,7 @@ public class Student : TeacherDashboardClassroom
     {
         for (int i = 0; i < tabTitles.Count; i++)
         {
-            if (tabIndex == 1)
+            if (tabIndex == i)
             {
                 studentLabel.text = tabTitles[i];
             }
@@ -113,21 +120,105 @@ public class Student : TeacherDashboardClassroom
         string nameResponse;
         string gradeResponse;
 
+        //Get Subject
         sendRequests.SendGetRequest(GlobalData.url + "/getsubject/" + subjectId, headers, label, (responseJson) => {
 
             idResponse = responseJson["_id"].Value<string>();
             nameResponse = responseJson["name"].Value<string>();
 
+            //Get Grade
             sendRequests.SendGetRequest(GlobalData.url + "/getgradebyid/" + responseJson["grade"], headers, label, (responseJson) => {
                 gradeResponse = responseJson["number"].Value<string>();
 
-                Dictionary<string, string> currentSubject = new Dictionary<string, string>();
-                currentSubject.Add("Id", idResponse);
-                currentSubject.Add("Name", nameResponse);
-                currentSubject.Add("Grade", gradeResponse);
+                ISubjectc newSubject = new ISubjectc();
+                newSubject.SubjectID = idResponse;
+                newSubject.Name = nameResponse;
+                newSubject.Grade = gradeResponse;
 
-                subjectList.Add(currentSubject);
+                subjectList.Add(newSubject);
+
+                //Get Topics
+                sendRequests.GetArray(GlobalData.url + "/getsubjecttopics/" + newSubject.SubjectID, headers, label, (responseArray) => {
+                    if (responseArray.Count != 0)
+                    {
+                        foreach (JObject topicObject in responseArray)
+                        {
+                            ITopic newTopic = new ITopic();
+
+                            newTopic.TopicID = topicObject["_id"].Value<string>();
+                            newTopic.SubjectID = topicObject["subject"].Value<string>();
+                            newTopic.TopicName = topicObject["title"].Value<string>();
+
+                            topicList.Add(newTopic);
+
+                            //Get Subtopics
+                            sendRequests.GetArray(GlobalData.url + "/getsubtopics/" + newTopic.TopicID, headers, label, (responseArray) => {
+                                if (responseArray.Count != 0)
+                                {
+                                    foreach (JObject topicObject in responseArray)
+                                    {
+                                        SubtopicData newSubtopic = new SubtopicData();
+
+                                        newSubtopic.SbtID = topicObject["_id"].Value<string>();
+                                        newSubtopic.TopicID = topicObject["topic"].Value<string>();
+                                        newSubtopic.Title = topicObject["title"].Value<string>();
+
+                                        subtopicList.Add(newSubtopic);
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
             });
         });
     }
+}
+
+//Subject
+public interface ISubjectContainer
+{
+    string SubjectID { get; set; }
+    string Name { get; set; }
+    string Grade { get; set; }
+}
+
+public class ISubjectc : ISubjectContainer
+{
+    public string SubjectID { get; set; }
+    public string Name { get; set; }
+    public string Grade { get; set; }
+}
+
+
+//Topic
+public interface ITopicContainer
+{
+    string TopicID { get; set; }
+    string SubjectID { get; set; }
+    string TopicName { get; set; }
+}
+
+public class ITopic : ITopicContainer
+{
+    public string TopicID { get; set; }
+    public string SubjectID { get; set; }
+    public string TopicName { get; set; }
+}
+
+//Subtopic Results
+public interface ISubtopicResultsContainer
+{
+    string ResultsID { get; set; }
+    string SubtopicID { get; set; }
+    string SubtopicName { get; set; }
+    GameplayData GameplayData { get; set; }
+}
+
+public class ISubtopictResults : ISubtopicResultsContainer
+{
+    public string ResultsID { get; set; }
+    public string SubtopicID { get; set; }
+    public string SubtopicName { get; set; }
+    public GameplayData GameplayData { get; set; }
 }

@@ -55,6 +55,7 @@ public class TeacherDashboardSubjects : MonoBehaviour
 public interface ISubtopicContainer
 {
     string SbtID { get; set; }
+    string TopicID { get; set; }
     string Title { get; set; }
     string Description { get; set; }
     string[] Instructions { get; set; }
@@ -63,6 +64,7 @@ public interface ISubtopicContainer
 public class SubtopicData : ISubtopicContainer
 {
     public string SbtID { get; set; }
+    public string TopicID { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
     public string[] Instructions { get; set; }

@@ -43,9 +43,9 @@
                 <ui:VisualElement name="student-details-label" class="box-primary-label">
                     <ui:Label text="Student Details" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
-                <ui:VisualElement name="student-details-body" class="box-primary-body">
+                <ui:VisualElement name="student-details-body" class="box-primary-body" style="display: flex;">
                     <ui:VisualElement name="details-label" class="box-label-primary">
-                        <ui:Label text="Student Analytics (Mathematics)" display-tooltip-when-elided="true" />
+                        <ui:Label text="Student Analytics" display-tooltip-when-elided="true" />
                         <ui:VisualElement name="next-back-buttons" style="flex-direction: row; justify-content: space-between; align-items: center;">
                             <ui:Button text="Back" display-tooltip-when-elided="true" name="student-back-btn" style="background-color: rgb(255, 82, 82);" />
                             <ui:Button text="Next" display-tooltip-when-elided="true" name="student-next-btn" style="background-color: rgb(255, 82, 82);" />
@@ -87,14 +87,6 @@
                                 </ui:VisualElement>
                                 <ui:VisualElement name="detail-content" class="list-primary-item-text">
                                     <ui:Label text="M.A.Santhusha Hasanjith Munasinghe" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
-                                </ui:VisualElement>
-                            </ui:VisualElement>
-                            <ui:VisualElement name="student-detail-id" class="list-primary-item" style="justify-content: flex-start;">
-                                <ui:VisualElement name="detail-label" class="list-primary-item-text">
-                                    <ui:Label text="ID:" display-tooltip-when-elided="true" name="label" class="student-item-label" style="color: rgb(255, 255, 255);" />
-                                </ui:VisualElement>
-                                <ui:VisualElement name="detail-content" class="list-primary-item-text">
-                                    <ui:Label text="123456789" display-tooltip-when-elided="true" name="label" class="student-item-label" style="color: rgb(255, 255, 255);" />
                                 </ui:VisualElement>
                             </ui:VisualElement>
                             <ui:VisualElement name="total" class="list-primary-item" style="justify-content: flex-start;">
