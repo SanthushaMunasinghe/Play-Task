@@ -202,7 +202,7 @@ public class TeacherSubtopic : TeacherDashboardSubjects
                 GlobalMethods.DisplayMessage(label, "Please Wait...");
                 sendRequests.SendPostPutRequest(GlobalData.url + "/submitgame/" + GlobalData.projectID, GlobalData.methodPut, headers, payload, label, (responseJson) =>
                 {
-                    Debug.Log(responseJson["message"].Value<string>());
+                    Debug.Log(responseJson["success"].Value<string>());
                 });
             });
         });

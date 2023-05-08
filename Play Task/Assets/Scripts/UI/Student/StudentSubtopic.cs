@@ -118,6 +118,7 @@ public class StudentSubtopic : StudentDashboardSubjects
             {
                 GlobalData.projectID = responseJson["id"].Value<string>();
                 GlobalData.projectData = responseJson["gamedata"].Value<string>();
+                GlobalData.gameSubtopicID = responseJson["subtopic"].Value<string>();
                 GlobalData.gameMode = "";
                 
                 GlobalMethods.LoadScene("Player");

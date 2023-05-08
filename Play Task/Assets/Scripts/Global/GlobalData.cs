@@ -13,6 +13,7 @@ public static class GlobalData
     public static string projectData;
 
     public static string gameMode;
+    public static string gameSubtopicID;
 
     public static GameplayData currentGameplayData;
 
