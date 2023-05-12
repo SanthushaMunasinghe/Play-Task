@@ -128,8 +128,8 @@
                                         <ui:Label text="Subjectt:" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
                                     </ui:VisualElement>
                                 </ui:VisualElement>
-                                <ui:VisualElement name="subject-details-box" style="width: 100%; align-items: flex-end;">
-                                    <ui:VisualElement name="topics-box" style="width: 90%; align-items: flex-end;">
+                                <ui:VisualElement name="subject-details-box" class="subject-details-box">
+                                    <ui:VisualElement name="topics-box" class="topics-box">
                                         <ui:VisualElement name="topic-name" class="list-primary-item" style="justify-content: flex-start;">
                                             <ui:VisualElement name="detail-label" class="list-primary-item-text">
                                                 <ui:Label text="Topic:" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />

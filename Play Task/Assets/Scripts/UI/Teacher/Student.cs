@@ -13,6 +13,7 @@ public class Student : TeacherDashboardClassroom
     public List<string> topicList = new List<string>();
     public List<string> subtopicList = new List<string>();
     public List<IAttempt> attemptList = new List<IAttempt>();
+    public List<ISubject> subjectDataList = new List<ISubject>();
 
     private Label studentLabel;
 
@@ -66,7 +67,7 @@ public class Student : TeacherDashboardClassroom
         subjectsListView = studentBox.Q<ScrollView>("term-subject-list");
 
         //Subject Box
-        subjectsListView = subjectAnalyticsBox.Q<ScrollView>("subject-analytics-list");
+        subjectlistView = subjectAnalyticsBox.Q<ScrollView>("subject-analytics-list");
 
         //Buttons
         var nextBtn = studentBox.Q<Button>("student-next-btn");
@@ -150,11 +151,52 @@ public class Student : TeacherDashboardClassroom
                 newSubject.SubjectID = idResponse;
                 newSubject.Name = nameResponse;
                 newSubject.Grade = gradeResponse;
+
+                sendRequests.GetArray(GlobalData.url + "/getsubjecttopics/" + idResponse, headers, label, (responseArray) => {
+                    if (responseArray.Count != 0)
+                    {
+                        int count = 0;
+
+                        newSubject.TopicList = new List<ITopic>();
+
+                        foreach (JObject topicObject in responseArray)
+                        {
+                            ITopic newTopic = new ITopic();
+
+                            newTopic.TopicID = topicObject["_id"].Value<string>();
+                            newTopic.Name = topicObject["title"].Value<string>();
+                            newTopic.SubtopicList = new List<IAttempt>();
+
+                            foreach (IAttempt att in attemptList)
+                            {
+                                if (att.SubjectName == newSubject.Name)
+                                {
+                                    newTopic.SubtopicList.Add(att);
+                                }
+                            }
+
+                            newSubject.TopicList.Add(newTopic);
+
+                            count++;
+
+                            if (count >= responseArray.Count)
+                            {
+                                subjectDataList.Add(newSubject);
+
+                                foreach (ISubject subj in subjectDataList)
+                                {
+                                    PopulateAttempts(subj);
+                                }
+                            }
+                        }
+                    }
+                });
+
             });
         });
     }
 
-    public void GetStudentResults(string stId)
+    public void GetStudentResults(StudentData std)
     {
         attemptList.Clear();
         subjectList.Clear();
@@ -167,7 +209,7 @@ public class Student : TeacherDashboardClassroom
 
         Label label = new Label();
         //Get Attempts
-        sendRequests.GetArray(GlobalData.url + "/getattempts/" + stId, headers, label, (responseArray) => {
+        sendRequests.GetArray(GlobalData.url + "/getattempts/" + std.StdID, headers, label, (responseArray) => {
             if (responseArray.Count != 0)
             {
                 int count = 0;
@@ -226,7 +268,6 @@ public class Student : TeacherDashboardClassroom
                                             curentAttepts.Add(attempt);
                                         }
 
-                                        Debug.Log(curentAttepts.Count);
                                         PopulateSubjectResults(subj, curentAttepts, ref studentTotalScore);
                                     }
 
@@ -234,6 +275,12 @@ public class Student : TeacherDashboardClassroom
                                     subjectCountLabel.text = subjectList.Count.ToString();
                                     totalLabel.text = studentTotalScore.ToString();
                                     averageLabel.text = (studentTotalScore / subjectList.Count).ToString();
+
+                                    //Get Subjects
+                                    foreach (string subjIds in std.Subjects)
+                                    {
+                                        GetStudentSubjects(subjIds);
+                                    }
                                 }
                             });
                         });
@@ -305,6 +352,8 @@ public class Student : TeacherDashboardClassroom
 
     private void PopulateAttempts(ISubject currentSubject)
     {
+        subjectlistView.Clear();
+
         GroupBox subjectBox = new GroupBox();
 
         VisualElement subjectElement = CreateListItem(currentSubject.Name);
@@ -325,8 +374,8 @@ public class Student : TeacherDashboardClassroom
                 VisualElement newSubtopic = CreateListItem(subtopic.SubtopicName);
                 VisualElement startTime = CreateListItem($"Start Date Time: {subtopic.GameData.StartDateTime}");
                 VisualElement endTime = CreateListItem($"End Date Time: {subtopic.GameData.EndDateTime}");
-                VisualElement finalduration = CreateListItem($"Duration: {subtopic.GameData.Duration.ToString()}");
-                VisualElement finalscore = CreateListItem($"Final Score: {subtopic.GameData.FinalScore.ToString()}");
+                VisualElement finalduration = CreateListItem($"Duration: {subtopic.GameData.Duration}");
+                VisualElement finalscore = CreateListItem($"Final Score: {subtopic.GameData.FinalScore}");
 
                 VisualElement levelsBox = new VisualElement();
                 levelsBox.AddToClassList("topics-box");
@@ -357,6 +406,8 @@ public class Student : TeacherDashboardClassroom
         }
 
         subjectBox.Add(subjectElement);
+
+        subjectlistView.Add(subjectElement);
     }
 
     private VisualElement CreateListItem(string textData)
@@ -406,7 +457,6 @@ public interface ITopicContainer
 {
     string TopicID { get; set; }
     string Name { get; set; }
-    string SubjectID { get; set; }
     List<IAttempt> SubtopicList { get; set; }
 }
 
@@ -414,7 +464,6 @@ public class ITopic : ITopicContainer
 {
     public string TopicID { get; set; }
     public string Name { get; set; }
-    public string SubjectID { get; set; }
     public List<IAttempt> SubtopicList { get; set; }
 }
 

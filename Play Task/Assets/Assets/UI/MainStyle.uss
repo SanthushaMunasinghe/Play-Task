@@ -818,3 +818,13 @@
 .results-body-content {
     justify-content: flex-start;
 }
+
+.subject-details-box {
+    width: 100%;
+    align-items: flex-end;
+}
+
+.topics-box {
+    width: 90%;
+    align-items: flex-end;
+}

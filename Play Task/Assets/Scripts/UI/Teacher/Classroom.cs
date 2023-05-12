@@ -178,7 +178,7 @@ public class Classroom : TeacherDashboardClassroom
                         
                     }
 
-                    currentStudent.GetStudentResults(std.StdID);
+                    currentStudent.GetStudentResults(std);
                 }
             }
         });
