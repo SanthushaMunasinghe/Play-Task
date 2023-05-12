@@ -32,6 +32,10 @@ public class GameDataHandler : MonoBehaviour
         {
             SaveGame(gameplayData.StartDateTime, gameplayData.EndDateTime, gameplayData.FinalScore, gameplayData.Duration, json);
         }
+        else
+        {
+            GlobalMethods.LoadScene("PlayerResult");
+        }
     }
 
     private void SaveGame(string sDate, string eDate, float fScore, float dura, string gLvlData)

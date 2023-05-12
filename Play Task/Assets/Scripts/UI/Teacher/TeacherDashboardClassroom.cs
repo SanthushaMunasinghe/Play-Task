@@ -62,6 +62,7 @@ public interface IStudentContainer
     string Home { get; set; }
     string Classroom { get; set; }
     string[] Subjects { get; set; }
+    List<ISubject> SubjectsList { get; set; }
 }
 
 public class StudentData : IStudentContainer
@@ -73,4 +74,5 @@ public class StudentData : IStudentContainer
     public string Home { get; set; }
     public string Classroom { get; set; }
     public string[] Subjects { get; set; }
+    public List<ISubject> SubjectsList { get; set; }
 }

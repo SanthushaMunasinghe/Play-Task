@@ -170,12 +170,15 @@ public class Classroom : TeacherDashboardClassroom
             {
                 if (std.Stdname == newItem.Q<Label>("studentName").text)
                 {
-                    GetComponent<Student>().selectedStudent = std;
+                    Student currentStudent = GetComponent<Student>();
+                    currentStudent.selectedStudent = std;
 
                     foreach (string subject in std.Subjects)
                     {
-                        GetComponent<Student>().GetStudentSubjects(subject);
+                        
                     }
+
+                    currentStudent.GetStudentResults(std.StdID);
                 }
             }
         });
