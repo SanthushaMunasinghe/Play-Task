@@ -31,7 +31,10 @@ public class Student : TeacherDashboardClassroom
     private Label subjectCountLabel;
     private Label totalLabel;
     private Label averageLabel;
-    private ScrollView subjectListVew; 
+    private ScrollView subjectsListView;
+
+    //Subject Box
+    private ScrollView subjectlistView;
 
     void Start()
     {
@@ -40,11 +43,11 @@ public class Student : TeacherDashboardClassroom
         //Tabs
         VisualElement detailsBox = studentBox.Q<VisualElement>("details-box");
         VisualElement termAnalyticsBox = studentBox.Q<VisualElement>("term-analytics-box");
-        VisualElement subjectAnalytics = studentBox.Q<VisualElement>("subject-analytics-box");
+        VisualElement subjectAnalyticsBox = studentBox.Q<VisualElement>("subject-analytics-box");
 
         tabList.Add(detailsBox);
         tabList.Add(termAnalyticsBox);
-        tabList.Add(subjectAnalytics);
+        tabList.Add(subjectAnalyticsBox);
 
         tabTitles.Add("Student Details");
         tabTitles.Add("Student Results");
@@ -60,7 +63,10 @@ public class Student : TeacherDashboardClassroom
         subjectCountLabel = studentBox.Q<VisualElement>("subjects-count").Q<VisualElement>("detail-content").Q<Label>();
         totalLabel = studentBox.Q<VisualElement>("total").Q<VisualElement>("detail-content").Q<Label>();
         averageLabel = studentBox.Q<VisualElement>("avg").Q<VisualElement>("detail-content").Q<Label>();
-        subjectListVew = studentBox.Q<ScrollView>("term-subject-list");
+        subjectsListView = studentBox.Q<ScrollView>("term-subject-list");
+
+        //Subject Box
+        subjectsListView = subjectAnalyticsBox.Q<ScrollView>("subject-analytics-list");
 
         //Buttons
         var nextBtn = studentBox.Q<Button>("student-next-btn");
@@ -224,6 +230,7 @@ public class Student : TeacherDashboardClassroom
                                         PopulateSubjectResults(subj, curentAttepts, ref studentTotalScore);
                                     }
 
+                                    //Calculate Final
                                     subjectCountLabel.text = subjectList.Count.ToString();
                                     totalLabel.text = studentTotalScore.ToString();
                                     averageLabel.text = (studentTotalScore / subjectList.Count).ToString();
@@ -250,7 +257,7 @@ public class Student : TeacherDashboardClassroom
         average = total / currentAttempts.Count;
         totalScore += total;
 
-        subjectListVew.Clear();
+        subjectsListView.Clear();
 
         //CREATE
         VisualElement newSubjectElement = new VisualElement();
@@ -293,7 +300,88 @@ public class Student : TeacherDashboardClassroom
         newSubjectElement.Add(totalElement);
         newSubjectElement.Add(avgElement);
 
-        subjectListVew.Add(newSubjectElement);
+        subjectsListView.Add(newSubjectElement);
+    }
+
+    private void PopulateAttempts(ISubject currentSubject)
+    {
+        GroupBox subjectBox = new GroupBox();
+
+        VisualElement subjectElement = CreateListItem(currentSubject.Name);
+        subjectElement.AddToClassList("subject-details-box");
+
+        VisualElement topicBox = CreateListItem(currentSubject.Name);
+        topicBox.AddToClassList("topics-box");
+
+        foreach (ITopic topic in currentSubject.TopicList)
+        {
+            VisualElement newTopic = CreateListItem(topic.Name);
+
+            VisualElement subtopicBox = new VisualElement();
+            subtopicBox.AddToClassList("topics-box");
+
+            foreach (IAttempt subtopic in topic.SubtopicList)
+            {
+                VisualElement newSubtopic = CreateListItem(subtopic.SubtopicName);
+                VisualElement startTime = CreateListItem($"Start Date Time: {subtopic.GameData.StartDateTime}");
+                VisualElement endTime = CreateListItem($"End Date Time: {subtopic.GameData.EndDateTime}");
+                VisualElement finalduration = CreateListItem($"Duration: {subtopic.GameData.Duration.ToString()}");
+                VisualElement finalscore = CreateListItem($"Final Score: {subtopic.GameData.FinalScore.ToString()}");
+
+                VisualElement levelsBox = new VisualElement();
+                levelsBox.AddToClassList("topics-box");
+
+                foreach (GameplayLevelData gameLvlData in subtopic.GameData.GameLevelData)
+                {
+                    VisualElement levelIndex = CreateListItem($"Level {gameLvlData.LevelIndex}");
+                    VisualElement score = CreateListItem($"Score {gameLvlData.Score}");
+                    VisualElement duration = CreateListItem($"Score {gameLvlData.Duration}");
+
+                    levelsBox.Add(levelIndex);
+                    levelsBox.Add(score);
+                    levelsBox.Add(duration);
+                }
+
+                subtopicBox.Add(newSubtopic);
+                subtopicBox.Add(startTime);
+                subtopicBox.Add(endTime);
+                subtopicBox.Add(finalduration);
+                subtopicBox.Add(finalscore);
+                subtopicBox.Add(levelsBox);
+            }
+
+            topicBox.Add(newTopic);
+            topicBox.Add(subtopicBox);
+
+            subjectElement.Add(topicBox);
+        }
+
+        subjectBox.Add(subjectElement);
+    }
+
+    private VisualElement CreateListItem(string textData)
+    {
+        //Create
+        VisualElement labelBox = new VisualElement();
+        VisualElement detailLabelBox = new VisualElement();
+        Label detailLabel = new Label();
+
+        //ADD CLASSES
+        labelBox.AddToClassList("list-primary-item");
+        detailLabelBox.AddToClassList("list-primary-item-text");
+        detailLabel.AddToClassList("student-item-label");
+
+        //ADD VALUE
+        detailLabel.text = textData;
+
+        //ADD
+        //Add to detailLabelBox
+        detailLabelBox.Add(detailLabel);
+
+        //Add to labelBox
+        labelBox.Add(detailLabelBox);
+
+        return labelBox;
     }
 }
 
@@ -303,6 +391,7 @@ public interface ISubjectContainer
     string SubjectID { get; set; }
     string Name { get; set; }
     string Grade { get; set; }
+    List<ITopic> TopicList { get; set; }
 }
 
 public class ISubject : ISubjectContainer
@@ -310,6 +399,7 @@ public class ISubject : ISubjectContainer
     public string SubjectID { get; set; }
     public string Name { get; set; }
     public string Grade { get; set; }
+    public List<ITopic> TopicList { get; set; }
 }
 
 public interface ITopicContainer
@@ -317,6 +407,7 @@ public interface ITopicContainer
     string TopicID { get; set; }
     string Name { get; set; }
     string SubjectID { get; set; }
+    List<IAttempt> SubtopicList { get; set; }
 }
 
 public class ITopic : ITopicContainer
@@ -324,6 +415,7 @@ public class ITopic : ITopicContainer
     public string TopicID { get; set; }
     public string Name { get; set; }
     public string SubjectID { get; set; }
+    public List<IAttempt> SubtopicList { get; set; }
 }
 
 public interface IAttemptContainer
