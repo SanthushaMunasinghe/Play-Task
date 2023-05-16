@@ -33,8 +33,6 @@ public class StudentDashboardStudentData : StudentDashboardResults
         classroomLabel = classroomBox.Q<VisualElement>("classroom-label").Q<Label>();
         studentList = classroomBox.Q<ScrollView>("student-list");
 
-        GetStudent(GlobalUser.userData.UserID);
-
         //Student Details
         studentLabel = studentBox.Q<VisualElement>("details-label").Q<Label>();
 
@@ -72,6 +70,8 @@ public class StudentDashboardStudentData : StudentDashboardResults
             GlobalMethods.NextBackBtn(false, ref tabIndex, tabList.Count);
             SelectTab();
         };
+
+        GetStudent(GlobalUser.userData.UserID);
     }
 
     private void GetStudent(string userId)
@@ -133,6 +133,8 @@ public class StudentDashboardStudentData : StudentDashboardResults
         newItem.Add(studentEmail);
 
         list.Add(newItem);
+
+        GetComponent<StudentSubjectResults>().GetStudentResults(studentData);
     }
 
     void Update()

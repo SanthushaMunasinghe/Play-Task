@@ -39,9 +39,9 @@
                 <ui:VisualElement name="student-details-label" class="box-primary-label">
                     <ui:Label text="Student Details" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
-                <ui:VisualElement name="student-details-body" class="box-primary-body">
+                <ui:VisualElement name="student-details-body" class="box-primary-body" style="display: flex;">
                     <ui:VisualElement name="details-label" class="box-label-primary">
-                        <ui:Label text="Student Analytics (Mathematics)" display-tooltip-when-elided="true" />
+                        <ui:Label text="Student Analytics" display-tooltip-when-elided="true" />
                         <ui:VisualElement name="next-back-buttons" style="flex-direction: row; justify-content: space-between; align-items: center;">
                             <ui:Button text="Back" display-tooltip-when-elided="true" name="student-back-btn" style="background-color: rgb(255, 82, 82);" />
                             <ui:Button text="Next" display-tooltip-when-elided="true" name="student-next-btn" style="background-color: rgb(255, 82, 82);" />
@@ -77,20 +77,12 @@
                     </ui:VisualElement>
                     <ui:VisualElement name="term-analytics-box" class="box-secondary" style="display: none;">
                         <ui:ScrollView name="term-analytics-list" class="scroll-list-primary" style="flex-grow: 1;">
-                            <ui:VisualElement name="student-detail-name" class="list-primary-item" style="justify-content: flex-start;">
+                            <ui:VisualElement name="subjects-count" class="list-primary-item" style="justify-content: flex-start;">
                                 <ui:VisualElement name="detail-label" class="list-primary-item-text">
-                                    <ui:Label text="Name:" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
+                                    <ui:Label text="Subjects:" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
                                 </ui:VisualElement>
                                 <ui:VisualElement name="detail-content" class="list-primary-item-text">
-                                    <ui:Label text="M.A.Santhusha Hasanjith Munasinghe" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
-                                </ui:VisualElement>
-                            </ui:VisualElement>
-                            <ui:VisualElement name="student-detail-id" class="list-primary-item" style="justify-content: flex-start;">
-                                <ui:VisualElement name="detail-label" class="list-primary-item-text">
-                                    <ui:Label text="ID:" display-tooltip-when-elided="true" name="label" class="student-item-label" style="color: rgb(255, 255, 255);" />
-                                </ui:VisualElement>
-                                <ui:VisualElement name="detail-content" class="list-primary-item-text">
-                                    <ui:Label text="123456789" display-tooltip-when-elided="true" name="label" class="student-item-label" style="color: rgb(255, 255, 255);" />
+                                    <ui:Label text="10" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
                                 </ui:VisualElement>
                             </ui:VisualElement>
                             <ui:VisualElement name="total" class="list-primary-item" style="justify-content: flex-start;">
@@ -109,17 +101,9 @@
                                     <ui:Label text="89.7" display-tooltip-when-elided="true" name="label" class="student-item-label" style="color: rgb(255, 255, 255);" />
                                 </ui:VisualElement>
                             </ui:VisualElement>
-                            <ui:VisualElement name="place" class="list-primary-item" style="justify-content: flex-start;">
-                                <ui:VisualElement name="detail-label" class="list-primary-item-text">
-                                    <ui:Label text="Place:" display-tooltip-when-elided="true" name="label" class="student-item-label" style="color: rgb(255, 255, 255);" />
-                                </ui:VisualElement>
-                                <ui:VisualElement name="detail-content" class="list-primary-item-text">
-                                    <ui:Label text="17" display-tooltip-when-elided="true" name="label" class="student-item-label" style="color: rgb(255, 255, 255);" />
-                                </ui:VisualElement>
-                            </ui:VisualElement>
                         </ui:ScrollView>
                         <ui:ScrollView name="term-subject-list" class="scroll-list-primary" style="flex-grow: 1;">
-                            <ui:VisualElement name="subject-item" class="list-primary-item">
+                            <ui:VisualElement name="subject-item" class="list-primary-item" style="display: none;">
                                 <ui:VisualElement name="subject-name" class="list-primary-item-text">
                                     <ui:Label text="Mathematics" display-tooltip-when-elided="true" name="label" class="student-item-label" />
                                 </ui:VisualElement>
@@ -133,7 +117,68 @@
                         </ui:ScrollView>
                     </ui:VisualElement>
                     <ui:VisualElement name="subject-analytics-box" class="box-secondary" style="display: none;">
-                        <ui:ScrollView name="subject-analytics-list" class="scroll-list-primary" style="flex-grow: 1;" />
+                        <ui:ScrollView name="subject-analytics-list" class="scroll-list-primary" style="flex-grow: 1; align-items: stretch;">
+                            <ui:GroupBox style="display: none;">
+                                <ui:VisualElement name="subjects-name" class="list-primary-item" style="justify-content: flex-start;">
+                                    <ui:VisualElement name="detail-label" class="list-primary-item-text">
+                                        <ui:Label text="Subjectt:" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement name="subject-details-box" class="subject-details-box">
+                                    <ui:VisualElement name="topics-box" class="topics-box">
+                                        <ui:VisualElement name="topic-name" class="list-primary-item" style="justify-content: flex-start;">
+                                            <ui:VisualElement name="detail-label" class="list-primary-item-text">
+                                                <ui:Label text="Topic:" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="subtopics-box" style="width: 90%; align-items: flex-end;">
+                                            <ui:VisualElement name="subtopic-name" class="list-primary-item" style="justify-content: flex-start;">
+                                                <ui:VisualElement name="detail-label" class="list-primary-item-text">
+                                                    <ui:Label text="Subtopic 01" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
+                                                </ui:VisualElement>
+                                            </ui:VisualElement>
+                                            <ui:VisualElement name="start-time" class="list-primary-item" style="justify-content: flex-start;">
+                                                <ui:VisualElement name="detail-label" class="list-primary-item-text">
+                                                    <ui:Label text="Subtopic 01" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
+                                                </ui:VisualElement>
+                                            </ui:VisualElement>
+                                            <ui:VisualElement name="end-time" class="list-primary-item" style="justify-content: flex-start;">
+                                                <ui:VisualElement name="detail-label" class="list-primary-item-text">
+                                                    <ui:Label text="Subtopic 01" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
+                                                </ui:VisualElement>
+                                            </ui:VisualElement>
+                                            <ui:VisualElement name="duration" class="list-primary-item" style="justify-content: flex-start;">
+                                                <ui:VisualElement name="detail-label" class="list-primary-item-text">
+                                                    <ui:Label text="Subtopic 01" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
+                                                </ui:VisualElement>
+                                            </ui:VisualElement>
+                                            <ui:VisualElement name="score" class="list-primary-item" style="justify-content: flex-start;">
+                                                <ui:VisualElement name="detail-label" class="list-primary-item-text">
+                                                    <ui:Label text="Subtopic 01" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
+                                                </ui:VisualElement>
+                                            </ui:VisualElement>
+                                            <ui:VisualElement name="levels-box" style="width: 90%; align-items: flex-end;">
+                                                <ui:VisualElement name="level-index" class="list-primary-item" style="justify-content: flex-start;">
+                                                    <ui:VisualElement name="detail-label" class="list-primary-item-text">
+                                                        <ui:Label text="Subtopic 01" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
+                                                    </ui:VisualElement>
+                                                </ui:VisualElement>
+                                                <ui:VisualElement name="score" class="list-primary-item" style="justify-content: flex-start;">
+                                                    <ui:VisualElement name="detail-label" class="list-primary-item-text">
+                                                        <ui:Label text="Subtopic 01" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
+                                                    </ui:VisualElement>
+                                                </ui:VisualElement>
+                                                <ui:VisualElement name="durationj" class="list-primary-item" style="justify-content: flex-start;">
+                                                    <ui:VisualElement name="detail-label" class="list-primary-item-text">
+                                                        <ui:Label text="Subtopic 01" display-tooltip-when-elided="true" name="student-number-label" class="student-item-label" style="color: rgb(255, 255, 255);" />
+                                                    </ui:VisualElement>
+                                                </ui:VisualElement>
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:GroupBox>
+                        </ui:ScrollView>
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>

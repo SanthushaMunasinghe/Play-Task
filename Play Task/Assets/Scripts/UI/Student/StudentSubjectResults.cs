@@ -1,32 +1,17 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Student : TeacherDashboardClassroom
+public class StudentSubjectResults : StudentDashboardResults
 {
-    public StudentData selectedStudent;
     public List<string> subjectList = new List<string>();
     public List<string> topicList = new List<string>();
     public List<string> subtopicList = new List<string>();
     public List<IAttempt> attemptList = new List<IAttempt>();
     public List<ISubject> subjectDataList = new List<ISubject>();
-
-    private Label studentLabel;
-
-    private int tabIndex = 0;
-
-    private List<VisualElement> tabList = new List<VisualElement>();
-    private List<string> tabTitles = new List<string>();
-
-    //Details Box Elements
-    private Label nameBox;
-    private Label phoneBox;
-    private Label emailBox;
-    private Label homeBox;
 
     //Results Box Elements
     private Label subjectCountLabel;
@@ -39,26 +24,7 @@ public class Student : TeacherDashboardClassroom
 
     void Start()
     {
-        studentLabel = studentBox.Q<VisualElement>("details-label").Q<Label>();
-
-        //Tabs
-        VisualElement detailsBox = studentBox.Q<VisualElement>("details-box");
-        VisualElement termAnalyticsBox = studentBox.Q<VisualElement>("term-analytics-box");
         VisualElement subjectAnalyticsBox = studentBox.Q<VisualElement>("subject-analytics-box");
-
-        tabList.Add(detailsBox);
-        tabList.Add(termAnalyticsBox);
-        tabList.Add(subjectAnalyticsBox);
-
-        tabTitles.Add("Student Details");
-        tabTitles.Add("Student Results");
-        tabTitles.Add("Student Analytics");
-
-        //Details Box
-        nameBox = studentBox.Q<VisualElement>("student-detail-name").Q<Label>();
-        phoneBox = studentBox.Q<VisualElement>("student-detail-phone").Q<Label>();
-        emailBox = studentBox.Q<VisualElement>("student-detail-email").Q<Label>();
-        homeBox = studentBox.Q<VisualElement>("student-detail-home").Q<Label>();
 
         //Results Box
         subjectCountLabel = studentBox.Q<VisualElement>("subjects-count").Q<VisualElement>("detail-content").Q<Label>();
@@ -68,61 +34,6 @@ public class Student : TeacherDashboardClassroom
 
         //Subject Box
         subjectlistView = subjectAnalyticsBox.Q<ScrollView>("subject-analytics-list");
-
-        //Buttons
-        var nextBtn = studentBox.Q<Button>("student-next-btn");
-        var backBtn = studentBox.Q<Button>("student-back-btn");
-
-        nextBtn.clicked += () =>
-        {
-            GlobalMethods.NextBackBtn(true, ref tabIndex, tabList.Count);
-            SelectTab();
-        };
-
-        backBtn.clicked += () =>
-        {
-            GlobalMethods.NextBackBtn(false, ref tabIndex, tabList.Count);
-            SelectTab();
-        };
-    }
-
-    void Update()
-    {
-        for (int i = 0; i < tabTitles.Count; i++)
-        {
-            if (tabIndex == i)
-            {
-                studentLabel.text = tabTitles[i];
-            }
-        }
-
-        if (selectedStudent != null)
-        {
-            PopulateDetails(selectedStudent);
-        }
-    }
-
-    private void SelectTab()
-    {
-        for (int i = 0; i < tabList.Count; i++)
-        {
-            if (tabIndex == i)
-            {
-                tabList[i].style.display = DisplayStyle.Flex;
-            }
-            else
-            {
-                tabList[i].style.display = DisplayStyle.None;
-            }
-        }
-    }
-
-    private void PopulateDetails(StudentData data)
-    {
-        nameBox.text = "Name: " + data.Stdname;
-        phoneBox.text = "Phone: " + data.Phone;
-        emailBox.text = "Email: " + data.Email;
-        homeBox.text = "Home: " + data.Home;
     }
 
     public void GetStudentSubjects(string subjectId)
@@ -438,55 +349,4 @@ public class Student : TeacherDashboardClassroom
 
         return labelBox;
     }
-}
-
-//Subject
-public interface ISubjectContainer
-{
-    string SubjectID { get; set; }
-    string Name { get; set; }
-    string Grade { get; set; }
-    List<ITopic> TopicList { get; set; }
-}
-
-public class ISubject : ISubjectContainer
-{
-    public string SubjectID { get; set; }
-    public string Name { get; set; }
-    public string Grade { get; set; }
-    public List<ITopic> TopicList { get; set; }
-}
-
-public interface ITopicContainer
-{
-    string TopicID { get; set; }
-    string Name { get; set; }
-    List<IAttempt> SubtopicList { get; set; }
-}
-
-public class ITopic : ITopicContainer
-{
-    public string TopicID { get; set; }
-    public string Name { get; set; }
-    public List<IAttempt> SubtopicList { get; set; }
-}
-
-public interface IAttemptContainer
-{
-    string SubjectName { get; set; }
-    string SubtopicName { get; set; }
-    string TopicName { get; set; }
-    string SubtopicID { get; set; }
-    string AttemptID { get; set; }
-    GameplayData GameData { get; set; }
-}
-
-public class IAttempt : IAttemptContainer
-{
-    public string SubtopicID { get; set; }
-    public string SubjectName { get; set; }
-    public string SubtopicName { get; set; }
-    public string TopicName { get; set; }
-    public string AttemptID { get; set; }
-    public GameplayData GameData { get; set; }
 }
