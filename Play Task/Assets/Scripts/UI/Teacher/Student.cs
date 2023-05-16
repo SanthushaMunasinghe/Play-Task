@@ -169,7 +169,7 @@ public class Student : TeacherDashboardClassroom
 
                             foreach (IAttempt att in attemptList)
                             {
-                                if (att.SubjectName == newSubject.Name)
+                                if (att.TopicName == newTopic.Name)
                                 {
                                     newTopic.SubtopicList.Add(att);
                                 }
@@ -229,7 +229,7 @@ public class Student : TeacherDashboardClassroom
 
                     sendRequests.SendGetRequest(GlobalData.url + "/getsubtopic/" + newAttempt.SubtopicID, headers, label, (responseJson) =>
                     {
-                        newAttempt.SubjectName = responseJson["title"].Value<string>();
+                        newAttempt.SubtopicName = responseJson["title"].Value<string>();
 
                         if (!subtopicList.Contains(responseJson["title"].Value<string>()))
                         {
@@ -356,58 +356,64 @@ public class Student : TeacherDashboardClassroom
 
         GroupBox subjectBox = new GroupBox();
 
-        VisualElement subjectElement = CreateListItem(currentSubject.Name);
-        subjectElement.AddToClassList("subject-details-box");
+        VisualElement newSubject = CreateListItem(currentSubject.Name);
+        subjectBox.Add(newSubject);
 
-        VisualElement topicBox = CreateListItem(currentSubject.Name);
-        topicBox.AddToClassList("topics-box");
+        VisualElement subjectDetailsBox = new VisualElement();
+        subjectDetailsBox.AddToClassList("subject-details-box");
 
         foreach (ITopic topic in currentSubject.TopicList)
         {
-            VisualElement newTopic = CreateListItem(topic.Name);
+            VisualElement topicBox = new VisualElement();
+            topicBox.AddToClassList("topics-box");
 
-            VisualElement subtopicBox = new VisualElement();
-            subtopicBox.AddToClassList("topics-box");
+            VisualElement newTopic = CreateListItem(topic.Name);
+            topicBox.Add(newTopic);
 
             foreach (IAttempt subtopic in topic.SubtopicList)
             {
+                VisualElement subtopicBox = new VisualElement();
+                subtopicBox.AddToClassList("topics-box");
+
                 VisualElement newSubtopic = CreateListItem(subtopic.SubtopicName);
                 VisualElement startTime = CreateListItem($"Start Date Time: {subtopic.GameData.StartDateTime}");
                 VisualElement endTime = CreateListItem($"End Date Time: {subtopic.GameData.EndDateTime}");
                 VisualElement finalduration = CreateListItem($"Duration: {subtopic.GameData.Duration}");
                 VisualElement finalscore = CreateListItem($"Final Score: {subtopic.GameData.FinalScore}");
 
-                VisualElement levelsBox = new VisualElement();
-                levelsBox.AddToClassList("topics-box");
-
-                foreach (GameplayLevelData gameLvlData in subtopic.GameData.GameLevelData)
-                {
-                    VisualElement levelIndex = CreateListItem($"Level {gameLvlData.LevelIndex}");
-                    VisualElement score = CreateListItem($"Score {gameLvlData.Score}");
-                    VisualElement duration = CreateListItem($"Score {gameLvlData.Duration}");
-
-                    levelsBox.Add(levelIndex);
-                    levelsBox.Add(score);
-                    levelsBox.Add(duration);
-                }
-
                 subtopicBox.Add(newSubtopic);
                 subtopicBox.Add(startTime);
                 subtopicBox.Add(endTime);
                 subtopicBox.Add(finalduration);
                 subtopicBox.Add(finalscore);
-                subtopicBox.Add(levelsBox);
+
+                Debug.Log(subtopic.SubtopicName);
+
+                foreach (GameplayLevelData gameLvlData in subtopic.GameData.GameLevelData)
+                {
+                    VisualElement levelsBox = new VisualElement();
+                    levelsBox.AddToClassList("topics-box");
+
+                    VisualElement levelIndex = CreateListItem($"Level {gameLvlData.LevelIndex + 1}");
+                    VisualElement score = CreateListItem($"Score: {gameLvlData.Score}");
+                    VisualElement duration = CreateListItem($"Duration: {gameLvlData.Duration} Sec");
+
+                    levelsBox.Add(levelIndex);
+                    levelsBox.Add(score);
+                    levelsBox.Add(duration);
+
+                    subtopicBox.Add(levelsBox);
+                }
+
+                topicBox.Add(subtopicBox);
             }
 
-            topicBox.Add(newTopic);
-            topicBox.Add(subtopicBox);
-
-            subjectElement.Add(topicBox);
+            subjectDetailsBox.Add(topicBox);
         }
 
-        subjectBox.Add(subjectElement);
+        subjectBox.Add(subjectDetailsBox);
 
-        subjectlistView.Add(subjectElement);
+        subjectlistView.Add(subjectBox);
     }
 
     private VisualElement CreateListItem(string textData)
