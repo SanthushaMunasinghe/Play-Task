@@ -106,8 +106,8 @@ public class GameResults : MonoBehaviour
 
         //ADD VALUES
         levelLabel.text = $"Level {gpLvlData.LevelIndex + 1}";
-        durationDetailsLabel.text = $"Duration: {gpLvlData.Duration}";
-        scoreDetailsLabel.text = $"Duration: {gpLvlData.Score} Sec";
+        durationDetailsLabel.text = $"Duration: {gpLvlData.Duration} Sec";
+        scoreDetailsLabel.text = $"Score: {gpLvlData.Score}";
 
         //ADD TO
         //durationDetailsLabelElement

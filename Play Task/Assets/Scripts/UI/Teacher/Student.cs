@@ -274,7 +274,7 @@ public class Student : TeacherDashboardClassroom
                                     //Calculate Final
                                     subjectCountLabel.text = subjectList.Count.ToString();
                                     totalLabel.text = studentTotalScore.ToString();
-                                    averageLabel.text = (studentTotalScore / subjectList.Count).ToString();
+                                    averageLabel.text = (studentTotalScore / subjectList.Count).ToString() + "%";
 
                                     //Get Subjects
                                     foreach (string subjIds in std.Subjects)
@@ -332,8 +332,8 @@ public class Student : TeacherDashboardClassroom
 
         //ADD VALUES
         subjectLabel.text = subjectName;
-        totalLabel.text = total.ToString();
-        avgLabel.text = average.ToString();
+        totalLabel.text = $"Total: {total.ToString()}";
+        avgLabel.text = $"Avg: {average.ToString()}%";
 
         //ADD ELEMENTS
 
@@ -379,7 +379,7 @@ public class Student : TeacherDashboardClassroom
                 VisualElement startTime = CreateListItem($"Start Date Time: {subtopic.GameData.StartDateTime}");
                 VisualElement endTime = CreateListItem($"End Date Time: {subtopic.GameData.EndDateTime}");
                 VisualElement finalduration = CreateListItem($"Duration: {subtopic.GameData.Duration}");
-                VisualElement finalscore = CreateListItem($"Final Score: {subtopic.GameData.FinalScore}");
+                VisualElement finalscore = CreateListItem($"Final Score: {subtopic.GameData.FinalScore}%");
 
                 subtopicBox.Add(newSubtopic);
                 subtopicBox.Add(startTime);

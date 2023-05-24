@@ -90,6 +90,8 @@ public class SelectPuzzleGamePlay : MonoBehaviour
             {
                 gamePlayLevel.levelScore = 0;
             }
+
+            Debug.Log(gamePlayLevel.levelScore);
             gamePlayLevel.EndLevel();
         }
     }

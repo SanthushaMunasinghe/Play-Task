@@ -45,6 +45,8 @@ public class GameInfoTab : GamePlayer
             {
                 gpLvl.levelScore = 0;
             }
+
+            Debug.Log(gpLvl.levelScore);
             gpLvl.EndLevel();
         });
 

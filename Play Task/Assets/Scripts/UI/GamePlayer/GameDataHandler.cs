@@ -22,6 +22,7 @@ public class GameDataHandler : MonoBehaviour
     {
         //Assign to Global Gameplay Data
         GlobalData.currentGameplayData = gameplayData;
+        Debug.Log(gameplayData.FinalScore);
 
         //Convert gameplay level data
         List<GameplayLevelData> gLvljDataList = gameplayData.GameLevelData;

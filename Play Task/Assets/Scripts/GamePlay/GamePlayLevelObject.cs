@@ -23,10 +23,16 @@ public class GamePlayLevelObject : MonoBehaviour
         if (physicsType == "Force")
         {
             currentDuration = durationInRun;
+            Debug.Log("True");
         }
         else if (physicsType == "Impulse")
         {
             isImpulse = true;
+        }
+
+        if (currentDuration > 0)
+        {
+            currentDuration -= Time.deltaTime;
         }
     }
 
@@ -36,7 +42,7 @@ public class GamePlayLevelObject : MonoBehaviour
         {
             Vector2 forceVec = new Vector2(forceVectorX, forceVectorY);
             gameObject.GetComponent<Rigidbody2D>().AddForce(forceVec * 10);
-            currentDuration -= Time.deltaTime;
+            Debug.Log("Force");
         }
 
         if (isImpulse)
